@@ -3,170 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DETEX — Armamos el Personaje</title>
+    <title>DETEX — Tienda Mayorista Oficial</title>
     <style>
-        /* ESTILO ULTRA PREMIUM INSPIRADO EN WESS */
         @import url('https://googleapis.com');
         
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; cursor: none; }
-        body { background-color: #ffffff; color: #000000; overflow-x: hidden; }
-        
-        /* CURSOR PERSONALIZADO ESTILO DÓLAR DORADO */
-        .custom-cursor { width: 8px; height: 8px; background: #000; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; transition: width 0.2s, height 0.2s; }
-        .custom-cursor-follower { width: 30px; height: 30px; border: 1px solid #000; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; transition: transform 0.08s ease-out, width 0.2s, height 0.2s; }
-        
-        /* TOP BAR ROTATIVA */
-        .top-bar { background-color: #000; color: #fff; text-align: center; padding: 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-        
-        /* NAVBAR MINIMALISTA */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; border-bottom: 1px solid #e5e5e5; background: #fff; }
-        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 30px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-        
-        /* HERO SECTION AGRESIVA (Fondo gris oscuro/fotografía urbana simulada) */
-        .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://unsplash.com') no-repeat center center/cover; padding: 140px 5%; color: #fff; text-align: left; position: relative; min-height: 85vh; display: flex; flex-direction: column; justify-content: center; }
-        .tag-cordoba { font-size: 0.8rem; font-weight: 800; letter-spacing: 3px; color: #ff3333; text-transform: uppercase; margin-bottom: 15px; display: inline-block; border-left: 2px solid #ff3333; padding-left: 10px; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 900; line-height: 0.9; letter-spacing: -2px; text-transform: uppercase; max-width: 800px; margin-bottom: 25px; }
-        .hero p { font-size: 1.1rem; max-width: 450px; color: #ccc; margin-bottom: 30px; font-weight: 400; }
-        .btn-wess { background-color: #fff; color: #000; padding: 18px 35px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; letter-spacing: 2px; transition: 0.3s; border: 1px solid #fff; width: fit-content; }
-        .btn-wess:hover { background-color: #000; color: #fff; border-color: #000; }
+        body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
 
-        /* BANNER BENEFICIOS TRIPLE TRADICIONAL */
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); background: #000; color: #fff; }
-        .benefit-box { padding: 40px; border: 1px solid #222; text-align: left; }
-        .benefit-box h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; letter-spacing: 1px; }
-        .benefit-box p { font-size: 0.85rem; color: #888; }
+        /* CURSOR PREMIUM INTERACTIVO (Naranja Fuego) */
+        .cursor-dot { width: 6px; height: 6px; background: #ff4500; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; box-shadow: 0 0 12px #ff4500; }
+        .cursor-outline { width: 28px; height: 28px; border: 1px solid rgba(255, 69, 0, 0.4); border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; transition: transform 0.08s ease-out; }
 
-        /* SECCIÓN CATÁLOGO DE PRODUCTOS */
-        .catalog { padding: 80px 5%; background: #f9f9f9; }
-        .catalog-title { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; text-align: center; letter-spacing: -1px; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .product-card { background: #fff; border: 1px solid #eee; overflow: hidden; position: relative; transition: 0.3s; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .product-img-placeholder { width: 100%; height: 350px; background: #e0e0e0; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #666; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .product-info { padding: 20px; text-align: left; }
-        .product-name { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
-        .product-price { font-size: 1.1rem; font-weight: 500; color: #000; }
+        /* NAVBAR PREMIUM INDUSTRIAL */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 5%; background: #000000; border-bottom: 1px solid #121212; position: sticky; top: 0; z-index: 999; }
+        .nav-left { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .menu-trigger { color: #ff4500; font-weight: 900; }
+        .logo { font-size: 1.7rem; font-weight: 900; letter-spacing: 5px; color: #ffffff; text-transform: uppercase; }
+        .logo span { color: #ff4500; }
+        .nav-right { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .cart-btn { background: #ff4500; color: #000; padding: 4px 14px; font-weight: 900; border-radius: 1px; }
+
+        /* MENÚ LATERAL INTERACTIVO */
+        .side-menu { position: fixed; top: 0; left: -360px; width: 340px; height: 100vh; background: #080808; border-right: 1px solid #181818; z-index: 1000; padding: 45px; transition: 0.4s cubic-bezier(0.1, 0.8, 0.3, 1); box-shadow: 25px 0 50px rgba(0,0,0,0.9); }
+        .side-menu.active { left: 0; }
+        .close-menu { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #ff4500; text-align: right; margin-bottom: 50px; }
+        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 24px; }
+        .menu-list li a { color: #aaa; text-decoration: none; font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; }
+        .menu-list li a:hover { color: #ff4500; padding-left: 8px; }
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.75); z-index: 998; display: none; }
+        .menu-overlay.active { display: block; }
+
+        /* HERO / PORTADA */
+        .hero { height: 50vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('https://unsplash.com') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid #111; }
+        .hero h1 { font-size: 3.8rem; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; line-height: 0.95; margin-bottom: 15px; text-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+        .hero p { font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 6px; }
+
+        /* RECUADRO DE TRIPLE BENEFICIO DEBAJO DE LA IMAGEN */
+        .promos-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); background: #000000; border-bottom: 1px solid #121212; }
+        .promo-box { padding: 35px 6%; border-right: 1px solid #121212; position: relative; }
+        .promo-box:last-child { border-right: none; }
+        .promo-box h3 { font-size: 1.1rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; color: #fff; }
+        .promo-box p { font-size: 0.75rem; color: #777; line-height: 1.5; }
+
+        /* SISTEMA DE PESTAÑAS (TABS) PARA FILTRAR CATÁLOGO */
+        .catalog-container { max-width: 1350px; margin: 0 auto; padding: 60px 4%; }
+        .tabs-header { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; border-bottom: 1px solid #151515; padding-bottom: 20px; flex-wrap: wrap; }
+        .tab-btn { background: none; border: none; color: #666; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px; transition: 0.3s; }
+        .tab-btn.active { color: #ff4500; border-bottom: 2px solid #ff4500; }
+
+        /* GRID DE PRODUCTOS */
+        .products-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .products-grid.active { display: grid; }
         
-        /* NOTIFICACIONES DE COMPRA EN VIVO */
-        .live-notification { position: fixed; bottom: -100px; left: 20px; background: #000; color: #fff; padding: 15px 25px; display: flex; align-items: center; gap: 15px; border-radius: 0px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 9999; transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .live-notification.show { bottom: 20px; }
-        .notification-dot { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #00ff66; }
-        .notification-text { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; }
-        .notification-text strong { font-weight: 800; color: #00ff66; }
+        .product-card { background: #0a0a0a; border: 1px solid #121212; padding: 15px; transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex; flex-direction: column; justify-content: space-between; }
+        .product-card:hover { border-color: #ff4500; transform: translateY(-3px); }
+        
+        .img-placeholder { width: 100%; height: 300px; background: #111111; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .p-title { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.3px; }
+        .p-desc { font-size: 0.7rem; color: #555; margin-bottom: 12px; font-weight: 500; }
+        .p-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #121212; padding-top: 10px; }
+        .p-price { font-size: 1.05rem; font-weight: 900; color: #ffffff; }
+        
+        .order-btn { background: #ffffff; color: #000000; border: none; padding: 7px 14px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; transition: 0.2s; }
+        .order-btn:hover { background: #ff4500; color: #000000; }
 
-        footer { background: #000; color: #555; text-align: center; padding: 60px 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        /* VENTANAS MODALES FLOJAS */
+        .info-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); background: #080808; border: 1px solid #222; padding: 35px; z-index: 2000; max-width: 480px; width: 90%; display: none; opacity: 0; transition: 0.25s ease; }
+        .info-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .info-modal h3 { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; color: #ff4500; }
+        .info-modal p { font-size: 0.85rem; color: #999; line-height: 1.6; margin-bottom: 8px; }
+
+        footer { background: #000000; text-align: center; padding: 50px 20px; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; color: #333; border-top: 1px solid #121212; margin-top: 80px; }
+        footer a { color: #555; text-decoration: none; margin: 0 10px; transition: 0.2s; }
+        footer a:hover { color: #ff4500; }
     </style>
 </head>
 <body>
 
-    <!-- CURSOR PERSONALIZADO -->
-    <div class="custom-cursor" id="cursor"></div>
-    <div class="custom-cursor-follower" id="follower"></div>
+    <!-- CONTROL DE CURSOR INTERACTIVO -->
+    <div class="cursor-dot" id="dot"></div>
+    <div class="cursor-outline" id="outline"></div>
 
-    <!-- BARRA SUPERIOR DE DESCUENTOS -->
-    <div class="top-bar">HASTA 6 CUOTAS SIN INTERÉS • ENVÍOS A TODO EL PAÍS</div>
+    <!-- MENÚ LATERAL DESPLEGABLE -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="side-menu" id="sideMenu">
+        <div class="close-menu" id="closeBtn">[ Cerrar ]</div>
+        <ul class="menu-list">
+            <li><a href="#" onclick="openModal('talles')">Medidas / Guía de Talles</a></li>
+            <li><a href="#" onclick="openModal('ofertas')">Ofertas Imperdibles</a></li>
+            <li><a href="#" onclick="openModal('comprar')">¿Cómo comprar?</a></li>
+            <li><a href="#" onclick="openModal('faq')">Preguntas Frecuentes</a></li>
+        </ul>
+    </div>
 
-    <!-- MENÚ -->
+    <!-- MODAL DE SISTEMA -->
+    <div class="info-modal" id="infoModal">
+        <h3 id="modalTitle">Título</h3>
+        <div id="modalBody">Contenido</div>
+        <button onclick="closeModal()" style="background:#ff4500; color:#000; border:none; padding:8px 16px; font-weight:900; margin-top:20px; text-transform:uppercase;">Entendido</button>
+    </div>
+
+    <!-- NAVBAR NAVEGACIÓN -->
     <nav>
-        <div class="logo">DETEX</div>
-        <div class="nav-links">
-            <div>Buscar</div>
-            <div>Carrito (0)</div>
+        <div class="nav-left">
+            <div class="menu-trigger" id="menuBtn">MENÚ</div>
+            <div>BUSCAR</div>
+        </div>
+        <div class="logo">DETEX<span>.</span></div>
+        <div class="nav-right">
+            <div>LOGIN</div>
+            <div class="cart-btn">CARRITO</div>
         </div>
     </nav>
 
-    <!-- PORTADA ESTILO WESS -->
+    <!-- PORTADA PRINCIPAL -->
     <section class="hero">
-        <div>
-            <span class="tag-cordoba">CÓRDOBA • TRABAJO DE MUESTRA</span>
-            <h1>NO VENDEMOS ROPA.<br>ARMAMOS EL PERSONAJE.</h1>
-            <p>Modelos exclusivos y corte urbano adaptado a la cultura urbana actual.</p>
-            <a href="https://wa.me" target="_blank" class="btn-wess">VER CATÁLOGO →</a>
+        <h1>DETEX MAYORISTA</h1>
+        <p>Distribuidora Textil • Envíos Nacionales</p>
+    </section>
+
+    <!-- TRIPLE SECCIÓN DE PROMOS -->
+    <section class="promos-bar">
+        <div class="promo-box">
+            <h3>20% OFF TRANSFERENCIA</h3>
+            <p>Se aplica directamente sobre el precio final al abonar mediante transferencia bancaria.</p>
+        </div>
+        <div class="promo-box">
+            <h3>ENVÍO GRATIS</h3>
+            <p>Bonificación total de envío a cualquier sucursal o transporte del país en bultos seleccionados.</p>
+        </div>
+        <div class="promo-box">
+            <h3>3 CUOTAS SIN INTERÉS</h3>
+            <p>Financiación directa a través de Mercado Pago utilizando tus tarjetas de crédito de confianza.</p>
         </div>
     </section>
 
-    <!-- TARJETAS DE PROMO TRIPLE -->
-    <section class="benefits-grid">
-        <div class="benefit-box">
-            <h3>3 Y 6 CUOTAS</h3>
-            <p>Con Mercado Pago, sin recargo sobre el precio de lista de tus prendas favoritas.</p>
-        </div>
-        <div class="benefit-box">
-            <h3>20% OFF TRABAJO</h3>
-            <p>Se descuenta al abonar en transferencia bancaria de forma directa.</p>
-        </div>
-        <div class="benefit-box">
-            <h3>ENVÍO A TODO EL PAÍS</h3>
-            <p>En Córdoba Capital lo lleva nuestro cadete exclusivo en el mismo día.</p>
-        </div>
-    </section>
-
-    <!-- MOSTRADOR DE PRODUCTOS -->
-    <section class="catalog">
-        <div class="catalog-title">Colección Urbana</div>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-img-placeholder">Pantalón Wide Leg (FOTO PROX)</div>
-                <div class="product-info">
-                    <div class="product-name">Pantalón Wide Leg Denim</div>
-                    <div class="product-price">$24.000</div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-img-placeholder">Pantalón Baggy (FOTO PROX)</div>
-                <div class="product-info">
-                    <div class="product-name">Pantalón Baggy Streetwear</div>
-                    <div class="product-price">$24.000</div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-img-placeholder">Baggy Cargo (FOTO PROX)</div>
-                <div class="product-info">
-                    <div class="product-name">Pantalón Baggy Cargo Black</div>
-                    <div class="product-price">$26.500</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPONENTES DE NOTIFICACIONES DE COMPRA EN VIVO -->
-    <div class="live-notification" id="notification">
-        <span class="notification-dot"></span>
-        <div class="notification-text" id="notification-text"></div>
-    </div>
-
-    <footer>
-        &copy; 2026 DETEX CLOTHES. DISEÑO DE MUESTRA PROFESIONAL DE ALTA GAMA.
-    </footer>
-
-    <!-- LÓGICA JAVASCRIPT AVANZADA -->
-    <script>
-        // CONTROL DEL CURSOR INMERSIVO (Estilo Dólar Dorado)
-        const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('follower');
+    <!-- CONTENEDOR FILTRABLE DE PRODUCTOS DEL CATÁLOGO REAL -->
+    <main class="catalog-container">
         
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            // Retardo ligero para el seguidor exterior
-            setTimeout(() => {
-                follower.style.left = e.clientX + 'px';
-                follower.style.top = e.clientY + 'px';
-            }, 30);
-        });
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab('pantalones')">Baggys & Jeans</button>
+            <button class="tab-btn" onclick="switchTab('remeras')">Remeras & Tops</button>
+            <button class="tab-btn" onclick="switchTab('kids')">Niños / Colegial</button>
 
-        // Efecto visual al pasar por encima de elementos clickeables
-        const interactiveElements = document.querySelectorAll('a, .product-card, nav div');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '20px';
-                cursor.style.height = '20px';
-                cursor.style.background = 'rgba(0,0,0,0.2)';
-                follower.style.width = '45px';
-                follower.style.height = '45px';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '8px';
-                cursor.style.height = '8px';
+            
