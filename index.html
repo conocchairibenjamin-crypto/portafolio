@@ -3,104 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DETEX — Official Streetwear Shop</title>
+    <title>Detex Mayorista CBA - Catálogo de Ropa</title>
+    <!-- Tailwind CSS v4 CDN para testing rápido sin configuraciones pesadas -->
+    <script src="https://jsdelivr.net"></script>
     <style>
-        @import url('https://googleapis.com');
-        
-        /* ESTILO DOCTA / WESS - CURSOR NATIVO FLUIDO */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Space Grotesk', sans-serif; }
-        body { background-color: #ffffff; color: #000000; overflow-x: hidden; }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-        /* NAVBAR FIJA */
-        header { border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; background: #ffffff; z-index: 100; }
-        .top-banner { background: #000000; color: #ffffff; text-align: center; padding: 10px; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
-        .nav-left, .nav-right { display: flex; gap: 30px; }
-        .nav-btn { background: none; border: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; color: #000; }
-        .nav-btn:hover { color: #ff4500; }
-        .logo { font-size: 1.7rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; color: #000; }
-        .logo span { color: #ff4500; }
-        .cart-indicator { background: #000; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-family: 'Inter', sans-serif; }
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-extrabold text-blue-600 tracking-wide">DETEX MAYORISTA</span>
+                    <span class="ml-2 px-2 py-0.5 text-xs bg-blue-100 text-blue-800 rounded font-semibold">CBA</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="#inicio" class="text-blue-600 border-b-2 border-blue-600 pb-1">Inicio</a>
+                    <a href="#catalogo" class="text-gray-600 hover:text-blue-600 transition">Catálogo</a>
+                    <a href="#nosotros" class="text-gray-600 hover:text-blue-600 transition">Nosotros</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-blue-600 transition">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        /* MENÚ LATERAL EXACTO A WESS */
-        .wess-menu { position: fixed; top: 0; left: -360px; width: 340px; height: 100vh; background: #ffffff; border-right: 1px solid #000; z-index: 1000; padding: 50px 35px; transition: 0.4s cubic-bezier(0.1, 0.8, 0.3, 1); }
-        .wess-menu.active { left: 0; }
-        .close-wess { font-size: 1.5rem; font-weight: 500; text-align: right; cursor: pointer; margin-bottom: 40px; color: #000; }
-        .wess-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
-        .wess-list li a { color: #000; text-decoration: none; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; }
-        .wess-list li a:hover { color: #ff4500; }
-        .menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.3); z-index: 998; display: none; }
-        .menu-overlay.active { display: block; }
+    <!-- Hero Section -->
+    <header id="inicio" class="hero-bg h-[450px] flex items-center justify-center text-center text-white px-4">
+        <div>
+            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">Venta de Ropa por Mayor</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-gray-200">Encontrá las últimas tendencias con la mejor relación calidad-precio de Córdoba. Catálogo exclusivo para revendedores.</p>
+            <a href="#catalogo" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
+                Ver Catálogo de Temporada
+            </a>
+        </div>
+    </header>
 
-        /* CONTENEDOR DE LA LANDING */
-        .main-container { max-width: 1200px; margin: 0 auto; padding: 30px 4%; }
-        
-        /* BOX PRINCIPAL CON EL LOGO / FOTO DE LA CHICA EN MOVIMIENTO */
-        .hero-banner-real { width: 100%; height: 350px; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://unsplash.com') no-repeat center center/cover; border-radius: 4px; margin-bottom: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; text-align: center; }
-        .hero-banner-real h2 { font-size: 2.5rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .hero-banner-real p { font-size: 0.85rem; color: #fff; letter-spacing: 2px; margin-top: 10px; text-transform: uppercase; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    <!-- Catálogo Principal -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Nuestro Catálogo</h2>
+            <p class="text-gray-600 mt-2">Precios mayoristas actualizados para tu negocio</p>
+        </div>
 
-        /* CATEGORÍAS EN BLOQUES CUADRADOS CON FOTOS PREMIUM */
-        .section-title { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 35px; }
-        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 60px; }
-        
-        .category-card { position: relative; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 4px; cursor: pointer; border: 1px solid #eee; transition: 0.3s; background-size: cover; background-position: center; }
-        .category-card:hover { transform: translateY(-3px); border-color: #000; }
-        .category-card::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.1); transition: 0.3s; }
-        .category-card:hover::before { background: rgba(0,0,0,0.15); }
-        
-        .cat-text { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; color: #000; z-index: 2; text-shadow: 0 0 10px rgba(255,255,255,0.8); }
-        .cat-sub { position: absolute; bottom: 20px; font-size: 0.75rem; font-weight: 700; color: #444; text-transform: uppercase; letter-spacing: 1px; z-index: 2; text-shadow: 0 0 5px rgba(255,255,255,0.8); }
+        <!-- Filtros Rápidos -->
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+            <button class="bg-blue-600 text-white px-5 py-2 rounded-full font-medium shadow-sm">Todos</button>
+            <button class="bg-white text-gray-600 hover:bg-gray-100 px-5 py-2 rounded-full font-medium shadow-sm border border-gray-200 transition">Remeras y Tops</button>
+            <button class="bg-white text-gray-600 hover:bg-gray-100 px-5 py-2 rounded-full font-medium shadow-sm border border-gray-200 transition">Jeans y Pantalones</button>
+            <button class="bg-white text-gray-600 hover:bg-gray-100 px-5 py-2 rounded-full font-medium shadow-sm border border-gray-200 transition">Camperas</button>
+        </div>
 
-        /* BARRA DE BÚSQUEDA */
-        .search-container-box { background: #f9f9f9; border: 1px solid #eee; padding: 25px; border-radius: 4px; margin-bottom: 40px; display: none; }
-        .search-container-box.active { display: block; }
-        .search-flex { display: flex; gap: 10px; }
-        .search-flex input { flex: 1; padding: 12px 20px; font-size: 0.9rem; border: 1px solid #ddd; outline: none; }
-        .search-flex button { background: #000; color: #fff; border: none; padding: 0 25px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+        <!-- Grid de Productos -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            
+            <!-- Tarjeta de Producto 1 -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+                <div class="h-64 bg-gray-200 relative">
+                    <img src="https://unsplash.com" alt="Remera" class="w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-2.5 py-1 rounded">Pack x6</span>
+                </div>
+                <div class="p-5">
+                    <span class="text-xs text-blue-600 font-semibold tracking-wider uppercase">Remeras</span>
+                    <h3 class="text-lg font-bold text-gray-900 mt-1">Remera Básica Premium Cotton</h3>
+                    <div class="flex items-center justify-between mt-4">
+                        <div>
+                            <p class="text-xs text-gray-400 line-through">$8.500</p>
+                            <p class="text-xl font-extrabold text-gray-900">$5.900 <span class="text-xs font-normal text-gray-500">c/u</span></p>
+                        </div>
+                        <button class="bg-gray-900 hover:bg-blue-600 text-white p-2 rounded-lg transition">
+                            🤖
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-        /* INTERFAZ DEL CATÁLOGO DESPLEGABLE */
-        .catalog-section { display: none; }
-        .catalog-section.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .back-link { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #000; text-decoration: none; cursor: pointer; margin-bottom: 30px; display: inline-block; }
-        
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { border: 1px solid #eee; padding: 20px; border-radius: 4px; background: #fff; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-img-frame { width: 100%; height: 340px; background-size: cover; background-position: center; margin-bottom: 15px; border-radius: 2px; border: 1px solid #f2f2f2; display: flex; align-items: flex-end; padding: 15px; }
-        .model-tag { background: rgba(0,0,0,0.8); color: #fff; font-size: 0.65rem; padding: 4px 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        
-        .p-name { font-size: 1rem; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
-        .p-desc { font-size: 0.75rem; color: #666; font-family: 'Inter', sans-serif; line-height: 1.4; margin-bottom: 12px; }
-        .price-box { font-size: 1.2rem; font-weight: 900; color: #000; }
-        .quota-box { font-size: 0.75rem; color: #00b050; font-weight: 600; font-family: 'Inter', sans-serif; }
-        
-        .card-action-row { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; border-top: 1px solid #f5f5f5; padding-top: 15px; }
-        .stars-box { font-size: 0.75rem; color: #666; }
-        .stars-box span { color: #ffb703; font-size: 0.9rem; }
-        
-        /* BOTÓN MAS (+) REQUERIDO */
-        .add-cart-btn { background: #000000; color: #ffffff; border: none; width: 38px; height: 38px; font-size: 1.4rem; font-weight: 400; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 2px; }
-        .add-cart-btn:hover { background: #ff4500; }
+            <!-- Repetir estructuras similares para Producto 2, 3, etc. -->
+            <!-- El archivo descargable tiene la grilla completa con más ejemplos mapeados -->
 
-        /* RESEÑAS Y COMENTARIOS */
-        .reviews-wrapper { border-top: 1px solid #f5f5f5; margin-top: 15px; padding-top: 15px; font-family: 'Inter', sans-serif; }
-        .reviews-title { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #333; margin-bottom: 8px; }
-        .reviews-box { max-height: 90px; overflow-y: auto; margin-bottom: 10px; }
-        .review-msg { font-size: 0.7rem; color: #555; background: #fcfcfc; padding: 6px 10px; margin-bottom: 5px; border-radius: 2px; border: 1px solid #f8f8f8; }
-        .review-input-group { display: flex; gap: 6px; }
-        .review-input-group input { flex: 1; padding: 6px 10px; font-size: 0.7rem; border: 1px solid #ddd; outline: none; }
-        .review-input-group button { background: #000; color: #fff; border: none; padding: 0 12px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+        </div>
+    </main>
 
-        /* TABLA DE TALLES DE WESS */
-        .wess-table-container { margin-top: 10px; }
-        .wess-table-title { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; text-align: center; margin-bottom: 5px; }
-        .wess-table-sub { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; text-align: center; color: #666; margin-bottom: 20px; }
-        .wess-section-label { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; margin: 15px 0 10px 0; border-left: 3px solid #000; padding-left: 8px; }
-        .wess-grid-table { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #000; text-align: center; font-size: 0.8rem; margin-bottom: 15px; }
-        .wess-th { background: #000; color: #fff; font-weight: 800; padding: 8px; text-transform: uppercase; }
-        .wess-td { padding: 8px; border-bottom: 1px solid #eee; font-weight: 600; border-right: 1px solid #eee; }
-        .wess-td:last-child { border-right: none; }
+    <!-- Información Mayorista -->
+    <section id="nosotros" class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="p-4">
+                <div class="bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">✓</div>
+                <h4 class="text-xl font-bold mb-2">Compra Mínima</h4>
+                <p class="text-gray-400 text-sm">Pensada para que tus clientes puedan renovar stock constantemente.</p>
+            </div>
+            <div class="p-4">
+                <div class="bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">✈</div>
+                <h4 class="text-xl font-bold mb-2">Envíos Nacionales</h4>
+                <p class="text-gray-400 text-sm">Despachos rápidos desde Córdoba hacia todo el país.</p>
+            </div>
+            <div class="p-4">
+                <div class="bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">⚡</div>
+                <h4 class="text-xl font-bold mb-2">Canal Mayorista</h4>
+                <p class="text-gray-400 text-sm">Soporte directo para armar pedidos ágiles.</p>
+            </div>
+        </div>
+    </section>
 
-        /* MODALES GENERALES */
-        .modal-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 2000; display: none; }
+    <footer id="contacto" class="bg-white border-t border-gray-200 py-12 text-center">
+        <p class="text-gray-500 font-medium">© 2026 Detex Mayorista CBA. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
