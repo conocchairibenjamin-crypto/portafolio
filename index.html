@@ -3,117 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detex Mayorista CBA - Catálogo de Ropa</title>
-    <!-- Tailwind CSS v4 CDN para testing rápido sin configuraciones pesadas -->
+    <title>Detex Mayorista CBA | Urban Clothing</title>
+    <!-- Tailwind CSS v4 CDN -->
     <script src="https://jsdelivr.net"></script>
     <style>
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.com');
+        @import url('https://googleapis.com');
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .banner-gradient {
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.85)), url('https://unsplash.com');
             background-size: cover;
             background-position: center;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-[#0b0b0b] text-white antialiased">
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
+    <!-- 1. Barra de Notificación de Compras Recientes (Arriba del Todo) -->
+    <div class="bg-blue-600 text-white text-xs font-semibold py-2 px-4 text-center tracking-wider overflow-hidden">
+        <div class="animate-pulse">
+            🔥 Lucas de Córdoba compró 12 Pantalones Baggy hace 5 minutos
+        </div>
+    </div>
+
+    <!-- 2. Navbar Premium Superior (No-Copycat Logo Color) -->
+    <nav class="bg-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
                 <div class="flex items-center">
-                    <span class="text-2xl font-extrabold text-blue-600 tracking-wide">DETEX MAYORISTA</span>
-                    <span class="ml-2 px-2 py-0.5 text-xs bg-blue-100 text-blue-800 rounded font-semibold">CBA</span>
+                    <span class="text-2xl font-black tracking-tighter text-blue-500">DETEX</span>
+                    <span class="text-xs bg-zinc-800 text-zinc-300 font-bold px-1.5 py-0.5 ml-1.5 rounded">MAYORISTA</span>
                 </div>
-                <div class="hidden md:flex items-center space-x-8 font-medium">
-                    <a href="#inicio" class="text-blue-600 border-b-2 border-blue-600 pb-1">Inicio</a>
-                    <a href="#catalogo" class="text-gray-600 hover:text-blue-600 transition">Catálogo</a>
-                    <a href="#nosotros" class="text-gray-600 hover:text-blue-600 transition">Nosotros</a>
-                    <a href="#contacto" class="text-gray-600 hover:text-blue-600 transition">Contacto</a>
+
+                <!-- Menú de Navegación con Categorías, Guía de Talles, FAQs y Ofertas -->
+                <div class="hidden lg:flex items-center space-x-8 text-xs font-bold tracking-widest uppercase">
+                    <a href="#productos" class="hover:text-blue-500 transition">Baggys</a>
+                    <a href="#productos" class="text-zinc-400 hover:text-white transition">Pantalones</a>
+                    <a href="#talles" class="text-zinc-400 hover:text-white transition">Guía de Talles</a>
+                    <a href="#ofertas" class="text-zinc-400 hover:text-white transition">Ofertas</a>
+                    <a href="#faqs" class="text-zinc-400 hover:text-white transition">FAQs</a>
+                </div>
+
+                <!-- Íconos de Control (Buscador, Registro/Login, Carrito) -->
+                <div class="flex items-center space-x-6 text-zinc-400">
+                    <button class="hover:text-white transition cursor-pointer" aria-label="Buscar">
+                        🔍
+                    </button>
+                    <a href="#login" class="hover:text-white transition text-sm font-semibold hidden sm:inline" aria-label="Mi Cuenta">
+                        👤 Cuenta
+                    </a>
+                    <button class="hover:text-white transition relative cursor-pointer" aria-label="Carrito de compras">
+                        🛒
+                        <span class="absolute -top-2 -right-2 bg-blue-500 text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="inicio" class="hero-bg h-[450px] flex items-center justify-center text-center text-white px-4">
-        <div>
-            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">Venta de Ropa por Mayor</h1>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-gray-200">Encontrá las últimas tendencias con la mejor relación calidad-precio de Córdoba. Catálogo exclusivo para revendedores.</p>
-            <a href="#catalogo" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
-                Ver Catálogo de Temporada
-            </a>
+    <!-- 3. Hero Banner Estilo Streetwear -->
+    <header class="banner-gradient h-[500px] flex items-center justify-start px-6 md:px-20 relative">
+        <div class="max-w-xl text-left">
+            <span class="bg-blue-600 text-black font-black text-xs px-3 py-1 uppercase tracking-widest rounded-sm">
+                Nueva Temporada
+            </span>
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mt-4 uppercase leading-none">
+                LO MEJOR <br><span class="text-blue-500">PARA TU ESTILO</span>
+            </h1>
+            <p class="text-zinc-400 text-sm mt-4 max-w-sm tracking-wide">
+                Indumentaria urbana premium por mayor. Diseños exclusivos desarrollados para revendedores y locales de todo el país.
+            </p>
+            <div class="mt-8">
+                <a href="#productos" class="bg-white text-black font-black text-xs tracking-widest uppercase py-4 px-8 rounded-none hover:bg-blue-500 hover:text-white transition inline-block">
+                    Ver Catálogo
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Catálogo Principal -->
-    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Nuestro Catálogo</h2>
-            <p class="text-gray-600 mt-2">Precios mayoristas actualizados para tu negocio</p>
-        </div>
-
-        <!-- Filtros Rápidos -->
-        <div class="flex flex-wrap justify-center gap-4 mb-10">
-            <button class="bg-blue-600 text-white px-5 py-2 rounded-full font-medium shadow-sm">Todos</button>
-            <button class="bg-white text-gray-600 hover:bg-gray-100 px-5 py-2 rounded-full font-medium shadow-sm border border-gray-200 transition">Remeras y Tops</button>
-            <button class="bg-white text-gray-600 hover:bg-gray-100 px-5 py-2 rounded-full font-medium shadow-sm border border-gray-200 transition">Jeans y Pantalones</button>
-            <button class="bg-white text-gray-600 hover:bg-gray-100 px-5 py-2 rounded-full font-medium shadow-sm border border-gray-200 transition">Camperas</button>
-        </div>
-
-        <!-- Grid de Productos -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            
-            <!-- Tarjeta de Producto 1 -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
-                <div class="h-64 bg-gray-200 relative">
-                    <img src="https://unsplash.com" alt="Remera" class="w-full h-full object-cover">
-                    <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-2.5 py-1 rounded">Pack x6</span>
-                </div>
-                <div class="p-5">
-                    <span class="text-xs text-blue-600 font-semibold tracking-wider uppercase">Remeras</span>
-                    <h3 class="text-lg font-bold text-gray-900 mt-1">Remera Básica Premium Cotton</h3>
-                    <div class="flex items-center justify-between mt-4">
-                        <div>
-                            <p class="text-xs text-gray-400 line-through">$8.500</p>
-                            <p class="text-xl font-extrabold text-gray-900">$5.900 <span class="text-xs font-normal text-gray-500">c/u</span></p>
-                        </div>
-                        <button class="bg-gray-900 hover:bg-blue-600 text-white p-2 rounded-lg transition">
-                            🤖
-                        </button>
-                    </div>
-                </div>
+    <!-- 4. Barra de Beneficios y Promociones (Debajo del Banner Principal) -->
+    <section class="bg-zinc-950 border-y border-zinc-900 py-6">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-xs font-bold tracking-widest uppercase text-zinc-300">
+            <div class="flex items-center justify-center space-x-3">
+                <span class="text-xl text-blue-500">💳</span>
+                <span>3 Cuotas Sin Interés</span>
             </div>
-
-            <!-- Repetir estructuras similares para Producto 2, 3, etc. -->
-            <!-- El archivo descargable tiene la grilla completa con más ejemplos mapeados -->
-
-        </div>
-    </main>
-
-    <!-- Información Mayorista -->
-    <section id="nosotros" class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="p-4">
-                <div class="bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">✓</div>
-                <h4 class="text-xl font-bold mb-2">Compra Mínima</h4>
-                <p class="text-gray-400 text-sm">Pensada para que tus clientes puedan renovar stock constantemente.</p>
+            <div class="flex items-center justify-center space-x-3 border-y md:border-y-0 md:border-x border-zinc-800 py-4 md:py-0">
+                <span class="text-xl text-blue-500">💰</span>
+                <span>20% OFF Transferencia Bancaria</span>
             </div>
-            <div class="p-4">
-                <div class="bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">✈</div>
-                <h4 class="text-xl font-bold mb-2">Envíos Nacionales</h4>
-                <p class="text-gray-400 text-sm">Despachos rápidos desde Córdoba hacia todo el país.</p>
-            </div>
-            <div class="p-4">
-                <div class="bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">⚡</div>
-                <h4 class="text-xl font-bold mb-2">Canal Mayorista</h4>
-                <p class="text-gray-400 text-sm">Soporte directo para armar pedidos ágiles.</p>
+            <div class="flex items-center justify-center space-x-3">
+                <span class="text-xl text-blue-500">✈</span>
+                <span>Envío Gratis a Todo el País</span>
             </div>
         </div>
     </section>
 
-    <footer id="contacto" class="bg-white border-t border-gray-200 py-12 text-center">
-        <p class="text-gray-500 font-medium">© 2026 Detex Mayorista CBA. Todos los derechos reservados.</p>
-    </footer>
+    <!-- 5. Grid de Categorías (Bloques con imágenes de fondo) -->
+    <section class="max-w-7xl mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Bloque 1 -->
+            <div class="relative h-80 bg-zinc-900 overflow-hidden group">
+                <img src="https://unsplash.com" alt="Pantalones Baggys" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-6">
+                    <h3 class="text-xl font-black uppercase tracking-tight">Pantalones Baggys</h3>
+                    <a href="#productos" class="text-xs text-blue-500 font-bold uppercase tracking-widest mt-2 hover:underline">Ver productos →</a>
+                </div>
+            </div>
+            <!-- Bloque 2 -->
+            <div class="relative h-80 bg-zinc-900 overflow-hidden group">
+                <img src="https://unsplash.com" alt="Buzos Oversize" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-6">
+                    <h3 class="text-xl font-black uppercase tracking-tight">Buzos Oversize</h3>
+                    <a href="#productos" class="text-xs text-blue-500 font-bold uppercase tracking-widest mt-2 hover:underline">Ver productos →</a>
+                </div>
+            </div>
+            <!-- Bloque 3 -->
+            <div class="relative h-80 bg-zinc-900 overflow-hidden group">
+                <img src="https://unsplash.com" alt="Remeras Streetwear" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-6">
+                    <h3 class="text-xl font-black uppercase tracking-tight">Accesorios Urban</h3>
+                    <a href="#productos" class="text-xs text-blue-500 font-bold uppercase tracking-widest mt-2 hover:underline">Ver productos →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</body>
-</html>
+    <!-- 6. Catálogo de Productos Destacados -->
+    <main id="productos" class="max-w-7xl mx-auto px-4 pb-24">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-zinc-800 pb-6">
+            <div>
+                <span class="text-xs font-bold text-blue-500 uppercase tracking-widest">Colección Mayorista</span>
+                <h2 class="text-3xl font-black uppercase tracking-tighter mt-1">Lanzamientos Destacados</h2>
+            </div>
+            <div class="flex space-x-4 mt-4 md:mt-0 text-xs font-bold uppercase tracking-widest">
+                <button class="text-white border-b-2 border-white pb-1">Todos</button>
+                <button class="text-zinc-500 hover:text-white transition">Baggys</button>
+                <button class="text-zinc-500 hover:text-white transition">Cargo</button>
+            </div>
+        </div>
+
+        <!-- Grid de Items -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10">
+            <!-- Producto 1: Pantalón Baggy -->
+            <div class="group">
+                <div class="bg-zinc-900 aspect-[3/4] relative overflow-hidden mb-4">
+                    <img src="https://unsplash.com" alt="Pantalón Baggy Denim" class="w-full h-full object-cover group-hover:scale-102 transition duration-300">
+                    <span class="absolute top-2 left-2 bg-blue-500 text-black text-[10px] font-black px-2 py-0.5 uppercase tracking-wide">Mayorista</span>
+                </div>
+                <h3 class="text-sm font-bold tracking-tight text-zinc-200 uppercase">Pantalón Baggy Denim Dark</h3>
+                <div class="flex items-baseline space-x-2 mt-1">
+                    <span class="text-base font-black text-white">$21.000</span>
+                    <span class="text-xs text-zinc-500 line-through">$26.500</span>
