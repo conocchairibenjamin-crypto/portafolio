@@ -7,14 +7,15 @@
     <style>
         @import url('https://googleapis.com');
         
+        /* OCULTAMOS EL RATÓN COMÚN PARA USAR EL INTERACTIVO */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; cursor: none; }
         body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
 
-        /* CURSOR PREMIUM INTERACTIVO (Naranja Fuego) */
+        /* CURSOR INTERACTIVO PERMANENTE (Fijo en pantalla, no se pierde al bajar) */
         .cursor-dot { width: 6px; height: 6px; background: #ff4500; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; box-shadow: 0 0 12px #ff4500; }
         .cursor-outline { width: 28px; height: 28px; border: 1px solid rgba(255, 69, 0, 0.4); border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; transition: transform 0.08s ease-out; }
 
-        /* NAVBAR PREMIUM INDUSTRIAL */
+        /* NAVBAR PREMIUM */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 5%; background: #000000; border-bottom: 1px solid #121212; position: sticky; top: 0; z-index: 999; }
         .nav-left { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
         .menu-trigger { color: #ff4500; font-weight: 900; }
@@ -23,7 +24,7 @@
         .nav-right { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
         .cart-btn { background: #ff4500; color: #000; padding: 4px 14px; font-weight: 900; border-radius: 1px; }
 
-        /* MENÚ LATERAL INTERACTIVO */
+        /* MENÚ LATERAL DESPLEGABLE */
         .side-menu { position: fixed; top: 0; left: -360px; width: 340px; height: 100vh; background: #080808; border-right: 1px solid #181818; z-index: 1000; padding: 45px; transition: 0.4s cubic-bezier(0.1, 0.8, 0.3, 1); box-shadow: 25px 0 50px rgba(0,0,0,0.9); }
         .side-menu.active { left: 0; }
         .close-menu { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #ff4500; text-align: right; margin-bottom: 50px; }
@@ -33,12 +34,12 @@
         .menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.75); z-index: 998; display: none; }
         .menu-overlay.active { display: block; }
 
-        /* HERO / PORTADA */
+        /* HERO PRINCIPAL */
         .hero { height: 50vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('https://unsplash.com') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid #111; }
-        .hero h1 { font-size: 3.8rem; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; line-height: 0.95; margin-bottom: 15px; text-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+        .hero h1 { font-size: 3.8rem; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; line-height: 0.95; margin-bottom: 15px; }
         .hero p { font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 6px; }
 
-        /* RECUADRO DE TRIPLE BENEFICIO DEBAJO DE LA IMAGEN */
+        /* TRIPLE BLOQUE DE PROMOS DEBAJO DE LA IMAGEN */
         .promos-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); background: #000000; border-bottom: 1px solid #121212; }
         .promo-box { padding: 35px 6%; border-right: 1px solid #121212; position: relative; }
         .promo-box:last-child { border-right: none; }
@@ -51,7 +52,7 @@
         .tab-btn { background: none; border: none; color: #666; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px; transition: 0.3s; }
         .tab-btn.active { color: #ff4500; border-bottom: 2px solid #ff4500; }
 
-        /* GRID DE PRODUCTOS */
+        /* GRID DE PRODUCTOS Surtiendo el stock real */
         .products-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
         .products-grid.active { display: grid; }
         
@@ -67,7 +68,7 @@
         .order-btn { background: #ffffff; color: #000000; border: none; padding: 7px 14px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; transition: 0.2s; }
         .order-btn:hover { background: #ff4500; color: #000000; }
 
-        /* VENTANAS MODALES FLOJAS */
+        /* VENTANAS MODALES */
         .info-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); background: #080808; border: 1px solid #222; padding: 35px; z-index: 2000; max-width: 480px; width: 90%; display: none; opacity: 0; transition: 0.25s ease; }
         .info-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
         .info-modal h3 { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; color: #ff4500; }
@@ -80,7 +81,7 @@
 </head>
 <body>
 
-    <!-- CONTROL DE CURSOR INTERACTIVO -->
+    <!-- ELEMENTOS DEL CURSOR CUSTOM CORREGIDOS -->
     <div class="cursor-dot" id="dot"></div>
     <div class="cursor-outline" id="outline"></div>
 
@@ -96,14 +97,14 @@
         </ul>
     </div>
 
-    <!-- MODAL DE SISTEMA -->
+    <!-- VENTANA MODAL FLOTANTE -->
     <div class="info-modal" id="infoModal">
         <h3 id="modalTitle">Título</h3>
         <div id="modalBody">Contenido</div>
         <button onclick="closeModal()" style="background:#ff4500; color:#000; border:none; padding:8px 16px; font-weight:900; margin-top:20px; text-transform:uppercase;">Entendido</button>
     </div>
 
-    <!-- NAVBAR NAVEGACIÓN -->
+    <!-- HEADER / NAVEGACIÓN -->
     <nav>
         <div class="nav-left">
             <div class="menu-trigger" id="menuBtn">MENÚ</div>
@@ -116,13 +117,13 @@
         </div>
     </nav>
 
-    <!-- PORTADA PRINCIPAL -->
+    <!-- PORTADA DE DETEX -->
     <section class="hero">
         <h1>DETEX MAYORISTA</h1>
         <p>Distribuidora Textil • Envíos Nacionales</p>
     </section>
 
-    <!-- TRIPLE SECCIÓN DE PROMOS -->
+    <!-- BANNER TRIPLE DE BENEFICIOS -->
     <section class="promos-bar">
         <div class="promo-box">
             <h3>20% OFF TRANSFERENCIA</h3>
@@ -138,7 +139,7 @@
         </div>
     </section>
 
-    <!-- CONTENEDOR FILTRABLE DE PRODUCTOS DEL CATÁLOGO REAL -->
+    <!-- MOSTRADOR CON TABS DE PRODUCTOS REALES -->
     <main class="catalog-container">
         
         <div class="tabs-header">
