@@ -7,15 +7,15 @@
     <style>
         @import url('https://googleapis.com');
         
-        /* OCULTAMOS EL RATÓN COMÚN PARA USAR EL INTERACTIVO */
+        /* OCULTAMOS EL RATÓN TRADICIONAL */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; cursor: none; }
         body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
 
-        /* CURSOR INTERACTIVO PERMANENTE (Fijo en pantalla, no se pierde al bajar) */
+        /* CURSOR INTERACTIVO CON BLOQUEO ANTI-PARED (pointer-events: none OBLIGATORIO) */
         .cursor-dot { width: 6px; height: 6px; background: #ff4500; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; box-shadow: 0 0 12px #ff4500; }
         .cursor-outline { width: 28px; height: 28px; border: 1px solid rgba(255, 69, 0, 0.4); border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; transition: transform 0.08s ease-out; }
 
-        /* NAVBAR PREMIUM */
+        /* NAVBAR PREMIUM INDUSTRIAL */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 5%; background: #000000; border-bottom: 1px solid #121212; position: sticky; top: 0; z-index: 999; }
         .nav-left { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
         .menu-trigger { color: #ff4500; font-weight: 900; }
@@ -39,24 +39,24 @@
         .hero h1 { font-size: 3.8rem; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; line-height: 0.95; margin-bottom: 15px; }
         .hero p { font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 6px; }
 
-        /* TRIPLE BLOQUE DE PROMOS DEBAJO DE LA IMAGEN */
+        /* TRIPLE BLOQUE DE PROMOS DEBAJO DE LA PORTADA */
         .promos-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); background: #000000; border-bottom: 1px solid #121212; }
         .promo-box { padding: 35px 6%; border-right: 1px solid #121212; position: relative; }
         .promo-box:last-child { border-right: none; }
         .promo-box h3 { font-size: 1.1rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; color: #fff; }
         .promo-box p { font-size: 0.75rem; color: #777; line-height: 1.5; }
 
-        /* SISTEMA DE PESTAÑAS (TABS) PARA FILTRAR CATÁLOGO */
+        /* PESTAÑAS DEL CATÁLOGO */
         .catalog-container { max-width: 1350px; margin: 0 auto; padding: 60px 4%; }
         .tabs-header { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; border-bottom: 1px solid #151515; padding-bottom: 20px; flex-wrap: wrap; }
         .tab-btn { background: none; border: none; color: #666; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px; transition: 0.3s; }
         .tab-btn.active { color: #ff4500; border-bottom: 2px solid #ff4500; }
 
-        /* GRID DE PRODUCTOS Surtiendo el stock real */
+        /* GRID DE PRODUCTOS RECOLECTADOS DE LAS IMÁGENES */
         .products-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
         .products-grid.active { display: grid; }
         
-        .product-card { background: #0a0a0a; border: 1px solid #121212; padding: 15px; transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex; flex-direction: column; justify-content: space-between; }
+        .product-card { background: #0a0a0a; border: 1px solid #121212; padding: 15px; transition: 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
         .product-card:hover { border-color: #ff4500; transform: translateY(-3px); }
         
         .img-placeholder { width: 100%; height: 300px; background: #111111; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
@@ -68,7 +68,7 @@
         .order-btn { background: #ffffff; color: #000000; border: none; padding: 7px 14px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; transition: 0.2s; }
         .order-btn:hover { background: #ff4500; color: #000000; }
 
-        /* VENTANAS MODALES */
+        /* MODALES DEL MENÚ LATERAL */
         .info-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); background: #080808; border: 1px solid #222; padding: 35px; z-index: 2000; max-width: 480px; width: 90%; display: none; opacity: 0; transition: 0.25s ease; }
         .info-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
         .info-modal h3 { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; color: #ff4500; }
@@ -81,11 +81,11 @@
 </head>
 <body>
 
-    <!-- ELEMENTOS DEL CURSOR CUSTOM CORREGIDOS -->
+    <!-- ELEMENTOS VISUALES DEL CURSOR (pointer-events activado nativo arriba) -->
     <div class="cursor-dot" id="dot"></div>
     <div class="cursor-outline" id="outline"></div>
 
-    <!-- MENÚ LATERAL DESPLEGABLE -->
+    <!-- MENÚ LATERAL -->
     <div class="menu-overlay" id="menuOverlay"></div>
     <div class="side-menu" id="sideMenu">
         <div class="close-menu" id="closeBtn">[ Cerrar ]</div>
@@ -97,14 +97,14 @@
         </ul>
     </div>
 
-    <!-- VENTANA MODAL FLOTANTE -->
+    <!-- VENTANA MODAL FLOJERA -->
     <div class="info-modal" id="infoModal">
         <h3 id="modalTitle">Título</h3>
         <div id="modalBody">Contenido</div>
         <button onclick="closeModal()" style="background:#ff4500; color:#000; border:none; padding:8px 16px; font-weight:900; margin-top:20px; text-transform:uppercase;">Entendido</button>
     </div>
 
-    <!-- HEADER / NAVEGACIÓN -->
+    <!-- MENÚ DE NAVEGACIÓN SUPERIOR -->
     <nav>
         <div class="nav-left">
             <div class="menu-trigger" id="menuBtn">MENÚ</div>
@@ -117,13 +117,13 @@
         </div>
     </nav>
 
-    <!-- PORTADA DE DETEX -->
+    <!-- PORTADA HÉROE -->
     <section class="hero">
         <h1>DETEX MAYORISTA</h1>
         <p>Distribuidora Textil • Envíos Nacionales</p>
     </section>
 
-    <!-- BANNER TRIPLE DE BENEFICIOS -->
+    <!-- TRIPLE BENEFICIO -->
     <section class="promos-bar">
         <div class="promo-box">
             <h3>20% OFF TRANSFERENCIA</h3>
@@ -139,12 +139,10 @@
         </div>
     </section>
 
-    <!-- MOSTRADOR CON TABS DE PRODUCTOS REALES -->
+    <!-- MOSTRADOR CON CATEGORÍAS EN PESTAÑAS -->
     <main class="catalog-container">
         
         <div class="tabs-header">
             <button class="tab-btn active" onclick="switchTab('pantalones')">Baggys & Jeans</button>
             <button class="tab-btn" onclick="switchTab('remeras')">Remeras & Tops</button>
             <button class="tab-btn" onclick="switchTab('kids')">Niños / Colegial</button>
-
-            
