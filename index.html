@@ -3,146 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DETEX — Tienda Mayorista Oficial</title>
+    <title>DETEX — Official Urban Store</title>
     <style>
         @import url('https://googleapis.com');
         
-        /* OCULTAMOS EL RATÓN TRADICIONAL */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; cursor: none; }
-        body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
+        /* ESTILO LIMPIO Y NATIVO - RATÓN TRADICIONAL LIBRE DE ERRORES */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #ffffff; color: #000000; overflow-x: hidden; }
 
-        /* CURSOR INTERACTIVO CON BLOQUEO ANTI-PARED (pointer-events: none OBLIGATORIO) */
-        .cursor-dot { width: 6px; height: 6px; background: #ff4500; border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; box-shadow: 0 0 12px #ff4500; }
-        .cursor-outline { width: 28px; height: 28px; border: 1px solid rgba(255, 69, 0, 0.4); border-radius: 50%; position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; transition: transform 0.08s ease-out; }
-
-        /* NAVBAR PREMIUM INDUSTRIAL */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 5%; background: #000000; border-bottom: 1px solid #121212; position: sticky; top: 0; z-index: 999; }
-        .nav-left { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-        .menu-trigger { color: #ff4500; font-weight: 900; }
-        .logo { font-size: 1.7rem; font-weight: 900; letter-spacing: 5px; color: #ffffff; text-transform: uppercase; }
+        /* HEADER SUPERIOR MINIMALISTA */
+        header { border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; background: #ffffff; z-index: 100; }
+        .top-banner { background: #000000; color: #ffffff; text-align: center; padding: 8px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+        
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links li button { background: none; border: none; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; color: #000; }
+        .nav-links li button:hover { color: #888; }
+        
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; color: #000; }
         .logo span { color: #ff4500; }
-        .nav-right { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-        .cart-btn { background: #ff4500; color: #000; padding: 4px 14px; font-weight: 900; border-radius: 1px; }
 
-        /* MENÚ LATERAL DESPLEGABLE */
-        .side-menu { position: fixed; top: 0; left: -360px; width: 340px; height: 100vh; background: #080808; border-right: 1px solid #181818; z-index: 1000; padding: 45px; transition: 0.4s cubic-bezier(0.1, 0.8, 0.3, 1); box-shadow: 25px 0 50px rgba(0,0,0,0.9); }
-        .side-menu.active { left: 0; }
-        .close-menu { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #ff4500; text-align: right; margin-bottom: 50px; }
-        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 24px; }
-        .menu-list li a { color: #aaa; text-decoration: none; font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; }
-        .menu-list li a:hover { color: #ff4500; padding-left: 8px; }
-        .menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.75); z-index: 998; display: none; }
-        .menu-overlay.active { display: block; }
+        /* BANNER PRINCIPAL (ESTILO DOCTA) */
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 40px 4%; }
+        .hero-banner { width: 100%; position: relative; margin-bottom: 40px; }
+        .hero-banner img { width: 100%; height: auto; display: block; border-radius: 4px; }
 
-        /* HERO PRINCIPAL */
-        .hero { height: 50vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('https://unsplash.com') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid #111; }
-        .hero h1 { font-size: 3.8rem; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; line-height: 0.95; margin-bottom: 15px; }
-        .hero p { font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 6px; }
-
-        /* TRIPLE BLOQUE DE PROMOS DEBAJO DE LA PORTADA */
-        .promos-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); background: #000000; border-bottom: 1px solid #121212; }
-        .promo-box { padding: 35px 6%; border-right: 1px solid #121212; position: relative; }
-        .promo-box:last-child { border-right: none; }
-        .promo-box h3 { font-size: 1.1rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; color: #fff; }
-        .promo-box p { font-size: 0.75rem; color: #777; line-height: 1.5; }
-
-        /* PESTAÑAS DEL CATÁLOGO */
-        .catalog-container { max-width: 1350px; margin: 0 auto; padding: 60px 4%; }
-        .tabs-header { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; border-bottom: 1px solid #151515; padding-bottom: 20px; flex-wrap: wrap; }
-        .tab-btn { background: none; border: none; color: #666; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px; transition: 0.3s; }
-        .tab-btn.active { color: #ff4500; border-bottom: 2px solid #ff4500; }
-
-        /* GRID DE PRODUCTOS RECOLECTADOS DE LAS IMÁGENES */
-        .products-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .products-grid.active { display: grid; }
+        /* SECCIÓN DE CUADRADOS DE CATEGORÍAS */
+        .section-title { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 30px; color: #111; }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 60px; }
         
-        .product-card { background: #0a0a0a; border: 1px solid #121212; padding: 15px; transition: 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card:hover { border-color: #ff4500; transform: translateY(-3px); }
-        
-        .img-placeholder { width: 100%; height: 300px; background: #111111; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-        .p-title { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.3px; }
-        .p-desc { font-size: 0.7rem; color: #555; margin-bottom: 12px; font-weight: 500; }
-        .p-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #121212; padding-top: 10px; }
-        .p-price { font-size: 1.05rem; font-weight: 900; color: #ffffff; }
-        
-        .order-btn { background: #ffffff; color: #000000; border: none; padding: 7px 14px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; transition: 0.2s; }
-        .order-btn:hover { background: #ff4500; color: #000000; }
+        .category-card { background: #f4f4f4; position: relative; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 4px; cursor: pointer; border: 1px solid #eaeaea; transition: 0.3s; }
+        .category-card:hover { transform: scale(1.02); border-color: #000; }
+        .category-bg-text { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; z-index: 2; color: #000; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .category-subtitle { position: absolute; bottom: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #666; z-index: 2; }
 
-        /* MODALES DEL MENÚ LATERAL */
-        .info-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); background: #080808; border: 1px solid #222; padding: 35px; z-index: 2000; max-width: 480px; width: 90%; display: none; opacity: 0; transition: 0.25s ease; }
-        .info-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        .info-modal h3 { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; color: #ff4500; }
-        .info-modal p { font-size: 0.85rem; color: #999; line-height: 1.6; margin-bottom: 8px; }
+        /* SECCIÓN TRIPLE INFO INFERIOR */
+        .info-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; border-top: 1px solid #eee; padding-top: 40px; margin-top: 40px; text-align: center; }
+        .info-box h4 { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        .info-box p { font-size: 0.75rem; color: #666; line-height: 1.5; }
 
-        footer { background: #000000; text-align: center; padding: 50px 20px; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; color: #333; border-top: 1px solid #121212; margin-top: 80px; }
-        footer a { color: #555; text-decoration: none; margin: 0 10px; transition: 0.2s; }
+        /* VISTA DEL CATÁLOGO INTERNO (OCULTO POR DEFECTO) */
+        .catalog-view { display: none; margin-top: 20px; }
+        .catalog-view.active { display: block; }
+        .back-btn { background: #000; color: #fff; border: none; padding: 10px 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px; cursor: pointer; border-radius: 2px; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { border: 1px solid #eee; padding: 20px; border-radius: 4px; background: #fff; }
+        .product-img-box { width: 100%; height: 350px; background: #f7f7f7; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 15px; border-radius: 2px; }
+        .product-title { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+        .product-price-info { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+        .price-row { font-size: 1.1rem; font-weight: 800; color: #000; }
+        .installment-row { font-size: 0.75rem; color: #00b050; font-weight: 600; }
+        
+        /* SISTEMA DE ESTRELLAS Y RESEÑAS */
+        .stars-container { display: flex; gap: 30px; align-items: center; margin-bottom: 15px; font-size: 0.8rem; color: #666; }
+        .stars { color: #ffb703; font-size: 1rem; }
+        .order-button { width: 100%; background: #000; color: #fff; border: none; padding: 12px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.2s; margin-bottom: 20px; border-radius: 2px; }
+        .order-button:hover { background: #ff4500; }
+
+        /* SECCIÓN COMENTARIOS */
+        .reviews-section { border-top: 1px solid #f0f0f0; padding-top: 15px; }
+        .reviews-section h5 { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: #333; }
+        .comments-list { max-height: 120px; overflow-y: auto; margin-bottom: 15px; padding-right: 5px; }
+        .comment-item { font-size: 0.75rem; color: #555; background: #f9f9f9; padding: 8px 12px; margin-bottom: 6px; border-radius: 4px; line-height: 1.4; }
+        .comment-item strong { color: #000; }
+        
+        .review-input-box { display: flex; gap: 8px; }
+        .review-input-box input { flex: 1; padding: 8px 12px; font-size: 0.75rem; border: 1px solid #ddd; border-radius: 2px; outline: none; }
+        .review-input-box button { background: #000; color: #fff; border: none; padding: 0 15px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; cursor: pointer; border-radius: 2px; }
+
+        /* VENTANAS MODALES */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 1000; display: none; }
+        .info-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 40px; border-radius: 4px; width: 90%; max-width: 450px; z-index: 1001; display: none; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .info-modal h3 { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .info-modal p { font-size: 0.8rem; color: #555; line-height: 1.6; margin-bottom: 10px; }
+        .close-modal-btn { background: #000; color: #fff; border: none; padding: 8px 16px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; cursor: pointer; margin-top: 15px; width: 100%; border-radius: 2px; }
+
+        footer { background: #fbfbfb; border-top: 1px solid #eee; text-align: center; padding: 40px 20px; font-size: 0.7rem; font-weight: 600; color: #999; letter-spacing: 1px; text-transform: uppercase; margin-top: 80px; }
+        footer a { color: #111; text-decoration: none; margin: 0 10px; }
         footer a:hover { color: #ff4500; }
     </style>
 </head>
 <body>
 
-    <!-- ELEMENTOS VISUALES DEL CURSOR (pointer-events activado nativo arriba) -->
-    <div class="cursor-dot" id="dot"></div>
-    <div class="cursor-outline" id="outline"></div>
-
-    <!-- MENÚ LATERAL -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-    <div class="side-menu" id="sideMenu">
-        <div class="close-menu" id="closeBtn">[ Cerrar ]</div>
-        <ul class="menu-list">
-            <li><a href="#" onclick="openModal('talles')">Medidas / Guía de Talles</a></li>
-            <li><a href="#" onclick="openModal('ofertas')">Ofertas Imperdibles</a></li>
-            <li><a href="#" onclick="openModal('comprar')">¿Cómo comprar?</a></li>
-            <li><a href="#" onclick="openModal('faq')">Preguntas Frecuentes</a></li>
-        </ul>
-    </div>
-
-    <!-- VENTANA MODAL FLOJERA -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
     <div class="info-modal" id="infoModal">
         <h3 id="modalTitle">Título</h3>
         <div id="modalBody">Contenido</div>
-        <button onclick="closeModal()" style="background:#ff4500; color:#000; border:none; padding:8px 16px; font-weight:900; margin-top:20px; text-transform:uppercase;">Entendido</button>
+        <button class="close-modal-btn" onclick="closeModal()">Entendido</button>
     </div>
 
-    <!-- MENÚ DE NAVEGACIÓN SUPERIOR -->
-    <nav>
-        <div class="nav-left">
-            <div class="menu-trigger" id="menuBtn">MENÚ</div>
-            <div>BUSCAR</div>
+    <!-- HEADER SUPERIOR -->
+    <header>
+        <div class="top-banner">3 Y 6 CUOTAS SIN INTERÉS • ENVÍOS NRE / NACIONALES</div>
+        <div class="navbar">
+            <ul class="nav-links">
+                <li><button onclick="openModal('menu')">Menú</button></li>
+                <li><button onclick="openModal('buscar')">Buscar</button></li>
+            </ul>
+            <a href="#" class="logo" onclick="showHome()">DETEX<span>.</span></a>
+            <ul class="nav-links">
+                <li><button onclick="openModal('tallas')">Tallas</button></li>
+                <li><button onclick="openModal('faq')">Preguntas Frecuentes</button></li>
+            </ul>
         </div>
-        <div class="logo">DETEX<span>.</span></div>
-        <div class="nav-right">
-            <div>LOGIN</div>
-            <div class="cart-btn">CARRITO</div>
-        </div>
-    </nav>
+    </header>
 
-    <!-- PORTADA HÉROE -->
-    <section class="hero">
-        <h1>DETEX MAYORISTA</h1>
-        <p>Distribuidora Textil • Envíos Nacionales</p>
-    </section>
-
-    <!-- TRIPLE BENEFICIO -->
-    <section class="promos-bar">
-        <div class="promo-box">
-            <h3>20% OFF TRANSFERENCIA</h3>
-            <p>Se aplica directamente sobre el precio final al abonar mediante transferencia bancaria.</p>
-        </div>
-        <div class="promo-box">
-            <h3>ENVÍO GRATIS</h3>
-            <p>Bonificación total de envío a cualquier sucursal o transporte del país en bultos seleccionados.</p>
-        </div>
-        <div class="promo-box">
-            <h3>3 CUOTAS SIN INTERÉS</h3>
-            <p>Financiación directa a través de Mercado Pago utilizando tus tarjetas de crédito de confianza.</p>
-        </div>
-    </section>
-
-    <!-- MOSTRADOR CON CATEGORÍAS EN PESTAÑAS -->
-    <main class="catalog-container">
+    <div class="main-container">
         
-        <div class="tabs-header">
-            <button class="tab-btn active" onclick="switchTab('pantalones')">Baggys & Jeans</button>
-            <button class="tab-btn" onclick="switchTab('remeras')">Remeras & Tops</button>
-            <button class="tab-btn" onclick="switchTab('kids')">Niños / Colegial</button>
+        <!-- VISTA DE INICIO (ESTILO DOCTA) -->
+        <div id="home-view">
+            <div class="hero-banner">
+                <!-- Imagen limpia placeholder simulando el banner superior de Docta -->
+                <div style="width: 100%; height: 280px; background: #222; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; text-transform:uppercase; border-radius:4px;">
+                    <h2 style="font-size: 2.2rem; font-weight:900; letter-spacing:4px;">LO MEJOR PARA TU ESTILO</h2>
+                    <p style="font-size:0.8rem; color:#aaa; letter-spacing:2px; margin-top:10px;">Mayorista Oficial • Streetwear</p>
+                </div>
+            </div>
+
+            <div class="section-title">Categorías Mayoristas</div>
+            
+            <div class="categories-grid">
+                <div class="category-card" onclick="openCategory('pantalones')">
+                    <div class="category-bg-text">Pantalones</div>
+                    <div class="category-subtitle">Baggys / Jeans / Cargos</div>
+                </div>
+                <div class="category-card" onclick="openCategory('remeras')">
+                    <div class="category-bg-text">Remeras</div>
+                    <div class="category-subtitle">Oversized / Estampadas</div>
+                </div>
+                <div class="category-card" onclick="openCategory('buzos')">
+                    <div class="category-bg-text">Buzos</div>
+                    <div class="category-subtitle">Abrigos / Frizados</div>
