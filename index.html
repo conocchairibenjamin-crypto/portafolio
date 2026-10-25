@@ -4,139 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DETEX | Tienda Oficial</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS para diseño robusto y profesional (Evita pantallas en blanco) -->
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para asegurar el cursor y la estética minimalista estilo Wess */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            cursor: default !important;
+            background-color: #ffffff;
+            color: #111111;
+        }
+        /* Barra de navegación flotante fija */
+        .nav-flotante {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #eaeaea;
+        }
+    </style>
 </head>
-<body>
-    <!-- REPRODUCTOR DE MÚSICA TRANQUILA (Se activa sutilmente al primer clic) -->
+<body class="pt-20">
+
+    <!-- REPRODUCTOR DE MÚSICA (Opcional, en silencio por defecto) -->
     <audio id="musicaFondo" loop>
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
     <!-- BARRA SUPERIOR FLOTANTE ESTILO WESS -->
-    <header class="navbar-wess">
-        <div class="nav-izq">
-            <span class="nav-item" onclick="toggleMenu()">MENÚ</span>
-            <span class="nav-item" onclick="enfocarBuscador()">BUSCAR</span>
+    <nav class="nav-flotante px-6 py-4 flex justify-between items-center">
+        <!-- Izquierda: Menú y Buscador -->
+        <div class="flex gap-6 text-xs uppercase tracking-widest font-medium">
+            <button onclick="alternarMenu()" class="hover:opacity-60 transition">Menú</button>
+            <button onclick="enfocarBuscador()" class="hover:opacity-60 transition">Buscar</button>
         </div>
-        <div class="nav-centro">
-            <span class="logo-marca">DETEX</span>
+
+        <!-- Centro: Logotipo de la Marca -->
+        <div class="text-xl font-bold tracking-[0.3em] uppercase">
+            <a href="#">DETEX</a>
         </div>
-        <div class="nav-der">
-            <span class="nav-item">LOGIN</span>
-            <div class="btn-carrito-wess" onclick="verCarrito()">
-                CARRITO (<span id="contador-cart">0</span>)
-            </div>
+
+        <!-- Derecha: Acceso y Carrito -->
+        <div class="flex gap-6 text-xs uppercase tracking-widest font-medium">
+            <a href="#" class="hover:opacity-60 transition">Acceso</a>
+            <button onclick="verCarrito()" class="hover:opacity-60 transition flex items-center gap-1">
+                Carrito (<span id="contador-cart">0</span>)
+            </button>
+        </div>
+    </nav>
+
+    <!-- BANNER HERO PRINCIPAL -->
+    <header class="relative w-full h-[60vh] bg-neutral-900 flex flex-col justify-center items-center text-center text-white px-4 overflow-hidden mb-12">
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+        <div class="relative z-20">
+            <p class="text-xs uppercase tracking-[0.4em] mb-3 opacity-80">Detex Mayorista</p>
+            <h1 class="text-3xl md:text-5xl font-light tracking-[0.2em] uppercase mb-6">Colección 2026</h1>
+            <a href="#catalogo" class="border border-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition duration-300">Ver Catálogo</a>
         </div>
     </header>
 
-    <!-- BANNER HERO PRINCIPAL -->
-    <section class="hero-wess">
-        <div class="hero-contenido">
-            <span class="tagline">DETEX MAYORISTA / COLECCIÓN 2026</span>
-            <h1>TU ESTILO.<br>TU FORMA.<br>TU DETEX.</h1>
-            <p>Prendas para cada día. Opciones para toda la familia. Descubrí el catálogo y armá tu próximo pedido.</p>
-            <button class="btn-negro" onclick="document.getElementById('seccion-tienda').scrollIntoView({behavior: 'smooth'});">EXPLORAR CATÁLOGO</button>
+    <!-- BARRA DE BÚSQUEDA Y FILTROS -->
+    <section class="max-w-7xl mx-auto px-6 mb-8">
+        <div class="w-full md:w-1/3 relative">
+            <input type="text" id="buscadorInput" onkeyup="filtrarProductos()" placeholder="BUSCAR PRENDA..." class="w-full border-b border-neutral-300 py-2 text-xs uppercase tracking-widest focus:outline-none focus:border-black transition">
         </div>
     </section>
 
-    <!-- CINTA DE BENEFICIOS / PROMOS REPLICADA -->
-    <section class="cinta-promos">
-        <div class="promo-bloque">
-            <h3>3 Y 6 CUOTAS SIN INTERÉS</h3>
-            <p>Con Mercado Pago, sin recargo sobre el precio de lista.</p>
-        </div>
-        <div class="promo-bloque">
-            <h3>20% OFF TRANSFERENCIA</h3>
-            <p>Se descuenta automáticamente al pagar tu pedido.</p>
-        </div>
-        <div class="promo-bloque">
-            <h3>ENVÍO A TODO EL PAÍS</h3>
-            <p>Despachos rápidos directos a tu localidad de origen.</p>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DE VENTAS, BUSCADOR INTELIGENTE Y FILTROS -->
-    <section id="seccion-tienda" class="tienda-contenedor">
-        <h2 class="titulo-seccion">ENCONTRÁ TU PRÓXIMO LOOK</h2>
+    <!-- SECCIÓN DE CATÁLOGO DE PRODUCTOS -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 mb-24">
         
-        <div class="barra-filtros">
-            <div class="filtro-grupo">
-                <label>BUSCAR PRENDA</label>
-                <input type="text" id="input-busqueda" placeholder="Probá: baggy, remera, buzo, pijama..." oninput="filtrarProductos()">
+        <!-- Producto 1 (Remera Corte Japonés) -->
+        <div class="producto-card group flex flex-col" data-nombre="remera corte japones estampada chica">
+            <div class="bg-neutral-100 aspect-[3/4] overflow-hidden mb-4 relative">
+                <!-- Reemplazar src con la URL de tu imagen real cuando la tengas -->
+                <div class="w-full h-full flex items-center justify-center text-neutral-400 text-xs uppercase tracking-wider bg-neutral-100 group-hover:scale-105 transition duration-500">Imagen Prenda</div>
+                <button onclick="agregarAlCarrito('Remera Corte Japonés', 8500)" class="absolute bottom-4 left-4 right-4 bg-black text-white text-xs uppercase tracking-widest py-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Añadir
+                </button>
             </div>
+            <h3 class="text-xs uppercase tracking-wider font-medium mb-1">Remera Corte Japonés</h3>
+            <p class="text-xs text-neutral-500 uppercase tracking-widest mb-1">Estampada - Chica</p>
+            <p class="text-xs font-semibold tracking-wider">$8.500</p>
         </div>
 
-        <!-- GRILLA AUTOMÁTICA DE PRODUCTOS DETEX -->
-        <div class="grid-productos" id="contenedor-productos"></div>
-    </section>
-
-    <!-- PANEL FLOTANTE DEL CARRITO DE COMPRAS -->
-    <div id="modal-carrito" class="modal-carrito-oculto">
-        <div class="contenido-carrito">
-            <div class="encabezado-carrito">
-                <h3>TU PEDIDO</h3>
-                <span class="cerrar-cart" onclick="verCarrito()">✕</span>
+        <!-- Producto 2 (Campera Boxy) -->
+        <div class="producto-card group flex flex-col" data-nombre="campera boxy diseño cierre cordoba hombre">
+            <div class="bg-neutral-100 aspect-[3/4] overflow-hidden mb-4 relative">
+                <div class="w-full h-full flex items-center justify-center text-neutral-400 text-xs uppercase tracking-wider bg-neutral-100 group-hover:scale-105 transition duration-500">Imagen Prenda</div>
+                <button onclick="agregarAlCarrito('Campera Boxy Cierre', 24000)" class="absolute bottom-4 left-4 right-4 bg-black text-white text-xs uppercase tracking-widest py-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Añadir
+                </button>
             </div>
-            <div id="items-carrito-lista"></div>
-            <div class="total-pedido">
-                <span>TOTAL ESTIMADO:</span>
-                <span id="precio-total-cart">$0</span>
-            </div>
-            <button class="btn-enviar-wa" onclick="enviarPedidoWhatsApp()">RESERVAR POR WHATSAPP</button>
+            <h3 class="text-xs uppercase tracking-wider font-medium mb-1">Campera Boxy Cierre</h3>
+            <p class="text-xs text-neutral-500 uppercase tracking-widest mb-1">Diseño Córdoba - Hombre</p>
+            <p class="text-xs font-semibold tracking-wider">$24.000</p>
         </div>
-    </div>
 
-    <!-- LOGICA SÓLIDA DE JAVASCRIPT SIN ERRORES -->
+        <!-- Producto 3 (Pantalón Gym) -->
+        <div class="producto-card group flex flex-col" data-nombre="pantalon gym deportivo rústico">
+            <div class="bg-neutral-100 aspect-[3/4] overflow-hidden mb-4 relative">
+                <div class="w-full h-full flex items-center justify-center text-neutral-400 text-xs uppercase tracking-wider bg-neutral-100 group-hover:scale-105 transition duration-500">Imagen Prenda</div>
+                <button onclick="agregarAlCarrito('Pantalón Gym', 14500)" class="absolute bottom-4 left-4 right-4 bg-black text-white text-xs uppercase tracking-widest py-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Añadir
+                </button>
+            </div>
+            <h3 class="text-xs uppercase tracking-wider font-medium mb-1">Pantalón Gym</h3>
+            <p class="text-xs text-neutral-500 uppercase tracking-widest mb-1">Deportivo - Rústico</p>
+            <p class="text-xs font-semibold tracking-wider">$14.500</p>
+        </div>
+
+    </main>
+
+    <!-- FUNCIONES INTELIGENTES (JAVASCRIPT) -->
     <script>
-        const productos = [
-            // --- BLOQUE 1 ---
-            { id: 1, nombre: "Remera Lisa De hombre", precio: 9400, categoria: "remera hombre", talles: "Talle 1 al 5", imagen: "img/1.jpg" },
-            { id: 2, nombre: "BOXER UNDER", precio: 4800, categoria: "boxer interior", talles: "Talle 1 al 5", imagen: "img/2.jpg" },
-            { id: 3, nombre: "Remera de Algodón Cuello Redondo", precio: 12000, categoria: "remera", talles: "4 al 6", imagen: "img/3.jpg" },
-            { id: 4, nombre: "Baggy rústico", precio: 15300, categoria: "baggy pantalon", talles: "T 1 al 5", imagen: "img/4.jpg" },
-            { id: 5, nombre: "REGULABLE C/PUNT X3 (Art 4417)", precio: 7600, categoria: "lenceria interior", talles: "Art 4417", imagen: "img/5.jpg" },
-            { id: 6, nombre: "Short Morley, Hawai Nena", precio: 3500, categoria: "short nena promo", talles: "2 x $6000", imagen: "img/6.jpg" },
-            { id: 7, nombre: "CHOMBA WORREN", precio: 15900, categoria: "chomba remera promo", talles: "2 X $30.000 (T. 2 al 5)", imagen: "img/7.jpg" },
-            { id: 8, nombre: "Remera Boxy Estampada", precio: 15300, categoria: "remera boxy", talles: "talle 1 al 3", imagen: "img/8.jpg" },
-            { id: 9, nombre: "BABUCHA T/ESP", precio: 21600, categoria: "babucha pantalon", talles: "talle 8 al 10", imagen: "img/9.jpg" },
-            { id: 10, nombre: "Remera Urban Algodón", precio: 11000, categoria: "remera", talles: "talle 1 al 5", imagen: "img/10.jpg" },
+        let carritoCount = 0;
 
-            // --- BLOQUE 2 ---
-            { id: 11, nombre: "Monito, Solero y Vestidos de Nena", precio: 6000, categoria: "vestido nena promo", talles: "2x$12.000", imagen: "img/11.jpg" },
-            { id: 12, nombre: "BUZO ALGODÓN CANGURO FRIZZA", precio: 20000, categoria: "buzo abrigo friza promo", talles: "2 X $40.000 (T. 3 al 5)", imagen: "img/12.jpg" },
-            { id: 13, nombre: "Bermudas de Jean Worren", precio: 19000, categoria: "bermuda jean short promo", talles: "2x$38.000", imagen: "img/13.jpg" },
-            { id: 14, nombre: "Vestidos de Lycra Para Niña con Volado", precio: 8500, categoria: "vestido nena lycra", talles: "talle 4 al 16", imagen: "img/14.jpg" },
-            { id: 15, nombre: "BOXER ZORBA", precio: 3200, categoria: "boxer interior", talles: "T. 1 al 4 ($3500 T.5)", imagen: "img/15.jpg" },
+        // Función del buscador
+        function filtrarProductos() {
+            const input = document.getElementById('buscadorInput').value.toLowerCase();
+            const productos = document.querySelectorAll('.producto-card');
+            
+            productos.forEach(producto => {
+                const nombreProducto = producto.getAttribute('data-nombre');
+                if (nombreProducto.includes(input)) {
+                    producto.style.display = "flex";
+                } else {
+                    producto.style.display = "none";
+                }
+            });
+        }
 
-            // --- BLOQUE 3 ---
-            { id: 16, nombre: "Pollera y musculosa", precio: 12000, categoria: "pollera musculosa dama", talles: "Conjunto", imagen: "img/16.jpg" },
-            { id: 17, nombre: "CHUPIN LYCRA NIÑO", precio: 8800, categoria: "chupin lycra pantalon nino", talles: "T 4 al 16", imagen: "img/17.jpg" },
-            { id: 18, nombre: "short de jean varios", precio: 14000, categoria: "short jean", talles: "T 36 al 44", imagen: "img/18.jpg" },
-            { id: 19, nombre: "Bickers T 1 al 6", precio: 4800, categoria: "biker lycra short", talles: "T 1 al 6", imagen: "img/19.jpg" },
-            { id: 20, nombre: "Remera Morley Cuello V", precio: 6800, categoria: "remera morley v", talles: "1 al 3", imagen: "img/20.jpg" },
-            { id: 21, nombre: "BIKER LYCRA", precio: 4800, categoria: "biker lycra short", talles: "Talle 1 al 6", imagen: "img/21.jpg" },
-            { id: 22, nombre: "Conjunto Varios de Niño", precio: 12000, categoria: "conjunto nino", talles: "Varios", imagen: "img/22.jpg" },
-            { id: 23, nombre: "Remera De Algodón Corte Japones", precio: 12600, categoria: "remera", talles: "Corte Japonés", imagen: "img/23.jpg" },
-            { id: 24, nombre: "REMERAS ALGODON RONY", precio: 7200, categoria: "remera nino rony", talles: "T 4 al 14", imagen: "img/24.jpg" },
-            { id: 25, nombre: "Blazer T 2 al 5", precio: 17000, categoria: "blazer abrigo", talles: "T 2 al 5", imagen: "img/25.jpg" },
+        // Foco automático en el buscador
+        function enfocarBuscador() {
+            const input = document.getElementById('buscadorInput');
+            input.focus();
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
 
-            // --- BLOQUE 4 ---
-            { id: 26, nombre: "VEDETINA ALGODÓN X3", precio: 7600, categoria: "vedetina lenceria interior", talles: "Talle 1 y 3", imagen: "img/26.jpg" },
-            { id: 27, nombre: "REMERA ALGODÓN", precio: 6500, categoria: "remera", talles: "TALLE 4 al 16", imagen: "img/27.jpg" },
-            { id: 28, nombre: "MEDIA MEDIA CAÑA COLEGIAL", precio: 2300, categoria: "medias colegial", talles: "$1000 c/u por docena", imagen: "img/28.jpg" },
-            { id: 29, nombre: "JEANS IMPORTADO DAMA ELASTIZADO", precio: 24500, categoria: "jeans pantalon dama", talles: "T 36 al 44", imagen: "img/29.jpg" },
-            { id: 30, nombre: "PALAZO BRUSELAS", precio: 13300, categoria: "palazo pantalon", talles: "T 2 al 6", imagen: "img/30.jpg" },
-            { id: 31, nombre: "CONJUNTO LANILLA", precio: 28000, categoria: "conjunto lanilla abrigo", talles: "talle 2 al 5", imagen: "img/31.jpg" },
-            { id: 32, nombre: "jean worren (diferentes modelos)", precio: 20000, categoria: "jeans pantalon worren promo", talles: "2x$40.000", imagen: "img/32.jpg" },
-            { id: 33, nombre: "Jeans Wide Leg Importado", precio: 27000, categoria: "wide leg jeans pantalon", talles: "T 48 al 54", imagen: "img/33.jpg" },
-            { id: 34, nombre: "REGULABLE X2 (Art 4418)", precio: 5400, categoria: "lenceria interior", talles: "Art 4418", imagen: "img/34.jpg" },
-            { id: 35, nombre: "BUZO ALGODÓN LISO", precio: 27000, categoria: "buzo abrigo liso", talles: "talle 2 al 5", imagen: "img/35.jpg" },
+        // Funciones del Carrito
+        function agregarAlCarrito(nombre, precio) {
+            carritoCount++;
+            document.getElementById('contador-cart').innerText = carritoCount;
+            alert(`Añadiste: ${nombre} al carrito.`);
+        }
 
-            // --- BLOQUE 5 ---
-            { id: 36, nombre: "Body varios", precio: 11900, categoria: "body lenceria", talles: "Varios Modelos", imagen: "img/36.jpg" },
-            { id: 37, nombre: "TOP B/ANCHO", precio: 6300, categoria: "top lenceria", talles: "Talle 85 al 100", imagen: "img/37.jpg" },
-            { id: 38, nombre: "Jardinero T 4 al 16", precio: 17900, categoria: "jardinero pantalon", talles: "T 4 al 16", imagen: "img/38.jpg" },
-            { id: 39, nombre: "REMERA MODAL", precio: 6300, categoria: "remera modal", talles: "TALLE 4 al 14", imagen: "img/39.jpg" },
-            { id: 40, nombre: "remera Morley cuello redondo", precio: 9100, categoria: "remera morley redondo", talles: "4 al 6", imagen: "img/40.jpg" },
-            { id: 41, nombre: "Remeras mini marcas T 1 al 5", precio: 11000, categoria: "remera mini marcas promo", talles: "2 x $22000", imagen: "img/41.jpg" },
-            { id: 42, nombre: "Short de jean T 36 al 44", precio: 15000, categoria: "short jean dama", talles: "T 36 al 44", imagen: "img/42.jpg" },
+        function verCarrito() {
+            alert(`Tenés ${carritoCount} artículos en tu carrito.`);
+        }
+
+        function alternarMenu() {
+            alert("Menú de categorías en desarrollo.");
+        }
+    </script>
+</body>
+</html>
