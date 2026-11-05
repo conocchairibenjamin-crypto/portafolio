@@ -3,161 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DETEX | Tienda Oficial</title>
-    <!-- Tailwind CSS para diseño robusto y profesional (Evita pantallas en blanco) -->
-    <script src="https://tailwindcss.com"></script>
+    <title>Premium Store - Catálogo Completo</title>
+    <!-- Tailwind CSS v4 y FontAwesome para diseño premium -->
+    <script src="https://jsdelivr.net"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        /* Estilos personalizados para asegurar el cursor y la estética minimalista estilo Wess */
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            cursor: default !important;
-            background-color: #ffffff;
-            color: #111111;
-        }
-        /* Barra de navegación flotante fija */
-        .nav-flotante {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 50;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid #eaeaea;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
     </style>
 </head>
-<body class="pt-20">
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen selection:bg-cyan-500 selection:text-slate-950 flex flex-col justify-between">
 
-    <!-- REPRODUCTOR DE MÚSICA (Opcional, en silencio por defecto) -->
-    <audio id="musicaFondo" loop>
-        <source src="musica.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- BARRA SUPERIOR FLOTANTE ESTILO WESS -->
-    <nav class="nav-flotante px-6 py-4 flex justify-between items-center">
-        <!-- Izquierda: Menú y Buscador -->
-        <div class="flex gap-6 text-xs uppercase tracking-widest font-medium">
-            <button onclick="alternarMenu()" class="hover:opacity-60 transition">Menú</button>
-            <button onclick="enfocarBuscador()" class="hover:opacity-60 transition">Buscar</button>
-        </div>
-
-        <!-- Centro: Logotipo de la Marca -->
-        <div class="text-xl font-bold tracking-[0.3em] uppercase">
-            <a href="#">DETEX</a>
-        </div>
-
-        <!-- Derecha: Acceso y Carrito -->
-        <div class="flex gap-6 text-xs uppercase tracking-widest font-medium">
-            <a href="#" class="hover:opacity-60 transition">Acceso</a>
-            <button onclick="verCarrito()" class="hover:opacity-60 transition flex items-center gap-1">
-                Carrito (<span id="contador-cart">0</span>)
-            </button>
-        </div>
-    </nav>
-
-    <!-- BANNER HERO PRINCIPAL -->
-    <header class="relative w-full h-[60vh] bg-neutral-900 flex flex-col justify-center items-center text-center text-white px-4 overflow-hidden mb-12">
-        <div class="absolute inset-0 bg-black/40 z-10"></div>
-        <div class="relative z-20">
-            <p class="text-xs uppercase tracking-[0.4em] mb-3 opacity-80">Detex Mayorista</p>
-            <h1 class="text-3xl md:text-5xl font-light tracking-[0.2em] uppercase mb-6">Colección 2026</h1>
-            <a href="#catalogo" class="border border-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition duration-300">Ver Catálogo</a>
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header class="border-b border-slate-900 backdrop-blur-md sticky top-0 bg-slate-950/80 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-bolt text-slate-950 text-xl font-bold"></i>
+                </div>
+                <span class="text-2xl font-black tracking-tight bg-gradient-to-r from-white to-slate-400 text-transparent bg-clip-text">NEXUS<span class="text-cyan-400">LAB</span></span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#" class="text-cyan-400 transition-colors">Inicio</a>
+                <a href="#catalogo" class="hover:text-white transition-colors">Productos</a>
+            </nav>
+            <div>
+                <button onclick="toggleCart()" class="relative p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 transition-all cursor-pointer">
+                    <i class="fa-solid fa-bag-shopping text-lg text-slate-300"></i>
+                    <span id="cart-badge" class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-cyan-500 text-slate-950 font-black text-xs rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- BARRA DE BÚSQUEDA Y FILTROS -->
-    <section class="max-w-7xl mx-auto px-6 mb-8">
-        <div class="w-full md:w-1/3 relative">
-            <input type="text" id="buscadorInput" onkeyup="filtrarProductos()" placeholder="BUSCAR PRENDA..." class="w-full border-b border-neutral-300 py-2 text-xs uppercase tracking-widest focus:outline-none focus:border-black transition">
+    <!-- PORTADA HERO -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 bg-cyan-950/50 border border-cyan-800/40 px-4 py-1.5 rounded-full text-xs font-semibold text-cyan-400 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Colección Exclusiva 2026
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none text-white">
+                Llevá tu setup al <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Siguiente Nivel</span>
+            </h1>
+            <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
+                Explorá tecnología de punta diseñada para maximizar el rendimiento. Productos testeados por profesionales con garantía total.
+                </p>
+            <div class="flex justify-center lg:justify-start">
+                <a href="#catalogo" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold rounded-xl shadow-lg shadow-cyan-500/20 transition-all">Ver Catálogo</a>
+            </div>
+        </div>
+        <div class="relative flex justify-center items-center">
+            <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center">
+                <i class="fa-solid fa-wand-magic-sparkles text-5xl text-cyan-400 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Diseño Inteligente</h3>
+                <p class="text-slate-400 text-sm">Cada componente fue optimizado mediante código limpio para darte la mayor velocidad de carga.</p>
+            </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE CATÁLOGO DE PRODUCTOS -->
-    <main id="catalogo" class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 mb-24">
-        
-        <!-- Producto 1 (Remera Corte Japonés) -->
-        <div class="producto-card group flex flex-col" data-nombre="remera corte japones estampada chica">
-            <div class="bg-neutral-100 aspect-[3/4] overflow-hidden mb-4 relative">
-                <!-- Reemplazar src con la URL de tu imagen real cuando la tengas -->
-                <div class="w-full h-full flex items-center justify-center text-neutral-400 text-xs uppercase tracking-wider bg-neutral-100 group-hover:scale-105 transition duration-500">Imagen Prenda</div>
-                <button onclick="agregarAlCarrito('Remera Corte Japonés', 8500)" class="absolute bottom-4 left-4 right-4 bg-black text-white text-xs uppercase tracking-widest py-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Añadir
-                </button>
-            </div>
-            <h3 class="text-xs uppercase tracking-wider font-medium mb-1">Remera Corte Japonés</h3>
-            <p class="text-xs text-neutral-500 uppercase tracking-widest mb-1">Estampada - Chica</p>
-            <p class="text-xs font-semibold tracking-wider">$8.500</p>
+    <!-- CATÁLOGO -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 flex-grow">
+        <div class="text-center max-w-xl mx-auto mb-12">
+            <h2 class="text-3xl font-extrabold tracking-tight mb-4">Productos Destacados</h2>
         </div>
 
-        <!-- Producto 2 (Campera Boxy) -->
-        <div class="producto-card group flex flex-col" data-nombre="campera boxy diseño cierre cordoba hombre">
-            <div class="bg-neutral-100 aspect-[3/4] overflow-hidden mb-4 relative">
-                <div class="w-full h-full flex items-center justify-center text-neutral-400 text-xs uppercase tracking-wider bg-neutral-100 group-hover:scale-105 transition duration-500">Imagen Prenda</div>
-                <button onclick="agregarAlCarrito('Campera Boxy Cierre', 24000)" class="absolute bottom-4 left-4 right-4 bg-black text-white text-xs uppercase tracking-widest py-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Añadir
-                </button>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Producto 1 -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between group">
+                <div class="bg-slate-950 rounded-xl h-48 flex items-center justify-center mb-6 border border-slate-800 relative">
+                    <i class="fa-solid fa-keyboard text-5xl text-slate-700 group-hover:text-cyan-400 transition-all"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-1">Teclado Mecánico Pro</h3>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-xl font-black text-white">$89.99</span>
+                    <button onclick="addToCart('Teclado Mecánico Pro', 89.99)" class="px-4 py-2 bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 font-bold text-xs rounded-xl transition-all cursor-pointer">Agregar</button>
+                </div>
             </div>
-            <h3 class="text-xs uppercase tracking-wider font-medium mb-1">Campera Boxy Cierre</h3>
-            <p class="text-xs text-neutral-500 uppercase tracking-widest mb-1">Diseño Córdoba - Hombre</p>
-            <p class="text-xs font-semibold tracking-wider">$24.000</p>
-        </div>
 
-        <!-- Producto 3 (Pantalón Gym) -->
-        <div class="producto-card group flex flex-col" data-nombre="pantalon gym deportivo rústico">
-            <div class="bg-neutral-100 aspect-[3/4] overflow-hidden mb-4 relative">
-                <div class="w-full h-full flex items-center justify-center text-neutral-400 text-xs uppercase tracking-wider bg-neutral-100 group-hover:scale-105 transition duration-500">Imagen Prenda</div>
-                <button onclick="agregarAlCarrito('Pantalón Gym', 14500)" class="absolute bottom-4 left-4 right-4 bg-black text-white text-xs uppercase tracking-widest py-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Añadir
-                </button>
+            <!-- Producto 2 -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between group">
+                <div class="bg-slate-950 rounded-xl h-48 flex items-center justify-center mb-6 border border-slate-800 relative">
+                    <i class="fa-solid fa-computer-mouse text-5xl text-slate-700 group-hover:text-teal-400 transition-all"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-1">Mouse Gamer Inalámbrico</h3>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-xl font-black text-white">$59.50</span>
+                    <button onclick="addToCart('Mouse Gamer Inalámbrico', 59.50)" class="px-4 py-2 bg-slate-800 hover:bg-teal-400 hover:text-slate-950 font-bold text-xs rounded-xl transition-all cursor-pointer">Agregar</button>
+                </div>
             </div>
-            <h3 class="text-xs uppercase tracking-wider font-medium mb-1">Pantalón Gym</h3>
-            <p class="text-xs text-neutral-500 uppercase tracking-widest mb-1">Deportivo - Rústico</p>
-            <p class="text-xs font-semibold tracking-wider">$14.500</p>
-        </div>
 
+            <!-- Producto 3 -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between group">
+                <div class="bg-slate-950 rounded-xl h-48 flex items-center justify-center mb-6 border border-slate-800 relative">
+                    <i class="fa-solid fa-headphones text-5xl text-slate-700 group-hover:text-blue-400 transition-all"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-1">Auriculares Studio</h3>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-xl font-black text-white">$120.00</span>
+                    <button onclick="addToCart('Auriculares Studio', 120.00)" class="px-4 py-2 bg-slate-800 hover:bg-blue-400 hover:text-slate-950 font-bold text-xs rounded-xl transition-all cursor-pointer">Agregar</button>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <!-- FUNCIONES INTELIGENTES (JAVASCRIPT) -->
+    <!-- CARRITO LATERAL -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-80 bg-slate-900 border-l border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 hidden flex flex-col justify-between p-6">
+        <div>
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <h3 class="text-lg font-black text-white"><i class="fa-solid fa-cart-shopping mr-2 text-cyan-400"></i>Tu Pedido</h3>
+                <button onclick="toggleCart()" class="text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div id="cart-items" class="mt-6 space-y-4 overflow-y-auto max-h-[60vh] custom-scrollbar">
+                <p id="empty-msg" class="text-center text-sm text-slate-500 my-8">No agregaste productos todavía.</p>
+            </div>
+        </div>
+        <div class="border-t border-slate-800 pt-4">
+            <div class="flex items-center justify-between mb-6">
+                <span class="text-sm font-medium text-slate-400">Total Estimado:</span>
+                <span id="cart-total" class="text-2xl font-black text-cyan-400 font-mono">$0.00</span>
+            </div>
+            <button onclick="checkout()" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black rounded-xl cursor-pointer text-center">Confirmar Operación</button>
+        </div>
+    </div>
+
+    <footer class="border-t border-slate-900 py-6 text-center text-xs text-slate-600">
+        © 2026 NEXUSLAB. Arquitectura Web Profesional.
+    </footer>
+
+    <!-- LÓGICA DE JAVASCRIPT -->
     <script>
-        let carritoCount = 0;
-
-        // Función del buscador
-        function filtrarProductos() {
-            const input = document.getElementById('buscadorInput').value.toLowerCase();
-            const productos = document.querySelectorAll('.producto-card');
-            
-            productos.forEach(producto => {
-                const nombreProducto = producto.getAttribute('data-nombre');
-                if (nombreProducto.includes(input)) {
-                    producto.style.display = "flex";
-                } else {
-                    producto.style.display = "none";
-                }
-            });
+        let cart = [];
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            if(sidebar.classList.contains('hidden')) {
+                sidebar.classList.remove('hidden');
+                setTimeout(() => sidebar.classList.remove('translate-x-full'), 10);
+            } else {
+                sidebar.classList.add('translate-x-full');
+                setTimeout(() => sidebar.classList.add('hidden'), 300);
+            }
         }
-
-        // Foco automático en el buscador
-        function enfocarBuscador() {
-            const input = document.getElementById('buscadorInput');
-            input.focus();
-            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
         }
-
-        // Funciones del Carrito
-        function agregarAlCarrito(nombre, precio) {
-            carritoCount++;
-            document.getElementById('contador-cart').innerText = carritoCount;
-            alert(`Añadiste: ${nombre} al carrito.`);
-        }
-
-        function verCarrito() {
-            alert(`Tenés ${carritoCount} artículos en tu carrito.`);
-        }
-
-        function alternarMenu() {
-            alert("Menú de categorías en desarrollo.");
-        }
-    </script>
-</body>
-</html>
+        function updateCartUI() {
+            const itemsContainer = document.getElementById('cart-items');
+            const badge = document.getElementById('cart-badge');
