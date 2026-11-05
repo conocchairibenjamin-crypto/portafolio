@@ -1,566 +1,81 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vital Fitness - Bienestar y Salud (Justiniano Posse)</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            pink: '#ec4899',
-                            fuchsia: '#d946ef',
-                            turq: '#06b6d4',
-                            dark: '#0b0f19',
-                            card: '#131c2e'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Poppins', sans-serif; }
-        .neon-glow { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
-        .neon-glow-turq { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
-        .glass-card { background: rgba(19, 28, 46, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(236, 72, 153, 0.2); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vital Fitness - PWA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #10b981;
+      --color-primary-glow: rgba(16, 185, 129, 0.4);
+    }
+    body {
+      background-color: #09090b;
+      color: #f4f4f5;
+      font-family: system-ui, -apple-system, sans-serif;
+      user-select: none;
+    }
+    .neon-border {
+      border: 1px solid var(--color-primary);
+      box-shadow: 0 0 12px var(--color-primary-glow);
+    }
+    .neon-btn {
+      background: var(--color-primary);
+      box-shadow: 0 0 15px var(--color-primary-glow);
+    }
+    .glass-card {
+      background: rgba(24, 24, 27, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
 </head>
-<body class="bg-brand-dark text-gray-100 min-h-screen flex flex-col justify-between selection:bg-brand-pink selection:text-white">
+<body class="pb-24">
 
-    <!-- PANTALLA DE CARGA CON LOGO -->
-    <div id="loader" class="fixed inset-0 z-50 bg-brand-dark flex flex-col items-center justify-center transition-opacity duration-500">
-        <div class="relative w-32 h-32 mb-6 flex items-center justify-center">
-            <div class="absolute inset-0 rounded-full border-4 border-brand-pink border-t-transparent animate-spin"></div>
-            <div class="absolute inset-2 rounded-full border-4 border-brand-turq border-b-transparent animate-spin" style="animation-direction: reverse; animation-duration: 1.5s;"></div>
-            <i class="fa-solid fa-heart-pulse text-4xl text-brand-pink animate-pulse"></i>
+  <!-- BARRA SUPERIOR RAPIDA -->
+  <header class="sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50 px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full neon-btn flex items-center justify-center font-black text-black text-sm">VF</div>
+      <div>
+        <h1 class="text-sm font-bold tracking-wide leading-none text-white">VITAL FITNESS</h1>
+        <p class="text-[10px] text-zinc-400 mt-0.5">Prof. Carina Tisera</p>
+      </div>
+    </div>
+    <button onclick="switchView('admin')" class="px-2.5 py-1 text-[11px] bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-lg border border-zinc-700 font-medium">
+      <i class="fa-solid fa-user-shield mr-1"></i> Admin Panel
+    </button>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main id="app-content" class="max-w-md mx-auto px-4 pt-4">
+
+    <!-- SECCIÓN: INICIO / MI PERFIL (MODO ALUMNA) -->
+    <div id="view-inicio" class="space-y-4">
+      
+      <!-- ESTADO DE PASE -->
+      <div class="glass-card rounded-2xl p-4 neon-border relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <div>
+            <span class="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">Membresía Activa</span>
+            <h2 class="text-xl font-black text-white mt-0.5">Desafío GAP HIIT</h2>
+          </div>
+          <span class="px-2 py-0.5 text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full">Activo</span>
         </div>
-        <h1 class="text-2xl font-bold tracking-wider bg-gradient-to-r from-brand-pink via-brand-fuchsia to-brand-turq bg-clip-text text-transparent">VITAL FITNESS</h1>
-        <p class="text-xs text-gray-400 mt-1">Bienestar y Salud • Justiniano Posse</p>
-    </div>
-
-    <!-- CONTENEDOR PRINCIPAL DE LA APP -->
-    <div id="app" class="w-full max-w-md mx-auto flex-1 flex flex-col pb-20 relative shadow-2xl overflow-hidden bg-brand-dark border-x border-gray-800">
-
-        <!-- HEADER INSTITUCIONAL -->
-        <header class="p-4 glass-card sticky top-0 z-30 flex items-center justify-between border-b border-pink-500/20">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-pink to-brand-turq flex items-center justify-center text-white font-bold shadow-lg">
-                    <i class="fa-solid fa-dumbbell"></i>
-                </div>
-                <div>
-                    <h2 class="text-sm font-bold tracking-wide text-white">Vital Fitness</h2>
-                    <p class="text-[10px] text-pink-400">Prof. Carina Tisera</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-2">
-                <button onclick="switchTab('profile')" class="w-9 h-9 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-pink-400 hover:bg-gray-700 transition">
-                    <i class="fa-solid fa-user"></i>
-                </button>
-            </div>
-        </header>
-
-        <!-- CONTENIDO DINÁMICO (VISTAS) -->
-        <main class="flex-1 p-4 overflow-y-auto space-y-6">
-
-            <!-- VISTA 1: INICIO / ESTADO DE MEMBRESÍA -->
-            <section id="view-inicio" class="space-y-4">
-                <div class="glass-card rounded-2xl p-5 relative overflow-hidden neon-glow">
-                    <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-brand-pink/10 rounded-full blur-2xl"></div>
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <span id="badge-estado" class="px-3 py-1 text-[10px] uppercase font-bold rounded-full bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">Verificando Estado</span>
-                            <h3 id="user-welcome" class="text-xl font-bold mt-2 text-white">Hola, Alumna</h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-full bg-brand-pink/20 border border-brand-pink flex items-center justify-center text-brand-pink font-bold" id="user-initials">
-                            VF
-                        </div>
-                    </div>
-                    <div id="vencimiento-box" class="mt-4 p-3 rounded-xl bg-black/40 border border-gray-800 text-xs flex justify-between items-center">
-                        <div>
-                            <p class="text-gray-400">Vigencia del Desafío:</p>
-                            <p id="txt-vigencia" class="font-semibold text-white">Sin pase activo</p>
-                        </div>
-                        <button onclick="switchTab('challenges')" class="px-3 py-1.5 bg-gradient-to-r from-brand-pink to-brand-fuchsia text-white rounded-lg font-bold text-[11px] shadow-lg">Renovar / Pagar</button>
-                    </div>
-                </div>
-
-                <!-- ESTADÍSTICAS & RACHAS -->
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="glass-card rounded-xl p-4 text-center">
-                        <i class="fa-solid fa-fire text-brand-pink text-xl mb-1"></i>
-                        <h4 id="stat-dias" class="text-lg font-bold text-white">0 / 20</h4>
-                        <p class="text-[10px] text-gray-400">Días Asistidos este Mes</p>
-                    </div>
-                    <div class="glass-card rounded-xl p-4 text-center">
-                        <i class="fa-solid fa-award text-yellow-400 text-xl mb-1"></i>
-                        <h4 class="text-lg font-bold text-white" id="stat-insignia">Guerrera</h4>
-                        <p class="text-[10px] text-gray-400">Insignia Actual</p>
-                    </div>
-                </div>
-
-                <!-- ACCESO RÁPIDO A CLASES -->
-                <div class="glass-card rounded-2xl p-5 border-l-4 border-l-brand-turq">
-                    <div class="flex justify-between items-center mb-3">
-                        <h4 class="font-bold text-sm text-white"><i class="fa-solid fa-calendar-days text-brand-turq mr-2"></i>Clases de la Semana</h4>
-                        <span class="text-[10px] text-gray-400">Lunes a Viernes (Excl. Jueves)</span>
-                    </div>
-                    <p class="text-xs text-gray-300 mb-4">Anotate al horario de tu grupo. Recordá que podés asistir a 1 clase diaria.</p>
-                    <button onclick="switchTab('classes')" class="w-full py-3 bg-gradient-to-r from-brand-turq to-blue-600 text-white font-bold rounded-xl text-xs shadow-lg neon-glow-turq flex items-center justify-center space-x-2">
-                        <span>Ver Horarios y Anotarme</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-
-                <!-- SEDE & MAPA GPS -->
-                <div class="glass-card rounded-2xl p-4 text-xs space-y-2">
-                    <div class="flex items-center space-x-2 text-brand-pink font-bold">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Sede Oficial Vital Fitness</span>
-                    </div>
-                    <p class="text-gray-300">Francisco Ramírez Nº 24, Justiniano Posse, Córdoba.</p>
-                    <a href="https://maps.google.com/?q=Francisco+Ramirez+24+Justiniano+Posse+Cordoba" target="_blank" class="block w-full py-2 bg-gray-800 hover:bg-gray-700 text-center rounded-lg font-semibold text-gray-200 transition">Abrir en Google Maps</a>
-                </div>
-            </section>
-
-            <!-- VISTA 2: CLASES Y ASISTENCIA -->
-            <section id="view-classes" class="space-y-4 hidden">
-                <div class="flex justify-between items-center">
-                    <h3 class="font-bold text-lg text-white">Reserva de Turnos</h3>
-                    <span id="current-date-badge" class="text-xs px-2.5 py-1 rounded-md bg-gray-800 text-brand-turq font-medium">Cargando...</span>
-                </div>
-
-                <div class="bg-pink-500/10 border border-pink-500/30 p-3 rounded-xl text-xs text-pink-300 flex items-start space-x-2">
-                    <i class="fa-solid fa-circle-info mt-0.5"></i>
-                    <p>Atención: Solo se permite 1 clase por día. Al anotarte, se marcará automáticamente tu asistencia diaria (✔).</p>
-                </div>
-
-                <!-- LISTA DE TURNOS DEL DÍA -->
-                <div id="slots-container" class="space-y-3">
-                    <!-- Generado dinámicamente -->
-                </div>
-            </section>
-
-            <!-- VISTA 3: DESAFÍOS Y PAGOS ($50.000) -->
-            <section id="view-challenges" class="space-y-4 hidden">
-                <h3 class="font-bold text-lg text-white">Desafíos Mensuales (4 Semanas)</h3>
-                <p class="text-xs text-gray-400">Inversión única por desafío: <span class="text-brand-pink font-bold">$50.000 ARS</span></p>
-
-                <div class="space-y-4">
-                    <!-- DESAFÍO 1: ACTIVO -->
-                    <div class="glass-card rounded-2xl p-5 border-2 border-brand-pink relative overflow-hidden">
-                        <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-brand-pink text-white text-[10px] font-bold rounded-full">ACTIVO AHORA</span>
-                        <h4 class="font-bold text-base text-white mb-1">Desafío GAP HIIT</h4>
-                        <p class="text-xs text-gray-300 mb-3">Intensidad alta, tonificación y quema de grasas. Duración: 4 Semanas.</p>
-                        <div class="p-3 bg-black/40 rounded-xl space-y-2 mb-4 text-xs">
-                            <div class="flex justify-between"><span class="text-gray-400">Valor:</span><span class="font-bold text-white">$50.000</span></div>
-                            <div class="flex justify-between"><span class="text-gray-400">Alias MP:</span><span class="font-mono text-brand-turq font-bold">valentin.122.sopa.mp</span></div>
-                        </div>
-                        <button onclick="openPaymentModal('Desafío GAP HIIT')" class="w-full py-3 bg-gradient-to-r from-brand-pink to-brand-fuchsia text-white rounded-xl font-bold text-xs shadow-lg">Pagar Desafío</button>
-                    </div>
-
-                    <!-- DESAFÍO 2: BLOQUEADO -->
-                    <div class="glass-card rounded-2xl p-5 opacity-60 relative">
-                        <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-gray-700 text-gray-300 text-[10px] font-bold rounded-full"><i class="fa-solid fa-lock mr-1"></i> Próximamente</span>
-                        <h4 class="font-bold text-base text-white mb-1">Desafío con Step</h4>
-                        <p class="text-xs text-gray-400 mb-3">Coordinación, aeróbico y tren inferior. 4 Semanas.</p>
-                        <button disabled class="w-full py-2.5 bg-gray-800 text-gray-500 rounded-xl font-bold text-xs cursor-not-allowed">No Disponible</button>
-                    </div>
-
-                    <!-- DESAFÍO 3: BLOQUEADO -->
-                    <div class="glass-card rounded-2xl p-5 opacity-60 relative">
-                        <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-gray-700 text-gray-300 text-[10px] font-bold rounded-full"><i class="fa-solid fa-lock mr-1"></i> Próximamente</span>
-                        <h4 class="font-bold text-base text-white mb-1">Desafío GAP Tradicional</h4>
-                        <p class="text-xs text-gray-400 mb-3">Glúteos, Abdomen y Piernas focalizado. 4 Semanas.</p>
-                        <button disabled class="w-full py-2.5 bg-gray-800 text-gray-500 rounded-xl font-bold text-xs cursor-not-allowed">No Disponible</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- VISTA 4: IA FITNESS (CONSULTAS) -->
-            <section id="view-ai" class="space-y-4 hidden flex flex-col h-[70vh]">
-                <h3 class="font-bold text-lg text-white">Asistente IA Vital Fitness</h3>
-                <p class="text-xs text-gray-400">Consultá sobre nutrición, hidratación y rutinas para chicas.</p>
-                <div id="chat-messages" class="flex-1 bg-black/40 border border-gray-800 rounded-2xl p-4 overflow-y-auto space-y-3 text-xs">
-                    <div class="bg-gray-800 p-3 rounded-xl max-w-[80%] text-gray-200">
-                        ¡Hola! Soy tu asistente de Vital Fitness. ¿Qué duda tenés sobre tu entrenamiento o alimentación hoy?
-                    </div>
-                </div>
-                <div class="flex space-x-2">
-                    <input type="text" id="chat-input" placeholder="Ej: ¿Qué puedo comer post entrenamiento?" class="flex-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-pink">
-                    <button onclick="sendAiMessage()" class="px-4 py-3 bg-brand-pink text-white rounded-xl text-xs font-bold shadow-lg"><i class="fa-solid fa-paper-plane"></i></button>
-                </div>
-            </section>
-
-            <!-- VISTA 5: PERFIL DE ALUMNA -->
-            <section id="view-profile" class="space-y-4 hidden">
-                <div class="glass-card rounded-2xl p-5 text-center space-y-3">
-                    <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-brand-pink to-brand-turq p-1">
-                        <div class="w-full h-full rounded-full bg-gray-900 flex items-center justify-center text-2xl font-bold text-white" id="profile-avatar-txt">
-                            AL
-                        </div>
-                    </div>
-                    <div>
-                        <h3 id="profile-name" class="font-bold text-base text-white">Nombre Alumna</h3>
-                        <p id="profile-dni" class="text-xs text-gray-400">DNI: --</p>
-                    </div>
-                </div>
-
-                <!-- DATOS Y LOGOUT -->
-                <div class="glass-card rounded-2xl p-4 space-y-3 text-xs">
-                    <div class="flex justify-between py-2 border-b border-gray-800"><span class="text-gray-400">Profesoras:</span><span class="font-semibold text-white">Carina Tisera</span></div>
-                    <div class="flex justify-between py-2 border-b border-gray-800"><span class="text-gray-400">Localidad:</span><span class="font-semibold text-white">Justiniano Posse, Cba.</span></div>
-                    <div class="flex justify-between py-2"><span class="text-gray-400">WhatsApp Soporte:</span><span class="font-semibold text-brand-turq">+54 9 3537 33-8765</span></div>
-                </div>
-
-                <button onclick="logout()" class="w-full py-3 bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl font-bold text-xs hover:bg-red-500/30 transition">Cerrar Sesión</button>
-            </section>
-
-            <!-- PANEL DE CONTROL ADMIN (SECRETO PARA VOS) -->
-            <section id="view-admin" class="space-y-4 hidden">
-                <div class="bg-purple-900/30 border border-purple-500/40 p-4 rounded-2xl">
-                    <span class="px-2 py-0.5 bg-purple-600 text-white text-[10px] font-bold rounded-md">PANEL ADMINISTRADOR</span>
-                    <h3 class="font-bold text-base text-white mt-2">Gestión de Alumnas (Valentín / Carina)</h3>
-                    <p class="text-xs text-gray-300 mt-1">Aprobá los pagos que te lleguen por WhatsApp para activarles los 30 días automáticamente.</p>
-                </div>
-
-                <div class="space-y-3" id="admin-users-list">
-                    <!-- Dinámico -->
-                </div>
-            </section>
-
-        </main>
-
-        <!-- NAVEGACIÓN INFERIOR FLOTANTE -->
-        <nav class="absolute bottom-0 left-0 right-0 glass-card border-t border-gray-800 py-3 px-6 flex justify-around items-center z-30">
-            <button onclick="switchTab('inicio')" id="nav-btn-inicio" class="flex flex-col items-center text-brand-pink transition">
-                <i class="fa-solid fa-house text-base"></i>
-                <span class="text-[10px] mt-1 font-semibold">Inicio</span>
-            </button>
-            <button onclick="switchTab('classes')" id="nav-btn-classes" class="flex flex-col items-center text-gray-400 hover:text-brand-pink transition">
-                <i class="fa-solid fa-calendar-check text-base"></i>
-                <span class="text-[10px] mt-1 font-semibold">Clases</span>
-            </button>
-            <button onclick="switchTab('challenges')" id="nav-btn-challenges" class="flex flex-col items-center text-gray-400 hover:text-brand-pink transition">
-                <i class="fa-solid fa-bolt text-base"></i>
-                <span class="text-[10px] mt-1 font-semibold">Desafíos</span>
-            </button>
-            <button onclick="switchTab('ai')" id="nav-btn-ai" class="flex flex-col items-center text-gray-400 hover:text-brand-pink transition">
-                <i class="fa-solid fa-robot text-base"></i>
-                <span class="text-[10px] mt-1 font-semibold">IA Fit</span>
-            </button>
-            <button onclick="switchTab('profile')" id="nav-btn-profile" class="flex flex-col items-center text-gray-400 hover:text-brand-pink transition">
-                <i class="fa-solid fa-user-gear text-base"></i>
-                <span class="text-[10px] mt-1 font-semibold">Perfil</span>
-            </button>
-        </nav>
-
-    </div>
-
-    <!-- MODAL DE LOGIN / REGISTRO -->
-    <div id="login-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="glass-card rounded-3xl p-6 w-full max-w-sm space-y-5 border border-brand-pink/30 shadow-2xl">
-            <div class="text-center space-y-2">
-                <div class="w-14 h-14 mx-auto rounded-full bg-gradient-to-tr from-brand-pink to-brand-turq flex items-center justify-center text-white text-xl font-bold shadow-lg">
-                    <i class="fa-solid fa-heart-pulse"></i>
-                </div>
-                <h3 class="font-bold text-xl text-white">Vital Fitness</h3>
-                <p class="text-xs text-gray-400">Ingresá tu DNI y Contraseña para acceder</p>
-                <p class="text-[10px] text-pink-400 bg-pink-500/10 py-1 px-2 rounded">💡 Prueba Alumna: DNI <strong>12345678</strong> / Clave <strong>1234</strong><br>💡 Prueba Admin: DNI <strong>admin</strong> / Clave <strong>admin</strong></p>
-            </div>
-            <div class="space-y-3">
-                <div>
-                    <label class="text-[11px] text-gray-300 font-medium">DNI o Usuario</label>
-                    <input type="text" id="login-dni" placeholder="Ej: 12345678" class="w-full mt-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-pink">
-                </div>
-                <div>
-                    <label class="text-[11px] text-gray-300 font-medium">Contraseña</label>
-                    <input type="password" id="login-pass" placeholder="••••" class="w-full mt-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-pink">
-                </div>
-                <button onclick="handleLogin()" class="w-full py-3.5 bg-gradient-to-r from-brand-pink to-brand-fuchsia text-white rounded-xl font-bold text-xs shadow-lg mt-2">Ingresar a la App</button>
-            </div>
+        <p class="text-xs text-zinc-400 mb-3">Sede Justiniano Posse • Francisco Ramírez 24</p>
+        
+        <div class="grid grid-cols-2 gap-2 text-xs bg-zinc-900/60 p-2.5 rounded-xl border border-zinc-800">
+          <div>
+            <span class="text-zinc-500 text-[10px] block">Vencimiento</span>
+            <strong class="text-zinc-200">30 Días restantes</strong>
+          </div>
+          <div>
+            <span class="text-zinc-500 text-[10px] block">Meta semanal</span>
+            <strong class="text-emerald-400">4 / 4 Clases</strong>
+          </div>
         </div>
-    </div>
 
-    <!-- MODAL DE PAGO / COMPROBANTE -->
-    <div id="payment-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="glass-card rounded-3xl p-6 w-full max-w-sm space-y-4 border border-brand-turq/30">
-            <div class="flex justify-between items-center">
-                <h3 class="font-bold text-white text-sm">Instrucciones de Pago</h3>
-                <button onclick="closePaymentModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-            <div class="space-y-3 text-xs text-gray-300">
-                <p>Para activar tu desafío por <span class="text-white font-bold">$50.000</span>, transferí al siguiente Alias:</p>
-                <div class="p-3 bg-black/50 rounded-xl border border-gray-800 text-center space-y-1">
-                    <p class="text-[10px] text-gray-400">Alias Mercado Pago:</p>
-                    <p class="font-mono text-brand-turq font-bold text-sm select-all">valentin.122.sopa.mp</p>
-                </div>
-                <p>Una vez realizada la transferencia, enviá el comprobante por WhatsApp al número de Carina para que te active la cuenta al instante:</p>
-                <a id="whatsapp-btn" href="https://wa.me/5493537338765?text=Hola!%20Te%20envío%20el%20comprobante%20de%20pago%20para%20activar%20mi%20desafío%20en%20Vital%20Fitness." target="_blank" class="block w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-center rounded-xl font-bold text-xs shadow-lg flex items-center justify-center space-x-2">
-                    <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Enviar Comprobante por WhatsApp</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCRIPT DE LÓGICA DE LA APLICACIÓN -->
-    <script>
-        // Base de Datos Local en Memoria (Simulada)
-        let dbUsers = JSON.parse(localStorage.getItem('vital_users')) || [
-            { dni: '12345678', pass: '1234', name: 'Florencia Gomez', active: true, expiry: '2026-12-05', attendance: 3 },
-            { dni: 'admin', pass: 'admin', name: 'Valentín (Admin)', isAdmin: true, active: true, expiry: '2029-01-01', attendance: 0 }
-        ];
-
-        let currentUser = JSON.parse(localStorage.getItem('vital_current_user')) || null;
-        let reservations = JSON.parse(localStorage.getItem('vital_reservations')) || {}; // { 'YYYY-MM-DD': { '08:00': ['12345678'] } }
-
-        // Horarios permitidos (Lunes a Viernes, excluye Jueves)
-        const allowedHours = ['08:00 hs', '14:00 hs', '18:30 hs', '20:00 hs'];
-
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('opacity-0');
-                setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
-                checkAuth();
-            }, 800);
-        };
-
-        function checkAuth() {
-            if (!currentUser) {
-                document.getElementById('login-modal').style.display = 'flex';
-            } else {
-                document.getElementById('login-modal').style.display = 'none';
-                initAppUI();
-            }
-        }
-
-        function handleLogin() {
-            const dni = document.getElementById('login-dni').value.trim();
-            const pass = document.getElementById('login-pass').value.trim();
-            
-            const found = dbUsers.find(u => u.dni === dni && u.pass === pass);
-            if (found) {
-                currentUser = found;
-                localStorage.setItem('vital_current_user', JSON.stringify(currentUser));
-                document.getElementById('login-modal').style.display = 'none';
-                initAppUI();
-            } else {
-                alert('DNI o contraseña incorrectos. (Probá DNI: 12345678 / Clave: 1234)');
-            }
-        }
-
-        function logout() {
-            localStorage.removeItem('vital_current_user');
-            currentUser = null;
-            location.reload();
-        }
-
-        function initAppUI() {
-            if (currentUser.isAdmin) {
-                // Mostrar vista admin si es admin
-                switchTab('admin');
-                renderAdminUsers();
-                // Ocultar tabs normales innecesarios si se quiere, o dejar acceso
-                return;
-            }
-
-            document.getElementById('user-welcome').innerText = `Hola, ${currentUser.name.split(' ')[0]}`;
-            document.getElementById('user-initials').innerText = currentUser.name.split(' ').map(n => n[0]).join('');
-            document.getElementById('profile-name').innerText = currentUser.name;
-            document.getElementById('profile-dni').innerText = `DNI: ${currentUser.dni}`;
-            document.getElementById('profile-avatar-txt').innerText = currentUser.name.split(' ').map(n => n[0]).join('');
-
-            // Estado de vigencia
-            const badge = document.getElementById('badge-estado');
-            const txtVig = document.getElementById('txt-vigencia');
-            if (currentUser.active) {
-                badge.className = 'px-3 py-1 text-[10px] uppercase font-bold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
-                badge.innerText = 'Desafío Activo';
-                txtVig.innerText = `Vence el ${currentUser.expiry}`;
-            } else {
-                badge.className = 'px-3 py-1 text-[10px] uppercase font-bold rounded-full bg-red-500/20 text-red-400 border border-red-500/30';
-                badge.innerText = 'Pase Vencido / Inactivo';
-                txtVig.innerText = 'Renová tu desafío para asistir';
-            }
-
-            document.getElementById('stat-dias').innerText = `${currentUser.attendance} / 20`;
-            renderClassesView();
-        }
-
-        function switchTab(tabName) {
-            const tabs = ['inicio', 'classes', 'challenges', 'ai', 'profile', 'admin'];
-            tabs.forEach(t => {
-                const el = document.getElementById(`view-${t}`);
-                if (el) el.classList.add('hidden');
-                const btn = document.getElementById(`nav-btn-${t}`);
-                if (btn) btn.className = 'flex flex-col items-center text-gray-400 hover:text-brand-pink transition';
-            });
-
-            const target = document.getElementById(`view-${tabName}`);
-            if (target) target.classList.remove('hidden');
-            const activeBtn = document.getElementById(`nav-btn-${tabName}`);
-            if (activeBtn) activeBtn.className = 'flex flex-col items-center text-brand-pink transition';
-
-            if (tabName === 'classes') renderClassesView();
-            if (tabName === 'admin') renderAdminUsers();
-        }
-
-        // RENDERIZAR CLASES Y HORARIOS
-        function renderClassesView() {
-            const container = document.getElementById('slots-container');
-            container.innerHTML = '';
-
-            const todayObj = new Date();
-            const daysMap = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-            const dayName = daysMap[todayObj.getDay()];
-            const dateStr = todayObj.toISOString().split('T')[0];
-
-            document.getElementById('current-date-badge').innerText = `${dayName} ${todayObj.toLocaleDateString()}`;
-
-            // Validar si es Jueves o Fin de semana
-            if (todayObj.getDay() === 4 || todayObj.getDay() === 0 || todayObj.getDay() === 6) {
-                container.innerHTML = `<div class="glass-card rounded-xl p-6 text-center text-gray-400 text-xs">Hoy no se dictan clases en Vital Fitness (Descanso / Fin de semana). ¡Te esperamos el próximo día hábil!</div>`;
-                return;
-            }
-
-            if (!reservations[dateStr]) reservations[dateStr] = {};
-
-            allowedHours.forEach(hour => {
-                if (!reservations[dateStr][hour]) reservations[dateStr][hour] = [];
-                const bookedList = reservations[dateStr][hour];
-                const isAlreadyBookedAnywhereToday = Object.values(reservations[dateStr]).some(list => list.includes(currentUser.dni));
-                const isBookedHere = bookedList.includes(currentUser.dni);
-                const isFull = bookedList.length >= 15;
-
-                const card = document.createElement('div');
-                card.className = `glass-card rounded-2xl p-4 space-y-3 ${isBookedHere ? 'border border-brand-pink/60' : ''}`;
-                
-                card.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-2">
-                            <i class="fa-solid fa-clock text-brand-turq"></i>
-                            <span class="font-bold text-white text-sm">${hour}</span>
-                        </div>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full ${isFull ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'}">${bookedList.length}/15 Cupos</span>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-gray-800 text-xs">
-                        <span class="text-gray-400">Cupos disponibles: <strong>${15 - bookedList.length}</strong></span>
-                        ${isBookedHere ? 
-                            `<span class="text-brand-pink font-bold"><i class="fa-solid fa-check mr-1"></i> ¡Anotada!</span>` :
-                            isAlreadyBookedAnywhereToday ? 
-                            `<span class="text-gray-500 text-[10px]">Ya tenés turno hoy</span>` :
-                            `<button onclick="bookSlot('${dateStr}', '${hour}')" class="px-4 py-2 bg-gradient-to-r from-brand-pink to-brand-fuchsia text-white rounded-xl font-bold text-xs shadow-lg">Anotarme</button>`
-                        }
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function bookSlot(dateStr, hour) {
-            if (!currentUser.active) {
-                alert('Tu desafío no está activo. Realizá el pago y pedile a Carina que te active el pase.');
-                switchTab('challenges');
-                return;
-            }
-
-            if (!reservations[dateStr][hour]) reservations[dateStr][hour] = [];
-            if (reservations[dateStr][hour].length >= 15) {
-                alert('Este turno ya está completo (15/15).');
-                return;
-            }
-
-            reservations[dateStr][hour].push(currentUser.dni);
-            currentUser.attendance += 1;
-            
-            // Actualizar DB de usuarios
-            const idx = dbUsers.findIndex(u => u.dni === currentUser.dni);
-            if (idx !== -1) dbUsers[idx] = currentUser;
-
-            localStorage.setItem('vital_reservations', JSON.stringify(reservations));
-            localStorage.setItem('vital_users', JSON.stringify(dbUsers));
-            localStorage.setItem('vital_current_user', JSON.stringify(currentUser));
-
-            alert('¡Te anotaste con éxito! Asistencia registrada para hoy (✔).');
-            renderClassesView();
-            initAppUI();
-        }
-
-        // PANEL ADMIN
-        function renderAdminUsers() {
-            const list = document.getElementById('admin-users-list');
-            list.innerHTML = '';
-
-            dbUsers.filter(u => !u.isAdmin).forEach(user => {
-                const item = document.createElement('div');
-                item.className = 'glass-card rounded-xl p-4 flex justify-between items-center text-xs';
-                item.innerHTML = `
-                    <div>
-                        <p class="font-bold text-white">${user.name} (DNI: ${user.dni})</p>
-                        <p class="text-[10px] text-gray-400 mt-0.5">Estado: <span class="${user.active ? 'text-emerald-400' : 'text-red-400'}">${user.active ? 'Activo (Vence: ' + user.expiry + ')' : 'Inactivo'}</span></p>
-                    </div>
-                    <button onclick="toggleUserActive('${user.dni}')" class="px-3 py-1.5 rounded-lg font-bold ${user.active ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'}">
-                        ${user.active ? 'Desactivar' : 'Aprobar Pase (30d)'}
-                    </button>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        function toggleUserActive(dni) {
-            const user = dbUsers.find(u => u.dni === dni);
-            if (user) {
-                user.active = !user.active;
-                if (user.active) {
-                    let d = new Date();
-                    d.setDate(d.getDate() + 30);
-                    user.expiry = d.toISOString().split('T')[0];
-                }
-                localStorage.setItem('vital_users', JSON.stringify(dbUsers));
-                renderAdminUsers();
-                alert(`Estado actualizado para ${user.name}`);
-            }
-        }
-
-        // MODAL DE PAGO
-        function openPaymentModal(challengeName) {
-            document.getElementById('payment-modal').style.display = 'flex';
-        }
-        function closePaymentModal() {
-            document.getElementById('payment-modal').style.display = 'none';
-        }
-
-        // ASISTENTE IA FITNESS
-        function sendAiMessage() {
-            const input = document.getElementById('chat-input');
-            const msg = input.value.trim();
-            if (!msg) return;
-
-            const chatContainer = document.getElementById('chat-messages');
-            chatContainer.innerHTML += `<div class="bg-brand-pink/20 text-white p-3 rounded-xl ml-auto max-w-[80%]">${msg}</div>`;
-            input.value = '';
-
-            setTimeout(() => {
-                let reply = "¡Excelente consulta! Recordá mantenerte hidratada durante las clases de Vital Fitness y consumir proteínas magras post entrenamiento para tonificar tus músculos correctamente.";
-                if (msg.toLowerCase().includes('comer') || msg.toLowerCase().includes('dieta')) {
-                    reply = "Te sugiero priorizar vegetales, carnes blancas y huevo. Evita azúcares refinados para potenciar tus resultados en el desafío.";
-                } else if (msg.toLowerCase().includes('dolor')) {
-                    reply = "Es normal sentir un leve cansancio muscular post GAP o HIIT, pero si hay dolor articular agudo, descansá y consultá con Carina.";
-                }
-                chatContainer.innerHTML += `<div class="bg-gray-800 text-gray-200 p-3 rounded-xl mr-auto max-w-[80%]">${reply}</div>`;
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }, 600);
-        }
-    </script>
-</body>
-</html>
+        <button onclick="abrirModalPago()" class="w-full mt-3 py-2 text-xs font-bold text-black neon
