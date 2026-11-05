@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vital Fitness - PWA</title>
+  <title>Vital Fitness - PWA Oficial</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
@@ -30,30 +30,28 @@
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="pb-24">
+<body class="pb-28">
 
-  <!-- BARRA SUPERIOR RAPIDA -->
-  <header class="sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50 px-4 py-3 flex justify-between items-center">
+  <!-- BARRA SUPERIOR -->
+  <header class="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/50 px-4 py-3 flex justify-between items-center max-w-md mx-auto">
     <div class="flex items-center gap-3">
       <div class="w-9 h-9 rounded-full neon-btn flex items-center justify-center font-black text-black text-sm">VF</div>
       <div>
         <h1 class="text-sm font-bold tracking-wide leading-none text-white">VITAL FITNESS</h1>
-        <p class="text-[10px] text-zinc-400 mt-0.5">Prof. Carina Tisera</p>
+        <p class="text-[10px] text-zinc-400 mt-0.5">Prof. Carina Tisera • Justiniano Posse</p>
       </div>
     </div>
-    <button onclick="switchView('admin')" class="px-2.5 py-1 text-[11px] bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-lg border border-zinc-700 font-medium">
-      <i class="fa-solid fa-user-shield mr-1"></i> Admin Panel
+    <button onclick="switchView('admin')" class="px-2.5 py-1 text-[11px] bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-lg border border-zinc-700 font-medium">
+      <i class="fa-solid fa-user-shield mr-1"></i> Admin
     </button>
   </header>
 
   <!-- CONTENIDO PRINCIPAL -->
-  <main id="app-content" class="max-w-md mx-auto px-4 pt-4">
+  <main id="app-content" class="max-w-md mx-auto px-4 pt-4 space-y-4">
 
-    <!-- SECCIÓN: INICIO / MI PERFIL (MODO ALUMNA) -->
+    <!-- SECCIÓN: INICIO -->
     <div id="view-inicio" class="space-y-4">
       
       <!-- ESTADO DE PASE -->
@@ -65,7 +63,7 @@
           </div>
           <span class="px-2 py-0.5 text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full">Activo</span>
         </div>
-        <p class="text-xs text-zinc-400 mb-3">Sede Justiniano Posse • Francisco Ramírez 24</p>
+        <p class="text-xs text-zinc-400 mb-3"><i class="fa-solid fa-location-dot mr-1 text-emerald-400"></i> Francisco Ramírez 24, Justiniano Posse</p>
         
         <div class="grid grid-cols-2 gap-2 text-xs bg-zinc-900/60 p-2.5 rounded-xl border border-zinc-800">
           <div>
@@ -78,4 +76,230 @@
           </div>
         </div>
 
-        <button onclick="abrirModalPago()" class="w-full mt-3 py-2 text-xs font-bold text-black neon
+        <button onclick="abrirModalPago()" class="w-full mt-3 py-2.5 text-xs font-bold text-black neon-btn rounded-xl transition-all">
+          Renovar Pase ($50.000)
+        </button>
+      </div>
+
+      <!-- RACHA Y CONSTANCIA -->
+      <div class="glass-card rounded-2xl p-4">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-fire text-orange-500"></i> Mi Constancia
+          </h3>
+          <span class="text-[11px] text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded-full border border-zinc-800">4 Semanas seguidas</span>
+        </div>
+        <div class="flex justify-between text-center gap-1">
+          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2 rounded-xl">
+            <span class="text-[10px] text-emerald-400 block font-bold">LUN</span>
+            <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
+          </div>
+          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2 rounded-xl">
+            <span class="text-[10px] text-emerald-400 block font-bold">MAR</span>
+            <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
+          </div>
+          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2 rounded-xl">
+            <span class="text-[10px] text-emerald-400 block font-bold">MIÉ</span>
+            <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
+          </div>
+          <div class="flex-1 bg-zinc-900 border border-zinc-800 py-2 rounded-xl">
+            <span class="text-[10px] text-zinc-500 block font-bold">VIE</span>
+            <i class="fa-solid fa-minus text-xs text-zinc-600 mt-1"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSIGNIAS / LOGROS -->
+      <div class="glass-card rounded-2xl p-4">
+        <h3 class="text-sm font-bold text-white mb-3 flex items-center justify-between">
+          <span><i class="fa-solid fa-award text-amber-400 mr-2"></i>Mis Logros</span>
+          <span class="text-[11px] text-zinc-400">3 de 6</span>
+        </h3>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="bg-zinc-900/80 p-3 rounded-xl border border-amber-500/30 text-center">
+            <i class="fa-solid fa-seedling text-2xl text-amber-400 mb-1"></i>
+            <span class="text-[10px] font-bold block text-white">Primera Clase</span>
+            <span class="text-[9px] text-emerald-400 font-semibold">Conseguido</span>
+          </div>
+          <div class="bg-zinc-900/80 p-3 rounded-xl border border-amber-500/30 text-center">
+            <i class="fa-solid fa-fire text-2xl text-amber-400 mb-1"></i>
+            <span class="text-[10px] font-bold block text-white">10 Visitas</span>
+            <span class="text-[9px] text-emerald-400 font-semibold">Conseguido</span>
+          </div>
+          <div class="bg-zinc-900/80 p-3 rounded-xl border border-zinc-800 text-center opacity-50">
+            <i class="fa-solid fa-crown text-2xl text-zinc-600 mb-1"></i>
+            <span class="text-[10px] font-bold block text-zinc-400">Leyenda Vital</span>
+            <span class="text-[9px] text-zinc-500">Faltan 15</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: TURNOS -->
+    <div id="view-clases" class="hidden space-y-4">
+      <div class="glass-card rounded-2xl p-4">
+        <h2 class="text-lg font-black text-white">Reserva de Turnos</h2>
+        <p class="text-xs text-zinc-400 mt-0.5">Lunes, Martes, Miércoles y Viernes • Máx. 15 alumnas por turno</p>
+        
+        <div class="mt-4 space-y-3">
+          <div class="bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800 flex justify-between items-center">
+            <div>
+              <span class="text-sm font-bold text-white block">08:00 hs — Turno Mañana</span>
+              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users text-xs mr-1"></i> 9 / 15 Disponibles</span>
+            </div>
+            <button onclick="reservar(this)" class="px-3 py-1.5 text-xs font-bold text-black neon-btn rounded-lg">Anotarme</button>
+          </div>
+
+          <div class="bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800 flex justify-between items-center">
+            <div>
+              <span class="text-sm font-bold text-white block">14:00 hs — Turno Siesta</span>
+              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users text-xs mr-1"></i> 14 / 15 Disponibles</span>
+            </div>
+            <button onclick="reservar(this)" class="px-3 py-1.5 text-xs font-bold text-black neon-btn rounded-lg">Anotarme</button>
+          </div>
+
+          <div class="bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800 flex justify-between items-center">
+            <div>
+              <span class="text-sm font-bold text-white block">18:30 hs — Turno Tarde</span>
+              <span class="text-[11px] text-amber-400 font-medium"><i class="fa-solid fa-users text-xs mr-1"></i> 2 / 15 Disponibles</span>
+            </div>
+            <button onclick="reservar(this)" class="px-3 py-1.5 text-xs font-bold text-black neon-btn rounded-lg">Anotarme</button>
+          </div>
+
+          <div class="bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800 flex justify-between items-center">
+            <div>
+              <span class="text-sm font-bold text-white block">20:00 hs — Turno Noche</span>
+              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users text-xs mr-1"></i> 6 / 15 Disponibles</span>
+            </div>
+            <button onclick="reservar(this)" class="px-3 py-1.5 text-xs font-bold text-black neon-btn rounded-lg">Anotarme</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: ADMIN -->
+    <div id="view-admin" class="hidden space-y-4">
+      <div class="glass-card rounded-2xl p-4 border border-violet-500/30">
+        <div class="flex justify-between items-center mb-3">
+          <h2 class="text-base font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-user-gear text-violet-400"></i> Panel Control (Carina / Admin)
+          </h2>
+        </div>
+        <p class="text-xs text-zinc-400 mb-4">Aprobación instantánea de pases de 30 días post-transferencia.</p>
+
+        <div class="space-y-2">
+          <div class="bg-zinc-900/90 p-3 rounded-xl border border-zinc-800 flex justify-between items-center">
+            <div>
+              <strong class="text-sm text-white block">Florencia Gómez</strong>
+              <span class="text-[10px] text-zinc-500 block">DNI: 41234567 • GAP HIIT</span>
+              <span class="text-[10px] text-amber-400 font-semibold">Pendiente de pago</span>
+            </div>
+            <button onclick="aprobarPase(this)" class="px-3 py-1.5 text-xs font-bold bg-emerald-500 text-black rounded-lg hover:bg-emerald-400">
+              Aprobar (30d)
+            </button>
+          </div>
+
+          <div class="bg-zinc-900/90 p-3 rounded-xl border border-zinc-800 flex justify-between items-center">
+            <div>
+              <strong class="text-sm text-white block">Mariana Rossi</strong>
+              <span class="text-[10px] text-zinc-500 block">DNI: 39876543 • GAP HIIT</span>
+              <span class="text-[10px] text-emerald-400 font-semibold">Activo (Vence en 22d)</span>
+            </div>
+            <button class="px-3 py-1.5 text-xs font-bold bg-zinc-800 text-zinc-400 rounded-lg cursor-not-allowed">
+              Al día
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- NAVEGACIÓN FLOTANTE INFERIOR (ESTILO REY FIT) -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 max-w-md mx-auto px-4 pb-4">
+    <div class="glass-card rounded-2xl p-2 flex justify-around items-center border border-zinc-800 bg-zinc-950/95 shadow-2xl">
+      
+      <button onclick="switchView('inicio')" id="nav-btn-inicio" class="flex flex-col items-center gap-1 text-emerald-400">
+        <i class="fa-solid fa-house text-lg"></i>
+        <span class="text-[10px] font-bold">Inicio</span>
+      </button>
+
+      <button onclick="switchView('clases')" id="nav-btn-clases" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white">
+        <i class="fa-solid fa-calendar-check text-lg"></i>
+        <span class="text-[10px] font-bold">Turnos</span>
+      </button>
+
+      <!-- BOTÓN CENTRAL -->
+      <button onclick="switchView('clases')" class="w-12 h-12 rounded-full neon-btn flex items-center justify-center text-black text-xl font-black -mt-6 border-4 border-zinc-950 shadow-lg">
+        <i class="fa-solid fa-qrcode"></i>
+      </button>
+
+      <button onclick="abrirModalPago()" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white">
+        <i class="fa-solid fa-wallet text-lg"></i>
+        <span class="text-[10px] font-bold">Pagar</span>
+      </button>
+
+      <button onclick="switchView('admin')" id="nav-btn-admin" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white">
+        <i class="fa-solid fa-user-gear text-lg"></i>
+        <span class="text-[10px] font-bold">Admin</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- MODAL DE PAGO / ALIAS -->
+  <div id="modal-pago" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card rounded-2xl p-5 max-w-sm w-full border border-zinc-800">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="text-base font-bold text-white">Datos de Pago</h3>
+        <button onclick="cerrarModalPago()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <p class="text-xs text-zinc-300 mb-3">Para renovar tu pase de 30 días del **Desafío GAP HIIT** ($50.000):</p>
+
+      <div class="bg-zinc-900 p-3 rounded-xl border border-zinc-800 space-y-2 mb-4 text-xs">
+        <div>
+          <span class="text-zinc-500 block text-[10px]">Alias Mercado Pago</span>
+          <strong class="text-emerald-400 font-mono text-sm">valentin.122.sopa.mp</strong>
+        </div>
+        <div>
+          <span class="text-zinc-500 block text-[10px]">Titular</span>
+          <strong class="text-white">Prof. Carina Tisera</strong>
+        </div>
+      </div>
+
+      <a href="https://wa.me/5493537338765?text=Hola%20Carina!%20Te%20envío%20el%20comprobante%20de%20mi%20desafío" target="_blank" class="w-full py-2.5 bg-emerald-500 text-black font-bold text-xs rounded-xl flex items-center justify-center gap-2">
+        <i class="fa-brands fa-whatsapp text-sm"></i> Enviar Comprobante por WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function switchView(viewName) {
+      document.getElementById('view-inicio').classList.add('hidden');
+      document.getElementById('view-clases').classList.add('hidden');
+      document.getElementById('view-admin').classList.add('hidden');
+
+      document.getElementById('view-' + viewName).classList.remove('hidden');
+    }
+
+    function reservar(btn) {
+      btn.innerText = 'Reservado ✔';
+      btn.className = 'px-3 py-1.5 text-xs font-bold bg-zinc-900 text-emerald-400 rounded-lg border border-emerald-500/30 cursor-default';
+    }
+
+    function aprobarPase(btn) {
+      btn.innerText = 'Aprobado (30d)';
+      btn.className = 'px-3 py-1.5 text-xs font-bold bg-zinc-900 text-zinc-400 rounded-lg cursor-default';
+    }
+
+    function abrirModalPago() {
+      document.getElementById('modal-pago').classList.remove('hidden');
+    }
+
+    function cerrarModalPago() {
+      document.getElementById('modal-pago').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
