@@ -4,14 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Store - Catálogo Completo</title>
-    <!-- Tailwind CSS v4 y FontAwesome para diseño premium -->
-    <script src="https://jsdelivr.net"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Estilos puros inyectados directamente para activar el modo oscuro premium sin depender de internet -->
     <style>
+        :root {
+            color-scheme: dark;
+        }
+        body {
+            background-color: #020617 !important;
+            color: #f8fafc !important;
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        
+        /* Forzamos el diseño oscuro estructurado para tu catálogo */
+        header { background-color: rgba(15, 23, 42, 0.8); border-bottom: 1px solid #1e293b; backdrop-filter: blur(8px); }
+        main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 40px; }
+        .bg-slate-900\/60 { background-color: #0f172a; border: 1px solid #1e293b; padding: 24px; border-radius: 16px; display: flex; flex-direction: column; justify-content: space-between; }
+        .bg-slate-950 { background-color: #020617; border-radius: 12px; height: 120px; border: 1px solid #1e293b; display: flex; items-center; justify-content: center; margin-bottom: 16px; font-size: 40px; }
+        button { background: linear-gradient(to right, #06b6d4, #2563eb); color: #020617; font-weight: bold; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        button:hover { opacity: 0.9; transform: translateY(-1px); }
     </style>
+</head>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen selection:bg-cyan-500 selection:text-slate-950 flex flex-col justify-between">
 
