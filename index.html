@@ -3,72 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vital Fitness - PWA Oficial</title>
+  <title>Vital Fitness - App Oficial</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
-      --color-primary: #10b981;
-      --color-primary-glow: rgba(16, 185, 129, 0.4);
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.4);
     }
     body {
-      background-color: #09090b;
+      background-color: #050505;
       color: #f4f4f5;
       font-family: system-ui, -apple-system, sans-serif;
       user-select: none;
     }
-    .neon-border {
-      border: 1px solid var(--color-primary);
-      box-shadow: 0 0 12px var(--color-primary-glow);
+    .neon-glow {
+      box-shadow: 0 0 20px var(--accent-glow);
     }
-    .neon-btn {
-      background: var(--color-primary);
-      box-shadow: 0 0 15px var(--color-primary-glow);
-    }
-    .glass-card {
-      background: rgba(24, 24, 27, 0.75);
-      backdrop-filter: blur(12px);
+    .glass-box {
+      background: rgba(18, 18, 22, 0.85);
+      backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
-<body class="pb-28">
+<body class="pb-32">
 
-  <!-- BARRA SUPERIOR -->
-  <header class="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/50 px-4 py-3 flex justify-between items-center max-w-md mx-auto">
+  <!-- ENCABEZADO SUPERIOR -->
+  <header class="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-zinc-900 px-4 py-3 max-w-md mx-auto flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-full neon-btn flex items-center justify-center font-black text-black text-sm">VF</div>
+      <div class="w-10 h-10 rounded-full bg-emerald-500 text-black font-black flex items-center justify-center text-sm shadow-lg shadow-emerald-500/30">VF</div>
       <div>
-        <h1 class="text-sm font-bold tracking-wide leading-none text-white">VITAL FITNESS</h1>
-        <p class="text-[10px] text-zinc-400 mt-0.5">Prof. Carina Tisera • Justiniano Posse</p>
+        <h1 class="text-sm font-extrabold tracking-wide text-white">VITAL FITNESS</h1>
+        <p class="text-[10px] text-zinc-400">Prof. Carina Tisera • Justiniano Posse</p>
       </div>
     </div>
-    <button onclick="switchView('admin')" class="px-2.5 py-1 text-[11px] bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-lg border border-zinc-700 font-medium">
+    <button onclick="cambiarVista('admin')" class="px-3 py-1 text-xs bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-xl font-medium hover:bg-zinc-800">
       <i class="fa-solid fa-user-shield mr-1"></i> Admin
     </button>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main id="app-content" class="max-w-md mx-auto px-4 pt-4 space-y-4">
+  <!-- CONTENEDOR DE PANTALLAS -->
+  <main class="max-w-md mx-auto px-4 pt-4">
 
-    <!-- SECCIÓN: INICIO -->
-    <div id="view-inicio" class="space-y-4">
+    <!-- 1. VISTA INICIO -->
+    <div id="vista-inicio" class="tab-content active space-y-4">
       
-      <!-- ESTADO DE PASE -->
-      <div class="glass-card rounded-2xl p-4 neon-border relative overflow-hidden">
-        <div class="flex justify-between items-start mb-2">
-          <div>
-            <span class="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">Membresía Activa</span>
-            <h2 class="text-xl font-black text-white mt-0.5">Desafío GAP HIIT</h2>
-          </div>
-          <span class="px-2 py-0.5 text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full">Activo</span>
+      <!-- SALUDO Y ESTADO -->
+      <div class="flex justify-between items-center">
+        <div>
+          <span class="text-xs text-zinc-400">Buenas tardes,</span>
+          <h2 class="text-lg font-black text-white">Alumna Vital</h2>
         </div>
-        <p class="text-xs text-zinc-400 mb-3"><i class="fa-solid fa-location-dot mr-1 text-emerald-400"></i> Francisco Ramírez 24, Justiniano Posse</p>
+        <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xs font-bold">
+          AV
+        </div>
+      </div>
+
+      <!-- TARJETA DE MEMBRESÍA -->
+      <div class="glass-box rounded-3xl p-5 border-emerald-500/30 relative overflow-hidden shadow-xl">
+        <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="text-[10px] font-bold tracking-wider text-emerald-400 uppercase">Tu Membresía</span>
+            <h3 class="text-xl font-black text-white mt-0.5">Desafío GAP HIIT</h3>
+          </div>
+          <span class="px-2.5 py-1 text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full">Activo</span>
+        </div>
+        <p class="text-xs text-zinc-400 mb-4"><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> Francisco Ramírez 24, Justiniano Posse</p>
         
-        <div class="grid grid-cols-2 gap-2 text-xs bg-zinc-900/60 p-2.5 rounded-xl border border-zinc-800">
+        <div class="grid grid-cols-2 gap-2 text-xs bg-zinc-950/60 p-3 rounded-2xl border border-zinc-900 mb-4">
           <div>
             <span class="text-zinc-500 text-[10px] block">Vencimiento</span>
-            <strong class="text-zinc-200">30 Días restantes</strong>
+            <strong class="text-zinc-200">30 Días</strong>
           </div>
           <div>
             <span class="text-zinc-500 text-[10px] block">Meta semanal</span>
@@ -76,136 +85,139 @@
           </div>
         </div>
 
-        <button onclick="abrirModalPago()" class="w-full mt-3 py-2.5 text-xs font-bold text-black neon-btn rounded-xl transition-all">
-          Renovar Pase ($50.000)
+        <button onclick="abrirPago()" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs rounded-2xl shadow-lg shadow-emerald-500/30 transition-all">
+          Renovar Plan ($50.000)
         </button>
       </div>
 
-      <!-- RACHA Y CONSTANCIA -->
-      <div class="glass-card rounded-2xl p-4">
-        <div class="flex justify-between items-center mb-3">
-          <h3 class="text-sm font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-fire text-orange-500"></i> Mi Constancia
-          </h3>
-          <span class="text-[11px] text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded-full border border-zinc-800">4 Semanas seguidas</span>
+      <!-- CONSTANCIA SEMANAL -->
+      <div class="glass-box rounded-3xl p-4 space-y-3">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-fire text-orange-500"></i> Tu semana
+          </span>
+          <span class="text-[10px] text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded-full border border-zinc-800">4 semanas seguidas</span>
         </div>
-        <div class="flex justify-between text-center gap-1">
-          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2 rounded-xl">
-            <span class="text-[10px] text-emerald-400 block font-bold">LUN</span>
+        <div class="flex justify-between text-center gap-1.5">
+          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2.5 rounded-2xl">
+            <span class="text-[9px] text-emerald-400 block font-bold">LUN</span>
             <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
           </div>
-          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2 rounded-xl">
-            <span class="text-[10px] text-emerald-400 block font-bold">MAR</span>
+          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2.5 rounded-2xl">
+            <span class="text-[9px] text-emerald-400 block font-bold">MAR</span>
             <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
           </div>
-          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2 rounded-xl">
-            <span class="text-[10px] text-emerald-400 block font-bold">MIÉ</span>
+          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2.5 rounded-2xl">
+            <span class="text-[9px] text-emerald-400 block font-bold">MIÉ</span>
             <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
           </div>
-          <div class="flex-1 bg-zinc-900 border border-zinc-800 py-2 rounded-xl">
-            <span class="text-[10px] text-zinc-500 block font-bold">VIE</span>
+          <div class="flex-1 bg-zinc-900/60 border border-zinc-800/80 py-2.5 rounded-2xl">
+            <span class="text-[9px] text-zinc-500 block font-bold">VIE</span>
             <i class="fa-solid fa-minus text-xs text-zinc-600 mt-1"></i>
           </div>
         </div>
       </div>
 
-      <!-- INSIGNIAS / LOGROS -->
-      <div class="glass-card rounded-2xl p-4">
-        <h3 class="text-sm font-bold text-white mb-3 flex items-center justify-between">
-          <span><i class="fa-solid fa-award text-amber-400 mr-2"></i>Mis Logros</span>
-          <span class="text-[11px] text-zinc-400">3 de 6</span>
-        </h3>
+      <!-- LOGROS E INSIGNIAS -->
+      <div class="glass-box rounded-3xl p-4 space-y-3">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-bold text-white"><i class="fa-solid fa-award text-amber-400 mr-2"></i>Mis Logros</span>
+          <span class="text-[10px] text-zinc-400">3 de 6</span>
+        </div>
         <div class="grid grid-cols-3 gap-2">
-          <div class="bg-zinc-900/80 p-3 rounded-xl border border-amber-500/30 text-center">
-            <i class="fa-solid fa-seedling text-2xl text-amber-400 mb-1"></i>
+          <div class="bg-zinc-900/80 p-3 rounded-2xl border border-amber-500/30 text-center">
+            <i class="fa-solid fa-seedling text-xl text-amber-400 mb-1"></i>
             <span class="text-[10px] font-bold block text-white">Primera Clase</span>
-            <span class="text-[9px] text-emerald-400 font-semibold">Conseguido</span>
+            <span class="text-[9px] text-emerald-400">Conseguido</span>
           </div>
-          <div class="bg-zinc-900/80 p-3 rounded-xl border border-amber-500/30 text-center">
-            <i class="fa-solid fa-fire text-2xl text-amber-400 mb-1"></i>
+          <div class="bg-zinc-900/80 p-3 rounded-2xl border border-amber-500/30 text-center">
+            <i class="fa-solid fa-fire text-xl text-amber-400 mb-1"></i>
             <span class="text-[10px] font-bold block text-white">10 Visitas</span>
-            <span class="text-[9px] text-emerald-400 font-semibold">Conseguido</span>
+            <span class="text-[9px] text-emerald-400">Conseguido</span>
           </div>
-          <div class="bg-zinc-900/80 p-3 rounded-xl border border-zinc-800 text-center opacity-50">
-            <i class="fa-solid fa-crown text-2xl text-zinc-600 mb-1"></i>
-            <span class="text-[10px] font-bold block text-zinc-400">Leyenda Vital</span>
+          <div class="bg-zinc-900/40 p-3 rounded-2xl border border-zinc-800 text-center opacity-50">
+            <i class="fa-solid fa-crown text-xl text-zinc-600 mb-1"></i>
+            <span class="text-[10px] font-bold block text-zinc-400">Leyenda</span>
             <span class="text-[9px] text-zinc-500">Faltan 15</span>
           </div>
         </div>
       </div>
+
     </div>
 
-    <!-- SECCIÓN: TURNOS -->
-    <div id="view-clases" class="hidden space-y-4">
-      <div class="glass-card rounded-2xl p-4">
-        <h2 class="text-lg font-black text-white">Reserva de Turnos</h2>
-        <p class="text-xs text-zinc-400 mt-0.5">Lunes, Martes, Miércoles y Viernes • Máx. 15 alumnas por turno</p>
-        
-        <div class="mt-4 space-y-3">
-          <div class="bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800 flex justify-between items-center">
+    <!-- 2. VISTA TURNOS / CLASES -->
+    <div id="vista-clases" class="tab-content space-y-4">
+      <div class="glass-box rounded-3xl p-5 space-y-4">
+        <div>
+          <h2 class="text-base font-black text-white">Reserva tu Turno</h2>
+          <p class="text-xs text-zinc-400">Lunes, Martes, Miércoles y Viernes • Máximo 15 alumnas</p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
             <div>
               <span class="text-sm font-bold text-white block">08:00 hs — Turno Mañana</span>
-              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users text-xs mr-1"></i> 9 / 15 Disponibles</span>
+              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users mr-1"></i> 9 / 15 Disponibles</span>
             </div>
-            <button onclick="reservar(this)" class="px-3 py-1.5 text-xs font-bold text-black neon-btn rounded-lg">Anotarme</button>
+            <button onclick="marcarReserva(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl shadow-md">Anotarme</button>
           </div>
 
-          <div class="bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800 flex justify-between items-center">
+          <div class="bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
             <div>
               <span class="text-sm font-bold text-white block">14:00 hs — Turno Siesta</span>
-              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users text-xs mr-1"></i> 14 / 15 Disponibles</span>
+              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users mr-1"></i> 14 / 15 Disponibles</span>
             </div>
-            <button onclick="reservar(this)" class="px-3 py-1.5 text-xs font-bold text-black neon-btn rounded-lg">Anotarme</button>
+            <button onclick="marcarReserva(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl shadow-md">Anotarme</button>
           </div>
 
-          <div class="bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800 flex justify-between items-center">
+          <div class="bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
             <div>
               <span class="text-sm font-bold text-white block">18:30 hs — Turno Tarde</span>
-              <span class="text-[11px] text-amber-400 font-medium"><i class="fa-solid fa-users text-xs mr-1"></i> 2 / 15 Disponibles</span>
+              <span class="text-[11px] text-amber-400 font-medium"><i class="fa-solid fa-users mr-1"></i> 2 / 15 Disponibles</span>
             </div>
-            <button onclick="reservar(this)" class="px-3 py-1.5 text-xs font-bold text-black neon-btn rounded-lg">Anotarme</button>
+            <button onclick="marcarReserva(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl shadow-md">Anotarme</button>
           </div>
 
-          <div class="bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800 flex justify-between items-center">
+          <div class="bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
             <div>
               <span class="text-sm font-bold text-white block">20:00 hs — Turno Noche</span>
-              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users text-xs mr-1"></i> 6 / 15 Disponibles</span>
+              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users mr-1"></i> 6 / 15 Disponibles</span>
             </div>
-            <button onclick="reservar(this)" class="px-3 py-1.5 text-xs font-bold text-black neon-btn rounded-lg">Anotarme</button>
+            <button onclick="marcarReserva(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl shadow-md">Anotarme</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN: ADMIN -->
-    <div id="view-admin" class="hidden space-y-4">
-      <div class="glass-card rounded-2xl p-4 border border-violet-500/30">
-        <div class="flex justify-between items-center mb-3">
+    <!-- 3. VISTA ADMIN (CARINA / VOS) -->
+    <div id="vista-admin" class="tab-content space-y-4">
+      <div class="glass-box rounded-3xl p-5 border-violet-500/30 space-y-4">
+        <div>
           <h2 class="text-base font-black text-white flex items-center gap-2">
-            <i class="fa-solid fa-user-gear text-violet-400"></i> Panel Control (Carina / Admin)
+            <i class="fa-solid fa-user-gear text-violet-400"></i> Panel de Control
           </h2>
+          <p class="text-xs text-zinc-400">Aprobación de pases por 30 días</p>
         </div>
-        <p class="text-xs text-zinc-400 mb-4">Aprobación instantánea de pases de 30 días post-transferencia.</p>
 
-        <div class="space-y-2">
-          <div class="bg-zinc-900/90 p-3 rounded-xl border border-zinc-800 flex justify-between items-center">
+        <div class="space-y-3">
+          <div class="bg-zinc-950/80 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
             <div>
               <strong class="text-sm text-white block">Florencia Gómez</strong>
               <span class="text-[10px] text-zinc-500 block">DNI: 41234567 • GAP HIIT</span>
-              <span class="text-[10px] text-amber-400 font-semibold">Pendiente de pago</span>
+              <span class="text-[10px] text-amber-400 font-semibold">Comprobante enviado</span>
             </div>
-            <button onclick="aprobarPase(this)" class="px-3 py-1.5 text-xs font-bold bg-emerald-500 text-black rounded-lg hover:bg-emerald-400">
+            <button onclick="aprobarAlumna(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl hover:bg-emerald-400">
               Aprobar (30d)
             </button>
           </div>
 
-          <div class="bg-zinc-900/90 p-3 rounded-xl border border-zinc-800 flex justify-between items-center">
+          <div class="bg-zinc-950/80 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
             <div>
               <strong class="text-sm text-white block">Mariana Rossi</strong>
               <span class="text-[10px] text-zinc-500 block">DNI: 39876543 • GAP HIIT</span>
               <span class="text-[10px] text-emerald-400 font-semibold">Activo (Vence en 22d)</span>
             </div>
-            <button class="px-3 py-1.5 text-xs font-bold bg-zinc-800 text-zinc-400 rounded-lg cursor-not-allowed">
+            <button class="px-3 py-1.5 bg-zinc-900 text-zinc-500 text-xs font-bold rounded-xl cursor-not-allowed">
               Al día
             </button>
           </div>
@@ -215,31 +227,31 @@
 
   </main>
 
-  <!-- NAVEGACIÓN FLOTANTE INFERIOR (ESTILO REY FIT) -->
-  <nav class="fixed bottom-0 left-0 right-0 z-40 max-w-md mx-auto px-4 pb-4">
-    <div class="glass-card rounded-2xl p-2 flex justify-around items-center border border-zinc-800 bg-zinc-950/95 shadow-2xl">
+  <!-- NAVEGACIÓN FLOTANTE INFERIOR ESTILO REY FIT -->
+  <nav class="fixed bottom-0 left-0 right-0 z-50 max-w-md mx-auto px-4 pb-4">
+    <div class="glass-box rounded-3xl p-2 flex justify-around items-center border border-zinc-800 bg-black/95 shadow-2xl">
       
-      <button onclick="switchView('inicio')" id="nav-btn-inicio" class="flex flex-col items-center gap-1 text-emerald-400">
+      <button onclick="cambiarVista('inicio')" id="btn-inicio" class="flex flex-col items-center gap-1 text-emerald-400 py-1 px-3">
         <i class="fa-solid fa-house text-lg"></i>
         <span class="text-[10px] font-bold">Inicio</span>
       </button>
 
-      <button onclick="switchView('clases')" id="nav-btn-clases" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white">
+      <button onclick="cambiarVista('clases')" id="btn-clases" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white py-1 px-3">
         <i class="fa-solid fa-calendar-check text-lg"></i>
         <span class="text-[10px] font-bold">Turnos</span>
       </button>
 
-      <!-- BOTÓN CENTRAL -->
-      <button onclick="switchView('clases')" class="w-12 h-12 rounded-full neon-btn flex items-center justify-center text-black text-xl font-black -mt-6 border-4 border-zinc-950 shadow-lg">
+      <!-- BOTÓN CIRCULAR CENTRAL (CANDADO / QR) -->
+      <button onclick="cambiarVista('clases')" class="w-13 h-13 w-12 h-12 rounded-full bg-emerald-500 text-black flex items-center justify-center text-xl font-black -mt-7 border-4 border-black shadow-xl shadow-emerald-500/40">
         <i class="fa-solid fa-qrcode"></i>
       </button>
 
-      <button onclick="abrirModalPago()" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white">
+      <button onclick="abrirPago()" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white py-1 px-3">
         <i class="fa-solid fa-wallet text-lg"></i>
         <span class="text-[10px] font-bold">Pagar</span>
       </button>
 
-      <button onclick="switchView('admin')" id="nav-btn-admin" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white">
+      <button onclick="cambiarVista('admin')" id="btn-admin" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white py-1 px-3">
         <i class="fa-solid fa-user-gear text-lg"></i>
         <span class="text-[10px] font-bold">Admin</span>
       </button>
@@ -248,56 +260,56 @@
   </nav>
 
   <!-- MODAL DE PAGO / ALIAS -->
-  <div id="modal-pago" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="glass-card rounded-2xl p-5 max-w-sm w-full border border-zinc-800">
-      <div class="flex justify-between items-center mb-3">
+  <div id="modal-pago" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-box rounded-3xl p-5 max-w-sm w-full border-zinc-800 space-y-4">
+      <div class="flex justify-between items-center">
         <h3 class="text-base font-bold text-white">Datos de Pago</h3>
-        <button onclick="cerrarModalPago()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="cerrarPago()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
 
-      <p class="text-xs text-zinc-300 mb-3">Para renovar tu pase de 30 días del **Desafío GAP HIIT** ($50.000):</p>
+      <p class="text-xs text-zinc-300">Para renovar tu pase de 30 días del **Desafío GAP HIIT** ($50.000):</p>
 
-      <div class="bg-zinc-900 p-3 rounded-xl border border-zinc-800 space-y-2 mb-4 text-xs">
+      <div class="bg-zinc-950 p-3.5 rounded-2xl border border-zinc-900 space-y-2 text-xs">
         <div>
-          <span class="text-zinc-500 block text-[10px]">Alias Mercado Pago</span>
+          <span class="text-zinc-500 text-[10px] block">Alias Mercado Pago</span>
           <strong class="text-emerald-400 font-mono text-sm">valentin.122.sopa.mp</strong>
         </div>
         <div>
-          <span class="text-zinc-500 block text-[10px]">Titular</span>
+          <span class="text-zinc-500 text-[10px] block">Titular</span>
           <strong class="text-white">Prof. Carina Tisera</strong>
         </div>
       </div>
 
-      <a href="https://wa.me/5493537338765?text=Hola%20Carina!%20Te%20envío%20el%20comprobante%20de%20mi%20desafío" target="_blank" class="w-full py-2.5 bg-emerald-500 text-black font-bold text-xs rounded-xl flex items-center justify-center gap-2">
+      <a href="https://wa.me/5493537338765?text=Hola%20Carina!%20Te%20envío%20el%20comprobante%20de%20mi%20desafío%20de%20Vital%20Fitness" target="_blank" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
         <i class="fa-brands fa-whatsapp text-sm"></i> Enviar Comprobante por WhatsApp
       </a>
     </div>
   </div>
 
   <script>
-    function switchView(viewName) {
-      document.getElementById('view-inicio').classList.add('hidden');
-      document.getElementById('view-clases').classList.add('hidden');
-      document.getElementById('view-admin').classList.add('hidden');
+    function cambiarVista(vista) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById('vista-' + vista).classList.add('active');
 
-      document.getElementById('view-' + viewName).classList.remove('hidden');
+      // Actualizar colores de iconos abajo
+      document.querySelectorAll('nav button span').forEach(el => el.classList.remove('text-emerald-400'));
     }
 
-    function reservar(btn) {
+    function marcarReserva(btn) {
       btn.innerText = 'Reservado ✔';
-      btn.className = 'px-3 py-1.5 text-xs font-bold bg-zinc-900 text-emerald-400 rounded-lg border border-emerald-500/30 cursor-default';
+      btn.className = 'px-3 py-1.5 bg-zinc-900 text-emerald-400 border border-emerald-500/30 text-xs font-bold rounded-xl';
     }
 
-    function aprobarPase(btn) {
+    function aprobarAlumna(btn) {
       btn.innerText = 'Aprobado (30d)';
-      btn.className = 'px-3 py-1.5 text-xs font-bold bg-zinc-900 text-zinc-400 rounded-lg cursor-default';
+      btn.className = 'px-3 py-1.5 bg-zinc-900 text-zinc-500 text-xs font-bold rounded-xl cursor-default';
     }
 
-    function abrirModalPago() {
+    function abrirPago() {
       document.getElementById('modal-pago').classList.remove('hidden');
     }
 
-    function cerrarModalPago() {
+    function cerrarPago() {
       document.getElementById('modal-pago').classList.add('hidden');
     }
   </script>
