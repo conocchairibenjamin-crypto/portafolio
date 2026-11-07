@@ -3,324 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f5eee5" />
-  <meta name="description" content="Papelería creativa, stickers y detalles personalizados para emprendimientos, cumpleaños y fechas especiales." />
-  <title>Marti Diseño — Papelería creativa</title>
+  <meta name="theme-color" content="#702b3d" />
+  <meta name="description" content="Marti Diseño Creativo: papelería personalizada, stickers, packaging, souvenirs y decoración para cumpleaños y eventos." />
+  <title>Marti Diseño Creativo | Papelería personalizada</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --cream: #f5eee5;
-      --paper: #fffaf3;
-      --paper-deep: #eee2d5;
-      --pink: #e8b6c4;
-      --pink-soft: #f4dce1;
-      --burgundy: #702b3d;
-      --burgundy-deep: #4a1f2c;
-      --ink: #32252a;
-      --muted: #806f70;
-      --line: rgba(112, 43, 61, .16);
-      --serif: "Playfair Display", Georgia, serif;
-      --sans: "DM Sans", sans-serif;
-      --shadow: 0 18px 50px rgba(77, 42, 48, .11);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    .page { overflow: hidden; }
-    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
-    .stripe { background: repeating-linear-gradient(90deg, var(--pink-soft) 0 13px, var(--paper) 13px 26px); }
-    .top-note { background: var(--burgundy); color: #fff8f1; text-align: center; padding: 9px 16px; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
-    header { position: sticky; top: 0; z-index: 20; background: rgba(245,238,229,.93); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .nav { min-height: 78px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand-mark { width: 43px; height: 43px; display: grid; place-items: center; border: 1px solid var(--burgundy); border-radius: 50%; color: var(--burgundy); font-family: var(--serif); font-size: 1.15rem; font-style: italic; }
-    .brand-name { font-family: var(--serif); color: var(--burgundy); font-size: 1.08rem; line-height: 1; letter-spacing: .02em; }
-    .brand-caption { display: block; margin-top: 5px; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
-    .nav-links { display: flex; align-items: center; gap: clamp(14px, 3vw, 34px); font-size: .78rem; color: #655258; }
-    .nav-links a:hover { color: var(--burgundy); }
-    .nav-cta, .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 999px; padding: 12px 19px; background: var(--burgundy); color: #fffaf3; font-weight: 700; font-size: .78rem; transition: transform .2s, background .2s; cursor: pointer; }
-    .nav-cta:hover, .button:hover { background: var(--burgundy-deep); transform: translateY(-2px); }
-    .menu-toggle { display: none; border: 1px solid var(--line); background: transparent; color: var(--burgundy); border-radius: 50%; width: 42px; height: 42px; font-size: 1.2rem; }
-
-    .hero { padding: 62px 0 66px; position: relative; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 42px; }
-    .eyebrow { color: var(--burgundy); font-size: .68rem; text-transform: uppercase; letter-spacing: .2em; font-weight: 700; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 600; }
-    h1 { max-width: 610px; margin: 14px 0 18px; font-size: clamp(3rem, 6vw, 5.3rem); line-height: .98; letter-spacing: -.055em; color: var(--burgundy-deep); }
-    h1 em { color: #b86177; font-weight: 500; }
-    .hero-copy > p { max-width: 510px; color: var(--muted); font-size: 1rem; line-height: 1.8; }
-    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 27px; }
-    .text-link { color: var(--burgundy); font-size: .8rem; font-weight: 700; border-bottom: 1px solid var(--pink); padding: 8px 0; }
-    .hero-stats { display: flex; gap: 28px; margin-top: 38px; }
-    .hero-stats strong { display: block; color: var(--burgundy); font-family: var(--serif); font-size: 1.35rem; }
-    .hero-stats span { display: block; margin-top: 2px; color: var(--muted); font-size: .68rem; }
-    .hero-art { position: relative; min-height: 400px; display: grid; place-items: center; }
-    .art-frame { position: relative; width: min(100%, 430px); aspect-ratio: 1 / .95; background: repeating-linear-gradient(90deg, #f3dbe0 0 18px, #fffaf5 18px 36px); border: 10px solid var(--paper); box-shadow: var(--shadow); transform: rotate(2deg); }
-    .art-frame::before { content: "HECHO CON AMOR"; position: absolute; top: 13px; left: 18px; color: #9c6470; font-size: .58rem; letter-spacing: .18em; }
-    .birthday-card { position: absolute; width: 54%; height: 66%; top: 15%; left: 21%; background: #fffaf3; border: 1px solid #e8cad0; box-shadow: 0 15px 26px rgba(74,31,44,.16); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px; transform: rotate(-4deg); }
-    .birthday-card small { color: #a46174; font-size: .55rem; letter-spacing: .14em; text-transform: uppercase; }
-    .birthday-card strong { display: block; margin: 8px 0 3px; font-family: var(--serif); color: var(--burgundy); font-size: clamp(1.3rem, 3vw, 2rem); line-height: 1; }
-    .birthday-card span { font-family: var(--serif); font-style: italic; color: #b76e80; font-size: .85rem; }
-    .birthday-illustration { font-size: 3.4rem; margin: 8px 0; filter: drop-shadow(0 5px 2px rgba(112,43,61,.12)); }
-    .confetti { position: absolute; color: #b85d74; font-size: 1.4rem; }
-    .confetti.one { top: 20%; right: 15%; }.confetti.two { bottom: 17%; left: 15%; color: #a78a55; }
-    .mini-banner { position: absolute; z-index: 2; left: 3%; bottom: 10%; background: var(--burgundy); color: white; padding: 13px 16px; font-family: var(--serif); font-size: .85rem; box-shadow: 0 8px 20px rgba(74,31,44,.2); transform: rotate(-5deg); }
-    .mini-topper { position: absolute; right: 2%; top: 7%; z-index: 2; display: grid; place-items: center; width: 82px; height: 82px; background: var(--pink); color: var(--burgundy); border: 5px solid white; border-radius: 50%; font-family: var(--serif); font-size: 1.8rem; box-shadow: var(--shadow); }
-    .hero-bottom-stripe { height: 14px; border-top: 1px solid white; border-bottom: 1px solid white; }
-
-    .section { padding: 82px 0; }
-    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 30px; }
-    .section-heading h2 { color: var(--burgundy-deep); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; margin: 9px 0 0; letter-spacing: -.04em; }
-    .section-heading p { max-width: 360px; color: var(--muted); font-size: .86rem; line-height: 1.7; margin: 0; }
-    .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 35px; }
-    .category { position: relative; min-height: 172px; display: flex; flex-direction: column; justify-content: end; padding: 22px; background: var(--paper); border: 1px solid var(--line); overflow: hidden; transition: transform .2s, box-shadow .2s; }
-    .category:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .category::before { content: ""; position: absolute; inset: 0 0 auto; height: 9px; background: repeating-linear-gradient(90deg,var(--pink) 0 12px,var(--paper) 12px 24px); }
-    .category-num { position: absolute; top: 22px; right: 20px; font-family: var(--serif); font-size: 2.6rem; color: rgba(112,43,61,.15); }
-    .category-icon { margin-bottom: 12px; color: #b35e74; font-size: 1.35rem; }
-    .category h3 { margin: 0 0 6px; color: var(--burgundy); font-size: 1.2rem; }
-    .category p { margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.5; }
-    .category-link { position: absolute; inset: 0; }
-
-    .catalog { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .filter-row { display: flex; gap: 9px; flex-wrap: wrap; margin: 0 0 25px; }
-    .filter { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 9px 15px; font-size: .73rem; cursor: pointer; }
-    .filter.active, .filter:hover { background: var(--burgundy); border-color: var(--burgundy); color: white; }
-    .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-    .product { background: #fff; border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(77,42,48,.045); transition: transform .2s, box-shadow .2s; }
-    .product:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .product[hidden] { display: none; }
-    .product-art { min-height: 220px; position: relative; overflow: hidden; display: grid; place-items: center; background: var(--paper-deep); }
-    .product-art::before { content: ""; position: absolute; inset: 0; opacity: .8; background: repeating-linear-gradient(90deg, rgba(232,182,196,.48) 0 14px, rgba(255,250,243,.74) 14px 28px); }
-    .product-art.burgundy-art::before { background: repeating-linear-gradient(90deg, rgba(112,43,61,.17) 0 14px, rgba(255,250,243,.8) 14px 28px); }
-    .product-art.beige-art::before { background: repeating-linear-gradient(90deg, rgba(224,207,187,.7) 0 14px, rgba(255,250,243,.8) 14px 28px); }
-    .mock-label { position: relative; z-index: 1; width: 68%; min-height: 150px; padding: 18px 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #fffaf3; border: 1px solid rgba(112,43,61,.15); box-shadow: 0 12px 25px rgba(74,31,44,.15); transform: rotate(-3deg); }
-    .mock-label.round { width: 155px; min-height: 155px; border-radius: 50%; border: 7px solid #fff; outline: 1px solid var(--line); }
-    .mock-label .mock-icon { font-size: 2rem; margin-bottom: 8px; }
-    .mock-label strong { color: var(--burgundy); font-family: var(--serif); font-size: 1.2rem; line-height: 1.1; }
-    .mock-label small { color: var(--muted); font-size: .55rem; text-transform: uppercase; letter-spacing: .13em; margin-top: 6px; }
-    .mock-tag { position: absolute; z-index: 2; top: 14px; left: 14px; padding: 6px 9px; color: var(--burgundy); background: rgba(255,250,243,.9); font-size: .57rem; text-transform: uppercase; letter-spacing: .1em; }
-    .product-info { padding: 18px; }
-    .product-type { color: #a15a6d; font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-    .product h3 { margin: 7px 0 7px; color: var(--burgundy-deep); font-size: 1.22rem; line-height: 1.2; }
-    .product-desc { min-height: 42px; color: var(--muted); font-size: .75rem; line-height: 1.6; margin-bottom: 14px; }
-    .product-bottom { display: flex; justify-content: space-between; align-items: center; gap: 8px; border-top: 1px solid var(--line); padding-top: 13px; }
-    .price { color: var(--burgundy); font-family: var(--serif); font-size: 1.3rem; font-weight: 700; white-space: nowrap; }
-    .order-link { color: var(--burgundy); font-size: .7rem; font-weight: 700; border-bottom: 1px solid var(--pink); padding: 5px 0; }
-    .disclaimer { margin: 17px 0 0; color: var(--muted); font-size: .69rem; }
-
-    .feature { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
-    .feature-copy h2 { color: var(--burgundy-deep); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.06; margin: 10px 0 16px; }
-    .feature-copy p { color: var(--muted); font-size: .9rem; line-height: 1.8; }
-    .feature-list { padding: 0; margin: 22px 0; list-style: none; display: grid; gap: 11px; color: #59464c; font-size: .8rem; }
-    .feature-list li::before { content: "✳"; color: #b46177; margin-right: 10px; }
-    .sample-board { min-height: 370px; position: relative; padding: 35px; background: repeating-linear-gradient(90deg,#f1d8dd 0 18px,#fffaf3 18px 36px); border: 8px solid white; box-shadow: var(--shadow); }
-    .sample-card { position: absolute; left: 14%; top: 16%; width: 44%; min-height: 62%; background: #fffaf3; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; box-shadow: 0 12px 25px rgba(74,31,44,.17); transform: rotate(-5deg); }
-    .sample-card .sample-small { font-size: .57rem; letter-spacing: .16em; text-transform: uppercase; color: #a15a6d; }
-    .sample-card strong { font-family: var(--serif); color: var(--burgundy); font-size: 1.8rem; line-height: 1.05; margin: 10px 0; }
-    .sample-card span { font-family: var(--serif); font-style: italic; color: #a15a6d; font-size: .8rem; }
-    .sample-topper { position: absolute; top: 7%; right: 14%; width: 100px; height: 115px; display: grid; place-items: center; background: #fffaf3; border: 3px solid white; outline: 1px solid var(--line); border-radius: 50% 50% 45% 45%; font-size: 2.3rem; box-shadow: 0 8px 18px rgba(74,31,44,.15); }
-    .sample-topper::after { content: ""; position: absolute; height: 88px; width: 2px; top: 94%; background: #b88d65; }
-    .sample-banner { position: absolute; z-index: 2; bottom: 13%; right: 5%; color: var(--burgundy); background: #fffaf3; padding: 10px 14px; box-shadow: 0 6px 16px rgba(74,31,44,.12); font-family: var(--serif); font-size: .93rem; transform: rotate(4deg); }
-    .sample-note { position: absolute; left: 8%; bottom: 5%; font-size: .58rem; letter-spacing: .1em; color: var(--burgundy); text-transform: uppercase; }
-
-    .how { background: #eee2d5; }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
-    .step { padding: 24px; background: rgba(255,250,243,.72); border: 1px solid var(--line); }
-    .step-number { color: #b56378; font-family: var(--serif); font-size: 2rem; }
-    .step h3 { color: var(--burgundy); font-size: 1.12rem; margin: 9px 0; }
-    .step p { color: var(--muted); font-size: .75rem; line-height: 1.65; margin: 0; }
-
-    .contact { padding: 66px 0; }
-    .contact-box { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding: 36px; background: var(--burgundy); color: #fffaf3; position: relative; overflow: hidden; }
-    .contact-box::after { content: ""; position: absolute; width: 190px; height: 190px; right: 16%; top: -110px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; box-shadow: 0 0 0 20px rgba(255,255,255,.04),0 0 0 40px rgba(255,255,255,.04); }
-    .contact-box h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); margin: 7px 0 8px; }
-    .contact-box p { max-width: 520px; color: rgba(255,250,243,.76); font-size: .8rem; line-height: 1.6; margin: 0; }
-    .contact-box .button { position: relative; z-index: 1; background: var(--paper); color: var(--burgundy); white-space: nowrap; }
-    .contact-box .button:hover { background: var(--pink-soft); }
-    footer { border-top: 1px solid var(--line); padding: 22px 0; color: var(--muted); font-size: .67rem; }
-    .footer-row { display: flex; justify-content: space-between; gap: 15px; align-items: center; }
-
-    @media (max-width: 760px) {
-      .shell { width: min(100% - 30px, 560px); }
-      .nav { min-height: 68px; }
-      .menu-toggle { display: block; }
-      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 16px; background: var(--cream); border-bottom: 1px solid var(--line); }
-      .nav-links.open { display: flex; }
-      .nav-links a { padding: 12px 0; }
-      .nav-cta { margin-top: 7px; }
-      .hero { padding: 45px 0 48px; }
-      .hero-grid, .feature { grid-template-columns: 1fr; gap: 22px; }
-      .hero-art { min-height: 330px; }
-      .section { padding: 62px 0; }
-      .section-heading { display: block; }
-      .section-heading p { margin-top: 13px; }
-      .categories { gap: 9px; }
-      .category { min-height: 160px; padding: 15px; }
-      .category h3 { font-size: 1rem; }
-      .category p { font-size: .68rem; }
-      .product-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
-      .product-art { min-height: 185px; }
-      .product-info { padding: 14px; }
-      .product h3 { font-size: 1.08rem; }
-      .product-desc { font-size: .7rem; }
-      .price { font-size: 1.13rem; }
-      .order-link { font-size: .64rem; }
-      .feature { gap: 28px; }
-      .sample-board { min-height: 330px; }
-      .contact-box { padding: 27px 22px; display: block; }
-      .contact-box .button { margin-top: 20px; }
-    }
-    @media (max-width: 440px) {
-      .top-note { font-size: .6rem; }
-      .brand-name { font-size: .96rem; }
-      .hero-stats { gap: 17px; }
-      .hero-stats strong { font-size: 1.15rem; }
-      .categories { grid-template-columns: 1fr; }
-      .category { min-height: 125px; }
-      .product-grid { grid-template-columns: 1fr; }
-      .product-art { min-height: 230px; }
-      .product-info { padding: 18px; }
-      .product-desc { min-height: 0; }
-      .steps { grid-template-columns: 1fr; gap: 12px; }
-      .footer-row { display: block; line-height: 1.8; }
-      .sample-board { min-height: 290px; }
-      .sample-card { width: 49%; left: 9%; }
-      .sample-topper { right: 8%; width: 78px; height: 92px; }
-      .sample-banner { right: 3%; font-size: .75rem; }
-    }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    :root{--cream:#f6eee5;--paper:#fffaf5;--paper2:#f1e4d8;--pink:#eab3c3;--pink-light:#f8e4e9;--rose:#c76580;--wine:#76283d;--wine-dark:#4c1729;--ink:#30232a;--muted:#79676d;--line:rgba(93,39,55,.16);--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--shadow:0 18px 48px rgba(76,23,41,.12)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans)}a{color:inherit;text-decoration:none}button{font:inherit}.shell{width:min(1160px,calc(100% - 42px));margin:auto}.announcement{padding:9px 16px;text-align:center;background:var(--wine);color:#fff8f2;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}.header{position:sticky;top:0;z-index:20;background:rgba(246,238,229,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px}.brand-seal{width:47px;height:47px;border:1px solid var(--wine);border-radius:50%;display:grid;place-items:center;background:var(--pink-light);color:var(--wine);font:italic 700 1.4rem var(--serif);box-shadow:inset 0 0 0 3px var(--paper)}.brand-title{font:700 1.15rem/1 var(--serif);color:var(--wine)}.brand-sub{display:block;margin-top:5px;font-size:.58rem;letter-spacing:.19em;text-transform:uppercase;color:var(--muted)}.nav-links{display:flex;align-items:center;gap:27px;font-size:.77rem;color:#604c53}.nav-links a:hover{color:var(--rose)}.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;border:0;border-radius:4px;background:var(--wine);color:white;font-size:.77rem;font-weight:700;letter-spacing:.04em;transition:.2s}.button:hover{background:var(--wine-dark);transform:translateY(-2px)}.button.light{background:var(--paper);color:var(--wine)}.button.light:hover{background:var(--pink-light)}.menu{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--wine);font-size:1.15rem}
+    .hero{position:relative;padding:70px 0 75px}.hero:after{content:'';position:absolute;z-index:-1;left:0;right:0;bottom:0;height:15px;background:repeating-linear-gradient(90deg,var(--pink) 0 14px,var(--paper) 14px 28px);border-block:1px solid white}.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:50px}.eyebrow{font-size:.66rem;color:var(--wine);font-weight:700;letter-spacing:.21em;text-transform:uppercase}.script{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--rose)}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:var(--serif);font-weight:600}h1{margin:15px 0 20px;color:var(--wine-dark);font-size:clamp(3.2rem,6.6vw,5.7rem);line-height:.96;letter-spacing:-.055em}h1 em{color:var(--rose);font-weight:500}.hero-copy>p{max-width:510px;color:var(--muted);font-size:.97rem;line-height:1.8}.hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:27px}.under-link{color:var(--wine);font-size:.78rem;font-weight:700;border-bottom:1px solid var(--pink);padding:8px 0}.stats{display:flex;gap:28px;margin-top:37px}.stats strong{display:block;color:var(--wine);font:700 1.25rem var(--serif)}.stats span{display:block;margin-top:4px;color:var(--muted);font-size:.65rem}.hero-stage{min-height:400px;display:grid;place-items:center;position:relative}.stage{position:relative;width:min(100%,455px);aspect-ratio:1.08;background:repeating-linear-gradient(90deg,#f3d9e0 0 20px,#fffaf5 20px 40px);border:10px solid white;box-shadow:var(--shadow);transform:rotate(1.5deg)}.stage:before{content:'MARTI DISEÑO CREATIVO';position:absolute;top:14px;left:16px;color:#94606d;font-size:.55rem;letter-spacing:.18em}.invite{position:absolute;left:23%;top:16%;width:52%;height:66%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:17px;background:#fffaf5;border:1px solid #e8cbd2;box-shadow:0 14px 32px #4c17292a;transform:rotate(-4deg)}.invite small{color:#95606c;font-size:.51rem;letter-spacing:.15em;text-transform:uppercase}.invite .bow{font-size:2.8rem;margin:8px}.invite strong{font:700 clamp(1.4rem,3vw,2.1rem)/1 var(--serif);color:var(--wine)}.invite span{font:italic .8rem var(--serif);color:var(--rose);margin-top:6px}.stage-bunting{position:absolute;z-index:2;left:0;bottom:10%;padding:12px 16px;background:var(--wine);color:white;font:italic .92rem var(--serif);transform:rotate(-5deg);box-shadow:var(--shadow)}.stage-topper{position:absolute;z-index:2;right:4%;top:6%;width:82px;height:82px;border:5px solid white;border-radius:50%;display:grid;place-items:center;background:var(--pink);color:var(--wine);font-size:2rem;box-shadow:var(--shadow)}.spark{position:absolute;color:var(--rose);font-size:1.5rem}.spark.s1{right:12%;top:37%}.spark.s2{left:12%;top:17%;color:#a9905d}
+    .section{padding:78px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:30px}.section-head h2{margin:8px 0 0;color:var(--wine-dark);font-size:clamp(2rem,4vw,3.15rem);line-height:1.05;letter-spacing:-.035em}.section-head p{max-width:390px;margin:0;color:var(--muted);font-size:.82rem;line-height:1.75}.collections{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.collection{position:relative;min-height:190px;padding:23px;background:var(--paper);border:1px solid var(--line);overflow:hidden;transition:.2s}.collection:before{content:'';position:absolute;left:0;right:0;top:0;height:10px;background:repeating-linear-gradient(90deg,var(--pink) 0 13px,var(--paper) 13px 26px)}.collection:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.collection-num{position:absolute;right:20px;top:21px;color:#ead5d8;font:600 2.5rem var(--serif)}.collection-icon{display:block;margin:10px 0 14px;color:var(--rose);font-size:1.5rem}.collection h3{margin:0 0 8px;color:var(--wine);font-size:1.16rem}.collection p{max-width:260px;margin:0;color:var(--muted);font-size:.74rem;line-height:1.6}.collection button{position:absolute;inset:0;width:100%;border:0;background:transparent;cursor:pointer}
+    .catalog{background:var(--paper);border-block:1px solid var(--line)}.filter-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px}.filter{padding:9px 15px;border:1px solid var(--line);border-radius:99px;background:transparent;color:var(--muted);font-size:.7rem;cursor:pointer}.filter:hover,.filter.active{background:var(--wine);border-color:var(--wine);color:white}.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px}.product{background:white;border:1px solid var(--line);transition:.22s;min-width:0}.product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.product[hidden]{display:none}.product-visual{height:218px;position:relative;display:grid;place-items:center;overflow:hidden;background:repeating-linear-gradient(90deg,#f4dce2 0 17px,#fff9f3 17px 34px)}.product-visual:after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(112,40,61,.05))}.visual-beige{background:repeating-linear-gradient(90deg,#eee0d1 0 17px,#fffaf5 17px 34px)}.visual-wine{background:repeating-linear-gradient(90deg,#ead3d8 0 17px,#fff9f3 17px 34px)}.visual-deep{background:repeating-linear-gradient(90deg,#e5c4cc 0 17px,#fdf5f0 17px 34px)}.visual-badge{position:absolute;z-index:2;left:13px;top:13px;padding:6px 9px;background:#fffaf2e8;color:var(--wine);font-size:.53rem;text-transform:uppercase;letter-spacing:.12em}.visual-sheet{position:relative;z-index:1;width:66%;height:68%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:15px;background:#fffdf9;border:1px solid #e8d4d1;box-shadow:0 12px 24px #4c17292b;transform:rotate(-3deg)}.visual-sheet.round{width:150px;height:150px;border-radius:50%;border:6px solid white;outline:1px solid var(--line)}.visual-sheet.ticket{width:59%;height:74%;transform:rotate(2deg)}.visual-icon{font-size:2.05rem;margin-bottom:8px;line-height:1}.visual-sheet strong{font:700 1.15rem/1.05 var(--serif);color:var(--wine)}.visual-sheet em{font:italic .88rem var(--serif);color:var(--rose);margin-top:5px}.visual-sheet small{margin-top:7px;color:var(--muted);font-size:.48rem;letter-spacing:.12em;text-transform:uppercase}.product-info{padding:17px}.product-category{font-size:.57rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#a25268}.product h3{margin:7px 0 7px;font-size:1.14rem;line-height:1.2;color:var(--wine-dark)}.product-desc{min-height:46px;margin:0 0 13px;color:var(--muted);font-size:.71rem;line-height:1.55}.product-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding-top:12px}.price{color:var(--wine);font:700 1.22rem var(--serif);white-space:nowrap}.price.ask{font:600 .85rem var(--sans)}.order{padding:7px 10px;border:1px solid var(--line);color:var(--wine);font-size:.64rem;font-weight:700;white-space:nowrap}.order:hover{background:var(--wine);color:white}.catalog-note{margin:20px 0 0;color:var(--muted);font-size:.68rem;line-height:1.6}
+    .mockup-section{display:grid;grid-template-columns:.94fr 1.06fr;gap:54px;align-items:center}.mockup-copy h2{margin:10px 0 15px;color:var(--wine-dark);font-size:clamp(2.15rem,4.2vw,3.3rem);line-height:1.05}.mockup-copy p{color:var(--muted);font-size:.84rem;line-height:1.8}.mockup-copy ul{list-style:none;padding:0;margin:20px 0 25px;display:grid;gap:10px;color:#59464c;font-size:.76rem}.mockup-copy li:before{content:'✳';margin-right:10px;color:var(--rose)}.mockup-board{position:relative;min-height:385px;border:9px solid white;background:repeating-linear-gradient(90deg,#f1d8df 0 20px,#fffaf5 20px 40px);box-shadow:var(--shadow)}.mockup-card{position:absolute;left:13%;top:15%;width:43%;height:69%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:var(--paper);text-align:center;padding:16px;box-shadow:0 13px 25px #4c17292b;transform:rotate(-5deg)}.mockup-card small{font-size:.5rem;letter-spacing:.12em;color:#9e6371;text-transform:uppercase}.mockup-card strong{margin:9px 0;color:var(--wine);font:700 1.75rem/1 var(--serif)}.mockup-card em{font:italic .8rem var(--serif);color:var(--rose)}.mockup-topper{position:absolute;top:7%;right:13%;width:104px;height:115px;display:grid;place-items:center;border:4px solid white;border-radius:50% 50% 44% 44%;background:#fffaf3;box-shadow:0 9px 18px #4c17292b;font-size:2rem}.mockup-topper:after{content:'';position:absolute;top:95%;height:80px;width:2px;background:#b58a67}.mockup-bunting{position:absolute;right:5%;bottom:16%;padding:11px 15px;background:var(--wine);color:white;font:italic .94rem var(--serif);transform:rotate(4deg);box-shadow:var(--shadow)}.mockup-caption{position:absolute;left:7%;bottom:5%;color:var(--wine);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase}
+    .process{background:#eee1d5}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.step{padding:23px;background:#fffaf2c9;border:1px solid var(--line)}.step-num{font:600 2rem var(--serif);color:var(--rose)}.step h3{margin:8px 0;color:var(--wine);font-size:1.1rem}.step p{margin:0;color:var(--muted);font-size:.73rem;line-height:1.65}
+    .contact{padding:65px 0}.contact-panel{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:25px;padding:37px;background:var(--wine);color:white}.contact-panel:after{content:'✿';position:absolute;right:25%;top:-54px;font:12rem var(--serif);color:#ffffff0b}.contact-panel h2{margin:8px 0;color:white;font-size:clamp(2rem,4vw,2.8rem)}.contact-panel p{max-width:530px;margin:0;color:#f1dfe2;font-size:.78rem;line-height:1.7}.contact-actions{position:relative;z-index:1;display:grid;gap:10px;min-width:190px}.social-link{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:11px 15px;border:1px solid #ffffff66;color:white;font-size:.7rem;font-weight:700}.social-link:hover{background:#ffffff18}.footer{border-top:1px solid var(--line);padding:19px 0;color:var(--muted);font-size:.65rem}.footer-inner{display:flex;justify-content:space-between;gap:12px}.floating-whatsapp{position:fixed;z-index:30;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25d366;color:white;font-size:1.55rem;box-shadow:0 8px 24px #183e2780;border:3px solid white;transition:.2s}.floating-whatsapp:hover{transform:translateY(-3px) scale(1.04)}
+    @media(max-width:850px){.shell{width:min(100% - 32px,650px)}.nav-links{gap:15px}.nav-links>a:not(.nav-cta){font-size:.69rem}.hero-grid{gap:22px}.hero{padding:52px 0}.hero-stage{min-height:340px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mockup-section{gap:30px}.mockup-board{min-height:340px}}
+    @media(max-width:650px){.announcement{font-size:.59rem}.nav{min-height:68px}.menu{display:block}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--cream);padding:10px 22px 18px;border-bottom:1px solid var(--line);align-items:stretch;flex-direction:column;gap:0}.nav-links.open{display:flex}.nav-links>a{padding:12px 0}.nav-links .nav-cta{margin-top:6px;text-align:center}.hero-grid,.mockup-section{grid-template-columns:1fr}.hero{padding:45px 0 52px}.hero-stage{min-height:320px}.section{padding:60px 0}.section-head{display:block}.section-head p{margin-top:12px}.collections{gap:10px}.collection{padding:17px;min-height:165px}.collection h3{font-size:1rem}.collection p{font-size:.68rem}.product-visual{height:190px}.product-info{padding:14px}.product h3{font-size:1.04rem}.product-desc{font-size:.68rem}.product-footer{align-items:flex-start;flex-direction:column}.order{align-self:flex-start}.mockup-section{gap:25px}.mockup-board{min-height:350px}.steps{gap:10px}.contact-panel{padding:28px;display:block}.contact-actions{display:flex;flex-wrap:wrap;margin-top:20px}.footer-inner{display:block;line-height:1.8}}
+    @media(max-width:440px){.shell{width:calc(100% - 28px)}.brand-title{font-size:1rem}.brand-seal{width:42px;height:42px}.hero-stats{gap:15px}.stats strong{font-size:1.1rem}.stats span{font-size:.59rem}.collections{grid-template-columns:1fr}.collection{min-height:132px}.product-grid{grid-template-columns:1fr 1fr;gap:10px}.product-visual{height:155px}.visual-sheet{width:75%;height:65%;padding:10px}.visual-sheet.round{width:110px;height:110px}.visual-icon{font-size:1.55rem}.visual-sheet strong{font-size:.94rem}.visual-sheet small{font-size:.42rem}.visual-badge{font-size:.43rem;left:7px;top:7px}.product-info{padding:12px}.product-category{font-size:.48rem}.product h3{font-size:.95rem}.product-desc{font-size:.64rem;min-height:60px}.price{font-size:1.05rem}.price.ask{font-size:.72rem}.order{font-size:.58rem;padding:6px 8px}.mockup-board{min-height:295px}.mockup-topper{width:78px;height:90px;right:7%}.mockup-bunting{right:2%;font-size:.78rem}.steps{grid-template-columns:1fr}.floating-whatsapp{right:15px;bottom:15px;width:53px;height:53px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="top-note">Diseños personalizados · Hechos con amor en Córdoba</div>
-    <header>
-      <div class="shell nav">
-        <a class="brand" href="#inicio" aria-label="Marti Diseño, inicio">
-          <span class="brand-mark" aria-hidden="true">M</span>
-          <span><span class="brand-name">Marti Diseño</span><span class="brand-caption">Papelería creativa</span></span>
-        </a>
-        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-        <nav class="nav-links" aria-label="Navegación principal">
-          <a href="#colecciones">Colecciones</a><a href="#catalogo">Catálogo</a><a href="#mockups">Diseños para cumples</a><a class="nav-cta" href="#contacto">Hacer un pedido <span aria-hidden="true">↗</span></a>
-        </nav>
+  <div class="announcement">Papelería personalizada · Córdoba, Argentina · Hecho con amor</div>
+  <header class="header"><div class="shell nav">
+    <a class="brand" href="#inicio" aria-label="Marti Diseño Creativo, inicio"><span class="brand-seal">M</span><span><span class="brand-title">Marti</span><span class="brand-sub">Diseño creativo</span></span></a>
+    <button class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Navegación"><a href="#colecciones">Colecciones</a><a href="#catalogo">Catálogo</a><a href="#cumples">Cumples a medida</a><a href="#contacto" class="button">Hacer un pedido ↗</a></nav>
+  </div></header>
+  <main>
+    <section class="hero" id="inicio"><div class="shell hero-grid">
+      <div class="hero-copy"><span class="eyebrow">Identidad, papel y celebración</span><h1>Detalles que<br><em>se vuelven recuerdo.</em></h1><p>Diseños personalizados para emprendimientos, cumpleaños y momentos especiales. Una mezcla de estética retro editorial, tonos con personalidad y detalles hechos para vos.</p><div class="hero-actions"><a class="button" href="#catalogo">Explorar catálogo <span>↓</span></a><a class="under-link" href="https://www.instagram.com/martidiseno.creativo/" target="_blank" rel="noopener">Ver Instagram ↗</a></div><div class="stats"><div><strong>Diseño único</strong><span>Personalizado para vos</span></div><div><strong>3 colecciones</strong><span>Para cada ocasión</span></div><div><strong>Con cariño</strong><span>De principio a fin</span></div></div></div>
+      <div class="hero-stage" aria-label="Mockup ilustrativo de papelería personalizada"><div class="stage"><span class="spark s1">✦</span><span class="spark s2">✿</span><div class="invite"><small>Te invito a mi cumple</small><span class="bow">🎀</span><strong>Tu nombre</strong><span>un día para recordar</span><small style="margin-top:12px">diseño personalizado</small></div><div class="stage-bunting">Feliz cumple</div><div class="stage-topper">✿</div></div></div>
+    </div></section>
+
+    <section class="section" id="colecciones"><div class="shell"><div class="section-head"><div><span class="eyebrow">Tres universos, infinitas ideas</span><h2>Elegí tu colección</h2></div><p>Explorá papelería para tu marca, una celebración inolvidable o ese detalle especial que querés regalar.</p></div><div class="collections">
+      <article class="collection"><span class="collection-num">01</span><span class="collection-icon">✳</span><h3>Packaging para emprendimientos</h3><p>Etiquetas, stickers y papelería para que tu marca se luzca.</p><button aria-label="Filtrar packaging" data-jump-filter="packaging"></button></article>
+      <article class="collection"><span class="collection-num">02</span><span class="collection-icon">✿</span><h3>Cumples y eventos</h3><p>Toppers, invitaciones, souvenirs y detalles coordinados.</p><button aria-label="Filtrar cumples y eventos" data-jump-filter="eventos"></button></article>
+      <article class="collection"><span class="collection-num">03</span><span class="collection-icon">♡</span><h3>Fechas especiales</h3><p>Detalles personalizados para celebrar y agradecer.</p><button aria-label="Filtrar fechas especiales" data-jump-filter="fechas"></button></article>
+    </div></div></section>
+
+    <section class="section catalog" id="catalogo"><div class="shell"><div class="section-head"><div><span class="eyebrow">Una primera selección</span><h2>Catálogo de papelería</h2></div><p>Precios informados en los productos publicados. Para el resto, consultá por WhatsApp y armamos una propuesta.</p></div>
+      <div class="filter-row" role="group" aria-label="Filtrar productos"><button class="filter active" data-filter="todos" aria-pressed="true">Todo el catálogo</button><button class="filter" data-filter="packaging" aria-pressed="false">Packaging</button><button class="filter" data-filter="eventos" aria-pressed="false">Cumples y eventos</button><button class="filter" data-filter="fechas" aria-pressed="false">Fechas especiales</button></div>
+      <div class="product-grid">
+        <article class="product" data-category="eventos"><div class="product-visual"><span class="visual-badge">Cumple personalizado</span><div class="visual-sheet"><span class="visual-icon">🎂</span><strong>Un día<br>inolvidable</strong><small>toppers para torta</small></div></div><div class="product-info"><span class="product-category">Cumples y eventos</span><h3>3 toppers simples</h3><p class="product-desc">Tres piezas para decorar la torta. Personalizá nombre, edad y temática.</p><div class="product-footer"><span class="price">$4.500</span><a class="order" data-product="3 toppers simples" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos fechas"><div class="product-visual visual-wine"><span class="visual-badge">Recuerdo especial</span><div class="visual-sheet ticket"><span class="visual-icon">⛪</span><strong>Mi<br>Comunión</strong><em>Un día para atesorar</em><small>tarjeta personalizada</small></div></div><div class="product-info"><span class="product-category">Cumples y eventos</span><h3>Tarjetas de comunión</h3><p class="product-desc">20 unidades · 10 × 8 cm. Diseño personalizado para compartir ese día.</p><div class="product-footer"><span class="price">$6.500</span><a class="order" data-product="Tarjetas de comunión x20" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="packaging fechas"><div class="product-visual visual-beige"><span class="visual-badge">Tu marca en cada detalle</span><div class="visual-sheet round"><span class="visual-icon">✿</span><strong>Hecho con<br>amor</strong><small>tu marca aquí</small></div></div><div class="product-info"><span class="product-category">Packaging</span><h3>Stickers redondos</h3><p class="product-desc">100 unidades · 5 × 5 cm. Para cerrar cajas, bolsas y envolver productos.</p><div class="product-footer"><span class="price">$30.000</span><a class="order" data-product="100 stickers redondos 5x5" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos fechas"><div class="product-visual visual-deep"><span class="visual-badge">Un toque divertido</span><div class="visual-sheet"><span class="visual-icon">♡ ✦ ♡</span><strong>¡A celebrar!</strong><em>tatuajes temporales</em><small>para tu evento</small></div></div><div class="product-info"><span class="product-category">Cumples y eventos</span><h3>Tatuajes temporales</h3><p class="product-desc">40 unidades · diseños de 4,5 cm. Para cumples, despedidas y celebraciones.</p><div class="product-footer"><span class="price">$18.000</span><a class="order" data-product="Tatuajes temporales x40" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="packaging"><div class="product-visual"><span class="visual-badge">Pack de 5 unidades</span><div class="visual-sheet"><span class="visual-icon">♡</span><strong>Hecho para<br>vos</strong><small>vinilo personalizado</small></div></div><div class="product-info"><span class="product-category">Packaging y regalos</span><h3>Stickers de vinilo</h3><p class="product-desc">5 unidades. Elegí diseño, forma y colores para personalizarlos.</p><div class="product-footer"><span class="price">$1.500</span><a class="order" data-product="Stickers de vinilo x5" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="packaging"><div class="product-visual visual-beige"><span class="visual-badge">Identidad de marca</span><div class="visual-sheet ticket"><span class="visual-icon">✦</span><strong>Tu marca</strong><em>tarjetas de presentación</em><small>papelería comercial</small></div></div><div class="product-info"><span class="product-category">Packaging</span><h3>Tarjetas para emprendimientos</h3><p class="product-desc">Tarjetas personalizadas con logo, redes y datos de contacto.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Tarjetas para emprendimiento" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="packaging"><div class="product-visual visual-wine"><span class="visual-badge">Presentación artesanal</span><div class="visual-sheet round"><span class="visual-icon">🥪</span><strong>Entre<br>Migas</strong><small>etiqueta de producto</small></div></div><div class="product-info"><span class="product-category">Packaging</span><h3>Etiquetas para alimentos</h3><p class="product-desc">Etiquetas a medida para productos, sabores, frascos y envoltorios.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Etiquetas para alimentos" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="packaging"><div class="product-visual visual-beige"><span class="visual-badge">Cuidado personal</span><div class="visual-sheet"><span class="visual-icon">✿</span><strong>Beauty<br>Studio</strong><small>etiqueta para producto</small></div></div><div class="product-info"><span class="product-category">Packaging</span><h3>Etiquetas para belleza</h3><p class="product-desc">Stickers y etiquetas para cosmética, estética y productos de cuidado.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Etiquetas para belleza" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="packaging"><div class="product-visual"><span class="visual-badge">Tu producto, con identidad</span><div class="visual-sheet ticket"><span class="visual-icon">🕯️</span><strong>Aroma<br>natural</strong><em>vela de soja</em><small>etiqueta artesanal</small></div></div><div class="product-info"><span class="product-category">Packaging</span><h3>Etiquetas para velas</h3><p class="product-desc">Diseños para frascos y velas aromáticas: florales, frutales o minimalistas.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Etiquetas para velas" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="packaging fechas"><div class="product-visual visual-beige"><span class="visual-badge">Un gracias especial</span><div class="visual-sheet"><span class="visual-icon">♡</span><strong>Gracias<br>por elegirnos</strong><small>tarjeta de agradecimiento</small></div></div><div class="product-info"><span class="product-category">Packaging y fechas especiales</span><h3>Tarjetas de agradecimiento</h3><p class="product-desc">Tarjetitas con redes, mensaje y detalles de tu marca para incluir en cada compra.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Tarjetas de agradecimiento" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos fechas"><div class="product-visual visual-wine"><span class="visual-badge">Un día para recordar</span><div class="visual-sheet ticket"><span class="visual-icon">💍</span><strong>Futura<br>Sra.</strong><em>celebración especial</em><small>papelería para eventos</small></div></div><div class="product-info"><span class="product-category">Eventos</span><h3>Kit para despedida</h3><p class="product-desc">Tarjetas, stickers y tatuajes temporales para despedidas y celebraciones.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Kit de papelería para despedida" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos fechas"><div class="product-visual"><span class="visual-badge">Un detalle para mamá</span><div class="visual-sheet ticket"><span class="visual-icon">💐</span><strong>Feliz día<br>mamá</strong><em>con mucho amor</em><small>tarjeta personalizada</small></div></div><div class="product-info"><span class="product-category">Fechas especiales</span><h3>Tarjetas para fechas especiales</h3><p class="product-desc">Tarjetas y etiquetas para el Día de la Madre, aniversarios y otras ocasiones.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Tarjetas para fechas especiales" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos"><div class="product-visual visual-deep"><span class="visual-badge">Coordiná toda la fiesta</span><div class="visual-sheet"><span class="visual-icon">🎈</span><strong>Feliz<br>cumple</strong><em>nombre + temática</em><small>banderín personalizado</small></div></div><div class="product-info"><span class="product-category">Cumples y eventos</span><h3>Banderines personalizados</h3><p class="product-desc">Banderines con nombre o frase, coordinados con la temática de tu festejo.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Banderines personalizados" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos"><div class="product-visual visual-beige"><span class="visual-badge">Diseño a juego</span><div class="visual-sheet ticket"><span class="visual-icon">🎁</span><strong>Un recuerdo<br>especial</strong><em>hecho para vos</em><small>souvenir personalizado</small></div></div><div class="product-info"><span class="product-category">Cumples y eventos</span><h3>Souvenirs personalizados</h3><p class="product-desc">Libretas, tarjetitas y pequeños recuerdos con nombre, edad y temática.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Souvenirs personalizados" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos"><div class="product-visual visual-wine"><span class="visual-badge">Invitación impresa</span><div class="visual-sheet ticket"><span class="visual-icon">✉</span><strong>Estás<br>invitado</strong><em>guardá la fecha</em><small>invitación personalizada</small></div></div><div class="product-info"><span class="product-category">Cumples y eventos</span><h3>Invitaciones impresas</h3><p class="product-desc">Diseño personalizado con todos los datos del festejo, listo para entregar.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Invitaciones impresas" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos"><div class="product-visual"><span class="visual-badge">Lista para compartir</span><div class="visual-sheet ticket"><span class="visual-icon">📱</span><strong>Te invito<br>a mi cumple</strong><em>formato digital</em><small>personalizada</small></div></div><div class="product-info"><span class="product-category">Cumples y eventos</span><h3>Invitación digital</h3><p class="product-desc">Invitación para enviar por WhatsApp, con diseño coordinado a tu temática.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Invitación digital" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos"><div class="product-visual visual-deep"><span class="visual-badge">Un recuerdo familiar</span><div class="visual-sheet"><span class="visual-icon">📸</span><strong>Momentos<br>inolvidables</strong><small>recuerdo personalizado</small></div></div><div class="product-info"><span class="product-category">Eventos y regalos</span><h3>Fotos impresas personalizadas</h3><p class="product-desc">Impresiones fotográficas para recuerdos, álbumes y regalos especiales.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Fotos impresas personalizadas" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos"><div class="product-visual visual-wine"><span class="visual-badge">Para la mesa dulce</span><div class="visual-sheet"><span class="visual-icon">⚽</span><strong>Tu nombre<br>+ tu pasión</strong><small>topper temático</small></div></div><div class="product-info"><span class="product-category">Cumples y eventos</span><h3>Toppers temáticos</h3><p class="product-desc">Toppers con nombre, edad, personajes, deportes y elementos de tu temática.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Toppers temáticos personalizados" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="eventos"><div class="product-visual visual-beige"><span class="visual-badge">Un set coordinado</span><div class="visual-sheet"><span class="visual-icon">🎨</span><strong>Portadas<br>a tu estilo</strong><small>papelería escolar</small></div></div><div class="product-info"><span class="product-category">Papelería personalizada</span><h3>Carátulas y cuadernos</h3><p class="product-desc">Portadas y hojas escolares personalizadas con nombre y personajes favoritos.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Carátulas y cuadernos personalizados" href="#contacto">Consultar ↗</a></div></div></article>
+        <article class="product" data-category="fechas eventos"><div class="product-visual"><span class="visual-badge">Un pequeño detalle</span><div class="visual-sheet round"><span class="visual-icon">✿</span><strong>Con<br>cariño</strong><small>tarjeta con ramito</small></div></div><div class="product-info"><span class="product-category">Fechas especiales</span><h3>Tarjetas con detalle floral</h3><p class="product-desc">Tarjetas kraft con flores secas y mensajes para regalar o agradecer.</p><div class="product-footer"><span class="price ask">Consultar precio</span><a class="order" data-product="Tarjeta con detalle floral" href="#contacto">Consultar ↗</a></div></div></article>
       </div>
-    </header>
+      <p class="catalog-note">Los cinco productos con precio publicado conservan los valores que nos pasaste. El resto figura como “Consultar precio” porque todavía no recibimos esos importes. Las vistas son mockups ilustrativos; para mostrar tus fotografías originales hay que agregarlas como archivos de imagen al repositorio.</p>
+    </div></section>
 
-    <main>
-      <section class="hero" id="inicio">
-        <div class="shell hero-grid">
-          <div class="hero-copy">
-            <div class="eyebrow">Papelería que cuenta historias</div>
-            <h1>Pequeños detalles,<br><em>grandes momentos.</em></h1>
-            <p>Diseños personalizados para celebrar, regalar y hacer crecer tu emprendimiento. Papelería, stickers y detalles con una estética retro, delicada y hecha a tu medida.</p>
-            <div class="hero-actions"><a class="button" href="#catalogo">Explorar catálogo <span aria-hidden="true">↓</span></a><a class="text-link" href="#mockups">Ver ideas para cumples</a></div>
-            <div class="hero-stats"><div><strong>100%</strong><span>Personalizable</span></div><div><strong>3 estilos</strong><span>Una idea para cada ocasión</span></div><div><strong>Hecho a mano</strong><span>Con mucho cariño</span></div></div>
-          </div>
-          <div class="hero-art" aria-label="Vista ilustrativa de una invitación personalizada de cumpleaños">
-            <div class="art-frame"><span class="confetti one">✦</span><span class="confetti two">✿</span><div class="birthday-card"><small>Te invito a mi cumple</small><span class="birthday-illustration" aria-hidden="true">🎀</span><strong>Tu nombre</strong><span>mis mejores años</span><small style="margin-top:12px">Una celebración especial</small></div><div class="mini-banner">un día para recordar</div><div class="mini-topper">✿</div></div>
-          </div>
-        </div>
-      </section>
-      <div class="hero-bottom-stripe stripe" aria-hidden="true"></div>
+    <section class="section" id="cumples"><div class="shell mockup-section"><div class="mockup-copy"><span class="eyebrow">Una temática, toda la fiesta</span><h2>Del primer detalle al <span class="script">gran festejo.</span></h2><p>Imaginá cómo puede quedar tu temática completa: papelería coordinada para que la invitación, la torta y la decoración se vean parte de la misma historia.</p><ul><li>Banderín con nombre o frase</li><li>Topper principal y detalles decorativos</li><li>Tarjeta o invitación a juego</li><li>Paleta de colores personalizada</li></ul><a class="button whatsapp-link" data-product="un mockup de temática completa para cumpleaños" href="#contacto">Consultar por mi temática ↗</a></div><div class="mockup-board" aria-label="Mockup gráfico de invitación, topper y banderín"><div class="mockup-card"><small>Te invito a mi cumple</small><strong>Tu<br>nombre</strong><em>mis mejores años</em><span style="font-size:1.5rem;margin-top:8px">✿</span></div><div class="mockup-topper">♡</div><div class="mockup-bunting">Feliz cumple</div><span class="mockup-caption">Invitación · topper · banderín</span></div></div></section>
 
-      <section class="section" id="colecciones">
-        <div class="shell">
-          <div class="section-heading"><div><div class="eyebrow">Tres universos, infinitas ideas</div><h2>¿Qué estás preparando?</h2></div><p>Elegí una colección y encontrá el detalle ideal. También hacemos diseños personalizados a partir de tu temática.</p></div>
-          <div class="categories">
-            <article class="category"><span class="category-num">01</span><span class="category-icon" aria-hidden="true">✳</span><h3>Packaging para emprendimientos</h3><p>Stickers y etiquetas para vestir tus productos.</p><a class="category-link" href="#catalogo" data-filter-link="packaging" aria-label="Ver packaging para emprendimientos"></a></article>
-            <article class="category"><span class="category-num">02</span><span class="category-icon" aria-hidden="true">✿</span><h3>Cumples y eventos</h3><p>Toppers, invitaciones, souvenirs y papelería.</p><a class="category-link" href="#catalogo" data-filter-link="eventos" aria-label="Ver productos para cumpleaños y eventos"></a></article>
-            <article class="category"><span class="category-num">03</span><span class="category-icon" aria-hidden="true">♡</span><h3>Fechas especiales</h3><p>Detalles únicos para regalar y compartir.</p><a class="category-link" href="#catalogo" data-filter-link="fechas" aria-label="Ver productos para fechas especiales"></a></article>
-          </div>
-        </div>
-      </section>
+    <section class="section process"><div class="shell"><div class="section-head"><div><span class="eyebrow">Fácil y personalizado</span><h2>Así armamos tu pedido</h2></div><p>Contanos tu idea y te ayudamos a convertirla en un diseño con identidad propia.</p></div><div class="steps"><article class="step"><span class="step-num">01</span><h3>Elegí tu producto</h3><p>Buscá en el catálogo o escribinos si necesitás algo diferente.</p></article><article class="step"><span class="step-num">02</span><h3>Personalizamos</h3><p>Definimos temática, nombre, colores, cantidades y detalles del diseño.</p></article><article class="step"><span class="step-num">03</span><h3>Lo hacemos realidad</h3><p>Confirmamos precio y producción antes de preparar tus piezas.</p></article></div></div></section>
 
-      <section class="section catalog" id="catalogo">
-        <div class="shell">
-          <div class="section-heading"><div><div class="eyebrow">Una primera selección</div><h2>Catálogo de productos</h2></div><p>Precios de referencia para probar el catálogo. Cada pieza se puede adaptar a tu estilo y temática.</p></div>
-          <div class="filter-row" role="group" aria-label="Filtrar productos">
-            <button class="filter active" data-filter="todos" aria-pressed="true">Ver todo</button><button class="filter" data-filter="packaging" aria-pressed="false">Packaging</button><button class="filter" data-filter="eventos" aria-pressed="false">Cumples y eventos</button><button class="filter" data-filter="fechas" aria-pressed="false">Fechas especiales</button>
-          </div>
-          <div class="product-grid">
-            <article class="product" data-category="eventos fechas">
-              <div class="product-art"><span class="mock-tag">Para celebrar</span><div class="mock-label"><span class="mock-icon" aria-hidden="true">🎂</span><strong>Un día<br>inolvidable</strong><small>toppers personalizados</small></div></div>
-              <div class="product-info"><span class="product-type">Cumples y eventos</span><h3>Tres toppers simples</h3><p class="product-desc">Tres piezas de papel para decorar la torta. Personalizá nombre, edad y temática.</p><div class="product-bottom"><span class="price">$4.500</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
-            </article>
-            <article class="product" data-category="eventos fechas">
-              <div class="product-art burgundy-art"><span class="mock-tag">Recuerdo especial</span><div class="mock-label"><span class="mock-icon" aria-hidden="true">⛪</span><strong>Mi<br>Comunión</strong><small>un día para atesorar</small></div></div>
-              <div class="product-info"><span class="product-type">Eventos</span><h3>Tarjetas de comunión</h3><p class="product-desc">20 unidades · tamaño 10 × 8 cm. Diseño personalizado para compartir ese día especial.</p><div class="product-bottom"><span class="price">$6.500</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
-            </article>
-            <article class="product" data-category="packaging fechas">
-              <div class="product-art beige-art"><span class="mock-tag">Tu marca, en cada detalle</span><div class="mock-label round"><span class="mock-icon" aria-hidden="true">✿</span><strong>Hecho con<br>amor</strong><small>tu marca aquí</small></div></div>
-              <div class="product-info"><span class="product-type">Packaging</span><h3>Stickers redondos</h3><p class="product-desc">100 unidades de 5 × 5 cm. Ideales para cerrar cajas, bolsas y envolver tus productos.</p><div class="product-bottom"><span class="price">$30.000</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
-            </article>
-            <article class="product" data-category="eventos fechas">
-              <div class="product-art burgundy-art"><span class="mock-tag">Un toque divertido</span><div class="mock-label"><span class="mock-icon" aria-hidden="true">♡ ✦ ♡</span><strong>¡A celebrar!</strong><small>tatuajes temporales</small></div></div>
-              <div class="product-info"><span class="product-type">Cumples y eventos</span><h3>Tatuajes temporales</h3><p class="product-desc">40 unidades · diseños de 4,5 cm. Una idea divertida para cumples y despedidas.</p><div class="product-bottom"><span class="price">$18.000</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
-            </article>
-            <article class="product" data-category="packaging">
-              <div class="product-art"><span class="mock-tag">Pequeños detalles</span><div class="mock-label"><span class="mock-icon" aria-hidden="true">♡</span><strong>Hecho para<br>vos</strong><small>sticker vinilo</small></div></div>
-              <div class="product-info"><span class="product-type">Packaging y regalos</span><h3>Stickers de vinilo</h3><p class="product-desc">Pack de 5 unidades. Elegí el diseño, la forma y los colores para personalizarlos.</p><div class="product-bottom"><span class="price">$1.500</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
-            </article>
-          </div>
-          <p class="disclaimer">Precios de referencia para esta primera versión; pueden actualizarse al confirmar materiales, cantidades y personalización. Imágenes ilustrativas de diseño, no fotografías finales del producto.</p>
-        </div>
-      </section>
-
-      <section class="section" id="mockups">
-        <div class="shell feature">
-          <div class="feature-copy"><div class="eyebrow">Una temática, todo coordinado</div><h2>Tu cumple, de la invitación a la torta.</h2><p>También podemos mostrar cada temática como un conjunto: banderines, topper y tarjeta coordinados para que imagines cómo quedaría la celebración completa.</p><ul class="feature-list"><li>Banderín con nombre o frase</li><li>Topper principal y detalles decorativos</li><li>Tarjeta o invitación a juego</li><li>Colores y personajes adaptados a tu idea</li></ul><a class="button" href="#contacto">Quiero armar una temática <span aria-hidden="true">↗</span></a></div>
-          <div class="sample-board" aria-label="Mockup ilustrativo de tarjeta, topper y banderín para cumpleaños"><div class="sample-card"><span class="sample-small">Te invito a mi cumple</span><strong>Tu<br>nombre</strong><span>una aventura especial</span><span style="font-size:1.6rem;margin-top:8px" aria-hidden="true">✿</span></div><div class="sample-topper" aria-hidden="true">♡</div><div class="sample-banner">Feliz cumple</div><span class="sample-note">Tarjeta + topper + banderín</span></div>
-        </div>
-      </section>
-
-      <section class="section how" id="como-pedir">
-        <div class="shell">
-          <div class="section-heading"><div><div class="eyebrow">Simple y personalizado</div><h2>Así nace tu pedido</h2></div><p>Contanos qué estás imaginando y lo convertimos en una propuesta visual a tu medida.</p></div>
-          <div class="steps"><article class="step"><span class="step-number">01</span><h3>Elegí tu producto</h3><p>Tomá una idea del catálogo o contanos si buscás algo diferente.</p></article><article class="step"><span class="step-number">02</span><h3>Definimos el diseño</h3><p>Combinamos temática, colores, texto y cantidad antes de preparar el pedido.</p></article><article class="step"><span class="step-number">03</span><h3>Lo hacemos realidad</h3><p>Preparamos tus piezas personalizadas y coordinamos los detalles de entrega.</p></article></div>
-        </div>
-      </section>
-
-      <section class="contact" id="contacto"><div class="shell"><div class="contact-box"><div><div class="eyebrow" style="color:#f3cbd3">¿Tenés una idea?</div><h2>La hacemos juntas.</h2><p>Escribime para consultar disponibilidad, personalizar un diseño o pedir una temática completa. Próximamente agregamos aquí el acceso directo a WhatsApp y redes.</p></div><a class="button" href="mailto:?subject=Consulta%20por%20papeler%C3%ADa%20personalizada">Enviar consulta <span aria-hidden="true">↗</span></a></div></div></section>
-    </main>
-    <footer><div class="shell footer-row"><span>© <span id="year"></span> Marti Diseño · Papelería creativa</span><span>Diseñado con cariño · Córdoba, Argentina</span></div></footer>
-  </div>
+    <section class="contact" id="contacto"><div class="shell"><div class="contact-panel"><div><span class="eyebrow" style="color:#f3cbd3">¿Tenés una idea?</span><h2>La hacemos juntas.</h2><p>Escribinos para consultar precios, pedir un diseño personalizado o armar una temática completa. ¡Nos encantará ayudarte!</p></div><div class="contact-actions"><a class="button light whatsapp-link" data-product="una consulta por el catálogo" href="https://wa.me/5493537664270?text=Hola%2C%20vi%20el%20cat%C3%A1logo%20de%20Marti%20Dise%C3%B1o%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">WhatsApp · 3537 66-4270 ↗</a><a class="social-link" href="https://www.instagram.com/martidiseno.creativo/" target="_blank" rel="noopener">Instagram @martidiseno.creativo ↗</a></div></div></div></section>
+  </main>
+  <footer class="footer"><div class="shell footer-inner"><span>© <span id="year"></span> Marti Diseño Creativo · Papelería personalizada</span><span>Córdoba, Argentina · Hecho con cariño</span></div></footer>
+  <a class="floating-whatsapp" href="https://wa.me/5493537664270?text=Hola%2C%20vi%20el%20cat%C3%A1logo%20de%20Marti%20Dise%C3%B1o%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">☏</a>
   <script>
-    const filters = document.querySelectorAll('.filter');
-    const products = document.querySelectorAll('.product');
-    function applyFilter(category) {
-      filters.forEach((button) => {
-        const active = button.dataset.filter === category;
-        button.classList.toggle('active', active);
-        button.setAttribute('aria-pressed', String(active));
-      });
-      products.forEach((product) => {
-        product.hidden = category !== 'todos' && !product.dataset.category.split(' ').includes(category);
-      });
-    }
-    filters.forEach((button) => button.addEventListener('click', () => applyFilter(button.dataset.filter)));
-    document.querySelectorAll('[data-filter-link]').forEach((link) => link.addEventListener('click', () => applyFilter(link.dataset.filterLink)));
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    menuToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-      menuToggle.textContent = open ? '×' : '☰';
-    });
-    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Abrir menú');
-      menuToggle.textContent = '☰';
-    }));
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const filterButtons=[...document.querySelectorAll('.filter')];
+    const products=[...document.querySelectorAll('.product')];
+    function applyFilter(category){filterButtons.forEach(button=>{const active=button.dataset.filter===category;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});products.forEach(product=>{product.hidden=category!=='todos'&&!product.dataset.category.split(' ').includes(category);});}
+    filterButtons.forEach(button=>button.addEventListener('click',()=>applyFilter(button.dataset.filter)));
+    document.querySelectorAll('[data-jump-filter]').forEach(button=>button.addEventListener('click',()=>{applyFilter(button.dataset.jumpFilter);document.querySelector('#catalogo').scrollIntoView({behavior:'smooth'});}));
+    const menuButton=document.querySelector('.menu'),nav=document.querySelector('.nav-links');
+    menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');menuButton.textContent=open?'×':'☰';});
+    nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='☰';}));
+    const phone='5493537664270';
+    document.querySelectorAll('.whatsapp-link[data-product]').forEach(link=>{const item=link.dataset.product;link.href=`https://wa.me/${phone}?text=${encodeURIComponent(`Hola, vi el catálogo de Marti Diseño y quiero consultar por ${item}.`)}`;link.target='_blank';link.rel='noopener';});
+    document.querySelectorAll('.order[data-product]').forEach(link=>{const item=link.dataset.product;link.href=`https://wa.me/${phone}?text=${encodeURIComponent(`Hola, vi el catálogo de Marti Diseño y quiero consultar por ${item}.`)}`;link.target='_blank';link.rel='noopener';});
+    document.getElementById('year').textContent=new Date().getFullYear();
   </script>
 </body>
 </html>
