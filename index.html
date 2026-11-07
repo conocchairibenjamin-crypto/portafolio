@@ -3,1119 +3,324 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vital Fitness - App Oficial</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <meta name="theme-color" content="#f5eee5" />
+  <meta name="description" content="Papelería creativa, stickers y detalles personalizados para emprendimientos, cumpleaños y fechas especiales." />
+  <title>Marti Diseño — Papelería creativa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-1: #060b17;
-      --bg-2: #10172d;
-      --bg-3: #0b1220;
-      --panel: rgba(14, 20, 32, 0.78);
-      --panel-strong: rgba(12, 16, 28, 0.96);
-      --line: rgba(148, 163, 184, 0.18);
-      --text: #edf6ff;
-      --muted: #a8b5c9;
-      --accent: #7dd3fc;
-      --accent-2: #a78bfa;
-      --success: #34d399;
-      --warning: #fbbf24;
-      --danger: #f472b6;
-      --shadow: 0 16px 40px rgba(8, 12, 24, 0.55);
-      --glow: rgba(125, 211, 252, 0.35);
-      --card-radius: 28px;
-      --cursor-x: 50vw;
-      --cursor-y: 50vh;
+      --cream: #f5eee5;
+      --paper: #fffaf3;
+      --paper-deep: #eee2d5;
+      --pink: #e8b6c4;
+      --pink-soft: #f4dce1;
+      --burgundy: #702b3d;
+      --burgundy-deep: #4a1f2c;
+      --ink: #32252a;
+      --muted: #806f70;
+      --line: rgba(112, 43, 61, .16);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", sans-serif;
+      --shadow: 0 18px 50px rgba(77, 42, 48, .11);
     }
-
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font-family: Inter, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 20% 15%, rgba(125, 211, 252, 0.18), transparent 18%),
-        radial-gradient(circle at 82% 20%, rgba(167, 139, 250, 0.18), transparent 22%),
-        linear-gradient(180deg, var(--bg-1), var(--bg-2) 35%, var(--bg-3));
-      user-select: none;
-      cursor: none;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.85), transparent),
-        radial-gradient(1.8px 1.8px at 70% 23%, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1.5px 1.5px at 80% 78%, rgba(125,211,252,0.9), transparent),
-        radial-gradient(2.2px 2.2px at 35% 65%, rgba(255,255,255,0.85), transparent),
-        radial-gradient(1.5px 1.5px at 60% 68%, rgba(167,139,250,0.85), transparent),
-        radial-gradient(2px 2px at 90% 42%, rgba(255,255,255,0.8), transparent);
-      background-repeat: repeat;
-      background-size: 240px 240px;
-      opacity: 0.75;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .cursor-star {
-      position: fixed;
-      left: var(--cursor-x);
-      top: var(--cursor-y);
-      width: 18px;
-      height: 18px;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 9999;
-      filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.9));
-    }
-
-    .cursor-star::before,
-    .cursor-star::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #fef3c7, #a5f3fc, #c4b5fd);
-      clip-path: polygon(50% 0%, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0% 50%, 39% 38%);
-      animation: pulse 1.1s infinite ease-in-out;
-    }
-
-    .cursor-star::after {
-      transform: rotate(45deg) scale(0.7);
-      opacity: 0.85;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.2); opacity: 1; }
-    }
-
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); }
     a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
-    button { cursor: none; }
-
-    .app-shell {
-      position: relative;
-      z-index: 1;
-      max-width: 460px;
-      margin: 0 auto;
-      min-height: 100vh;
-      padding: 16px 14px 120px;
-    }
-
-    .glass {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--card-radius);
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow);
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 16px;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(6, 11, 23, 0.72);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #0b1020;
-      font-weight: 900;
-      box-shadow: 0 0 20px rgba(125, 211, 252, 0.5);
-    }
-
-    .brand-copy {
-      min-width: 0;
-    }
-
-    .brand-copy strong {
-      display: block;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .brand-copy small {
-      display: block;
-      color: var(--muted);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-    }
-
-    .header-btn {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.02);
-      color: var(--text);
-      padding: 8px 12px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .theme-picker {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 12px 0 18px;
-      padding: 10px 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--line);
-    }
-
-    .theme-picker-label {
-      font-size: 0.7rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-right: 4px;
-    }
-
-    .swatch {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.2);
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06);
-      cursor: none;
-    }
-
-    .swatch.active {
-      outline: 2px solid rgba(255,255,255,0.7);
-      outline-offset: 2px;
-      transform: scale(1.08);
-    }
-
-    .card {
-      padding: 18px 16px;
-      border-radius: var(--card-radius);
-      background: var(--panel);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      margin-bottom: 16px;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 20px 18px 18px;
-      background: linear-gradient(135deg, rgba(125,211,252,0.12), rgba(168,85,247,0.14) 38%, rgba(251,191,36,0.1));
-      border: 1px solid rgba(125,211,252,0.25);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      right: -36px;
-      bottom: -50px;
-      background: radial-gradient(circle, rgba(125,211,252,0.15), transparent 62%);
-      border-radius: 50%;
-    }
-
-    .eyebrow {
-      font-size: 0.66rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    h1, h2, h3, h4 { margin: 0; }
-
-    .hero h1 {
-      margin-top: 8px;
-      font-size: clamp(2rem, 7vw, 2.7rem);
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: -0.08em;
-    }
-
-    .hero p {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 16px;
-      padding: 12px 16px;
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: none;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #0b1020;
-      box-shadow: 0 12px 24px rgba(125, 211, 252, 0.24);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      border: 1px solid var(--line);
-    }
-
-    .micro-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .mini-stat {
-      padding: 12px 10px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
-      text-align: center;
-    }
-
-    .mini-stat i {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 6px;
-      color: var(--accent);
-    }
-
-    .mini-stat strong {
-      display: block;
-      font-size: 0.8rem;
-    }
-
-    .mini-stat span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.62rem;
-      margin-top: 3px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      gap: 8px;
-    }
-
-    .section-head h3 {
-      font-size: 1rem;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 0.62rem;
-      font-weight: 800;
-      color: var(--text);
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .chip.success {
-      color: #d9fff0;
-      border-color: rgba(52, 211, 153, 0.35);
-      background: rgba(52, 211, 153, 0.1);
-    }
-
-    .chip.warning {
-      color: #fff0c2;
-      border-color: rgba(251, 191, 36, 0.35);
-      background: rgba(251, 191, 36, 0.08);
-    }
-
-    .plan-card {
-      padding: 18px 16px;
-      background: linear-gradient(135deg, rgba(125,211,252,0.08), rgba(167,139,250,0.09));
-      border: 1px solid rgba(125,211,252,0.2);
-    }
-
-    .plan-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: start;
-    }
-
-    .plan-title {
-      font-size: 1.7rem;
-      font-weight: 900;
-      letter-spacing: -0.08em;
-      margin-top: 10px;
-    }
-
-    .plan-meta {
-      color: var(--muted);
-      font-size: 0.76rem;
-      margin-top: 8px;
-      line-height: 1.5;
-    }
-
-    .price-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 92px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(125,211,252,0.3);
-      font-weight: 800;
-      font-size: 0.75rem;
-      color: var(--accent);
-    }
-
-    .list-block {
-      display: grid;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .list-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--line);
-    }
-
-    .list-item i {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: rgba(125,211,252,0.1);
-      color: var(--accent);
-      font-size: 0.9rem;
-    }
-
-    .list-item strong {
-      display: block;
-      font-size: 0.85rem;
-    }
-
-    .list-item span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.68rem;
-      margin-top: 2px;
-    }
-
-    .week-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0,1fr));
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .day-box {
-      padding: 10px 6px;
-      text-align: center;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--line);
-    }
-
-    .day-box strong {
-      display: block;
-      font-size: 0.63rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .day-box .dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      margin: 10px auto 6px;
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.62rem;
-      font-weight: 800;
-    }
-
-    .day-box.active {
-      background: rgba(52, 211, 153, 0.09);
-      border-color: rgba(52,211,153,0.2);
-    }
-
-    .day-box.active .dot {
-      background: linear-gradient(135deg, #4ade80, #10b981);
-      color: #04130b;
-      border: none;
-    }
-
-    .badge-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .badge {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 14px 8px 12px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .badge i {
-      display: block;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      color: var(--warning);
-    }
-
-    .badge strong {
-      display: block;
-      font-size: 0.7rem;
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-    }
-
-    .badge span {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.56rem;
-      color: var(--muted);
-    }
-
-    .badge.locked {
-      opacity: 0.55;
-      filter: grayscale(0.5);
-    }
-
-    .slot-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .slot {
-      display: grid;
-      grid-template-columns: 58px 1fr auto;
-      gap: 10px;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--line);
-    }
-
-    .slot-time {
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      font-size: 0.9rem;
-      color: var(--accent);
-    }
-
-    .slot-copy strong {
-      display: block;
-      font-size: 0.8rem;
-    }
-
-    .slot-copy span {
-      display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 0.62rem;
-    }
-
-    .btn-small {
-      padding: 9px 12px;
-      font-size: 0.66rem;
-      border-radius: 12px;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 16px;
-      z-index: 30;
-      width: min(100%, 460px);
-      padding: 0 14px;
-    }
-
-    .nav-inner {
-      display: flex;
-      gap: 8px;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 22px;
-      background: rgba(7, 11, 19, 0.88);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.38);
-    }
-
-    .nav-tab {
-      flex: 1;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      display: grid;
-      place-items: center;
-      gap: 6px;
-      padding: 8px 4px;
-      border-radius: 14px;
-      font-size: 0.6rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      cursor: none;
-    }
-
-    .nav-tab.active {
-      color: var(--text);
-      background: rgba(125,211,252,0.08);
-      border: 1px solid rgba(125,211,252,0.18);
-    }
-
-    .nav-tab i {
-      font-size: 0.95rem;
-    }
-
-    .floating-card {
-      position: fixed;
-      right: 16px;
-      bottom: 112px;
-      z-index: 25;
-      width: 220px;
-      border-radius: 18px;
-      background: rgba(11, 15, 25, 0.9);
-      border: 1px solid rgba(125,211,252,0.18);
-      padding: 12px 12px;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-    }
-
-    .floating-card strong {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .floating-card p {
-      margin: 8px 0 0;
-      font-size: 0.76rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .user-cta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(125,211,252,0.18), rgba(167,139,250,0.2));
-      border: 1px solid var(--line);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      color: var(--accent);
-    }
-
-    .blank {
-      display: none !important;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 70;
-      background: rgba(3, 5, 10, 0.72);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      backdrop-filter: blur(8px);
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-card {
-      width: min(100%, 420px);
-      border-radius: 28px;
-      background: rgba(10, 14, 22, 0.95);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      padding: 18px;
-    }
-
-    .modal-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .modal-head h3 {
-      font-size: 1.2rem;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-    }
-
-    .close-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      display: grid;
-      place-items: center;
-    }
-
-    .field {
-      display: grid;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .field label {
-      font-size: 0.7rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .field input {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      padding: 12px 12px;
-      outline: none;
-    }
-
-    .field input:focus {
-      border-color: rgba(125,211,252,0.4);
-      box-shadow: 0 0 0 3px rgba(125,211,252,0.08);
-    }
-
-    .info-box {
-      margin: 10px 0 14px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      font-size: 0.72rem;
-      line-height: 1.55;
-      background: rgba(125,211,252,0.06);
-      border: 1px solid rgba(125,211,252,0.2);
-      color: var(--muted);
-    }
-
-    @media (max-width: 420px) {
-      .app-shell { padding-left: 11px; padding-right: 11px; }
-      .brand-copy strong { letter-spacing: 0.12em; }
-      .floating-card { width: 180px; }
-    }
+    button { font: inherit; }
+    .page { overflow: hidden; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .stripe { background: repeating-linear-gradient(90deg, var(--pink-soft) 0 13px, var(--paper) 13px 26px); }
+    .top-note { background: var(--burgundy); color: #fff8f1; text-align: center; padding: 9px 16px; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+    header { position: sticky; top: 0; z-index: 20; background: rgba(245,238,229,.93); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 78px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark { width: 43px; height: 43px; display: grid; place-items: center; border: 1px solid var(--burgundy); border-radius: 50%; color: var(--burgundy); font-family: var(--serif); font-size: 1.15rem; font-style: italic; }
+    .brand-name { font-family: var(--serif); color: var(--burgundy); font-size: 1.08rem; line-height: 1; letter-spacing: .02em; }
+    .brand-caption { display: block; margin-top: 5px; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .nav-links { display: flex; align-items: center; gap: clamp(14px, 3vw, 34px); font-size: .78rem; color: #655258; }
+    .nav-links a:hover { color: var(--burgundy); }
+    .nav-cta, .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 999px; padding: 12px 19px; background: var(--burgundy); color: #fffaf3; font-weight: 700; font-size: .78rem; transition: transform .2s, background .2s; cursor: pointer; }
+    .nav-cta:hover, .button:hover { background: var(--burgundy-deep); transform: translateY(-2px); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: transparent; color: var(--burgundy); border-radius: 50%; width: 42px; height: 42px; font-size: 1.2rem; }
+
+    .hero { padding: 62px 0 66px; position: relative; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 42px; }
+    .eyebrow { color: var(--burgundy); font-size: .68rem; text-transform: uppercase; letter-spacing: .2em; font-weight: 700; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; }
+    h1 { max-width: 610px; margin: 14px 0 18px; font-size: clamp(3rem, 6vw, 5.3rem); line-height: .98; letter-spacing: -.055em; color: var(--burgundy-deep); }
+    h1 em { color: #b86177; font-weight: 500; }
+    .hero-copy > p { max-width: 510px; color: var(--muted); font-size: 1rem; line-height: 1.8; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 27px; }
+    .text-link { color: var(--burgundy); font-size: .8rem; font-weight: 700; border-bottom: 1px solid var(--pink); padding: 8px 0; }
+    .hero-stats { display: flex; gap: 28px; margin-top: 38px; }
+    .hero-stats strong { display: block; color: var(--burgundy); font-family: var(--serif); font-size: 1.35rem; }
+    .hero-stats span { display: block; margin-top: 2px; color: var(--muted); font-size: .68rem; }
+    .hero-art { position: relative; min-height: 400px; display: grid; place-items: center; }
+    .art-frame { position: relative; width: min(100%, 430px); aspect-ratio: 1 / .95; background: repeating-linear-gradient(90deg, #f3dbe0 0 18px, #fffaf5 18px 36px); border: 10px solid var(--paper); box-shadow: var(--shadow); transform: rotate(2deg); }
+    .art-frame::before { content: "HECHO CON AMOR"; position: absolute; top: 13px; left: 18px; color: #9c6470; font-size: .58rem; letter-spacing: .18em; }
+    .birthday-card { position: absolute; width: 54%; height: 66%; top: 15%; left: 21%; background: #fffaf3; border: 1px solid #e8cad0; box-shadow: 0 15px 26px rgba(74,31,44,.16); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px; transform: rotate(-4deg); }
+    .birthday-card small { color: #a46174; font-size: .55rem; letter-spacing: .14em; text-transform: uppercase; }
+    .birthday-card strong { display: block; margin: 8px 0 3px; font-family: var(--serif); color: var(--burgundy); font-size: clamp(1.3rem, 3vw, 2rem); line-height: 1; }
+    .birthday-card span { font-family: var(--serif); font-style: italic; color: #b76e80; font-size: .85rem; }
+    .birthday-illustration { font-size: 3.4rem; margin: 8px 0; filter: drop-shadow(0 5px 2px rgba(112,43,61,.12)); }
+    .confetti { position: absolute; color: #b85d74; font-size: 1.4rem; }
+    .confetti.one { top: 20%; right: 15%; }.confetti.two { bottom: 17%; left: 15%; color: #a78a55; }
+    .mini-banner { position: absolute; z-index: 2; left: 3%; bottom: 10%; background: var(--burgundy); color: white; padding: 13px 16px; font-family: var(--serif); font-size: .85rem; box-shadow: 0 8px 20px rgba(74,31,44,.2); transform: rotate(-5deg); }
+    .mini-topper { position: absolute; right: 2%; top: 7%; z-index: 2; display: grid; place-items: center; width: 82px; height: 82px; background: var(--pink); color: var(--burgundy); border: 5px solid white; border-radius: 50%; font-family: var(--serif); font-size: 1.8rem; box-shadow: var(--shadow); }
+    .hero-bottom-stripe { height: 14px; border-top: 1px solid white; border-bottom: 1px solid white; }
+
+    .section { padding: 82px 0; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 30px; }
+    .section-heading h2 { color: var(--burgundy-deep); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; margin: 9px 0 0; letter-spacing: -.04em; }
+    .section-heading p { max-width: 360px; color: var(--muted); font-size: .86rem; line-height: 1.7; margin: 0; }
+    .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 35px; }
+    .category { position: relative; min-height: 172px; display: flex; flex-direction: column; justify-content: end; padding: 22px; background: var(--paper); border: 1px solid var(--line); overflow: hidden; transition: transform .2s, box-shadow .2s; }
+    .category:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .category::before { content: ""; position: absolute; inset: 0 0 auto; height: 9px; background: repeating-linear-gradient(90deg,var(--pink) 0 12px,var(--paper) 12px 24px); }
+    .category-num { position: absolute; top: 22px; right: 20px; font-family: var(--serif); font-size: 2.6rem; color: rgba(112,43,61,.15); }
+    .category-icon { margin-bottom: 12px; color: #b35e74; font-size: 1.35rem; }
+    .category h3 { margin: 0 0 6px; color: var(--burgundy); font-size: 1.2rem; }
+    .category p { margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.5; }
+    .category-link { position: absolute; inset: 0; }
+
+    .catalog { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .filter-row { display: flex; gap: 9px; flex-wrap: wrap; margin: 0 0 25px; }
+    .filter { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 9px 15px; font-size: .73rem; cursor: pointer; }
+    .filter.active, .filter:hover { background: var(--burgundy); border-color: var(--burgundy); color: white; }
+    .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .product { background: #fff; border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(77,42,48,.045); transition: transform .2s, box-shadow .2s; }
+    .product:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .product[hidden] { display: none; }
+    .product-art { min-height: 220px; position: relative; overflow: hidden; display: grid; place-items: center; background: var(--paper-deep); }
+    .product-art::before { content: ""; position: absolute; inset: 0; opacity: .8; background: repeating-linear-gradient(90deg, rgba(232,182,196,.48) 0 14px, rgba(255,250,243,.74) 14px 28px); }
+    .product-art.burgundy-art::before { background: repeating-linear-gradient(90deg, rgba(112,43,61,.17) 0 14px, rgba(255,250,243,.8) 14px 28px); }
+    .product-art.beige-art::before { background: repeating-linear-gradient(90deg, rgba(224,207,187,.7) 0 14px, rgba(255,250,243,.8) 14px 28px); }
+    .mock-label { position: relative; z-index: 1; width: 68%; min-height: 150px; padding: 18px 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #fffaf3; border: 1px solid rgba(112,43,61,.15); box-shadow: 0 12px 25px rgba(74,31,44,.15); transform: rotate(-3deg); }
+    .mock-label.round { width: 155px; min-height: 155px; border-radius: 50%; border: 7px solid #fff; outline: 1px solid var(--line); }
+    .mock-label .mock-icon { font-size: 2rem; margin-bottom: 8px; }
+    .mock-label strong { color: var(--burgundy); font-family: var(--serif); font-size: 1.2rem; line-height: 1.1; }
+    .mock-label small { color: var(--muted); font-size: .55rem; text-transform: uppercase; letter-spacing: .13em; margin-top: 6px; }
+    .mock-tag { position: absolute; z-index: 2; top: 14px; left: 14px; padding: 6px 9px; color: var(--burgundy); background: rgba(255,250,243,.9); font-size: .57rem; text-transform: uppercase; letter-spacing: .1em; }
+    .product-info { padding: 18px; }
+    .product-type { color: #a15a6d; font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .product h3 { margin: 7px 0 7px; color: var(--burgundy-deep); font-size: 1.22rem; line-height: 1.2; }
+    .product-desc { min-height: 42px; color: var(--muted); font-size: .75rem; line-height: 1.6; margin-bottom: 14px; }
+    .product-bottom { display: flex; justify-content: space-between; align-items: center; gap: 8px; border-top: 1px solid var(--line); padding-top: 13px; }
+    .price { color: var(--burgundy); font-family: var(--serif); font-size: 1.3rem; font-weight: 700; white-space: nowrap; }
+    .order-link { color: var(--burgundy); font-size: .7rem; font-weight: 700; border-bottom: 1px solid var(--pink); padding: 5px 0; }
+    .disclaimer { margin: 17px 0 0; color: var(--muted); font-size: .69rem; }
+
+    .feature { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
+    .feature-copy h2 { color: var(--burgundy-deep); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.06; margin: 10px 0 16px; }
+    .feature-copy p { color: var(--muted); font-size: .9rem; line-height: 1.8; }
+    .feature-list { padding: 0; margin: 22px 0; list-style: none; display: grid; gap: 11px; color: #59464c; font-size: .8rem; }
+    .feature-list li::before { content: "✳"; color: #b46177; margin-right: 10px; }
+    .sample-board { min-height: 370px; position: relative; padding: 35px; background: repeating-linear-gradient(90deg,#f1d8dd 0 18px,#fffaf3 18px 36px); border: 8px solid white; box-shadow: var(--shadow); }
+    .sample-card { position: absolute; left: 14%; top: 16%; width: 44%; min-height: 62%; background: #fffaf3; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; box-shadow: 0 12px 25px rgba(74,31,44,.17); transform: rotate(-5deg); }
+    .sample-card .sample-small { font-size: .57rem; letter-spacing: .16em; text-transform: uppercase; color: #a15a6d; }
+    .sample-card strong { font-family: var(--serif); color: var(--burgundy); font-size: 1.8rem; line-height: 1.05; margin: 10px 0; }
+    .sample-card span { font-family: var(--serif); font-style: italic; color: #a15a6d; font-size: .8rem; }
+    .sample-topper { position: absolute; top: 7%; right: 14%; width: 100px; height: 115px; display: grid; place-items: center; background: #fffaf3; border: 3px solid white; outline: 1px solid var(--line); border-radius: 50% 50% 45% 45%; font-size: 2.3rem; box-shadow: 0 8px 18px rgba(74,31,44,.15); }
+    .sample-topper::after { content: ""; position: absolute; height: 88px; width: 2px; top: 94%; background: #b88d65; }
+    .sample-banner { position: absolute; z-index: 2; bottom: 13%; right: 5%; color: var(--burgundy); background: #fffaf3; padding: 10px 14px; box-shadow: 0 6px 16px rgba(74,31,44,.12); font-family: var(--serif); font-size: .93rem; transform: rotate(4deg); }
+    .sample-note { position: absolute; left: 8%; bottom: 5%; font-size: .58rem; letter-spacing: .1em; color: var(--burgundy); text-transform: uppercase; }
+
+    .how { background: #eee2d5; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+    .step { padding: 24px; background: rgba(255,250,243,.72); border: 1px solid var(--line); }
+    .step-number { color: #b56378; font-family: var(--serif); font-size: 2rem; }
+    .step h3 { color: var(--burgundy); font-size: 1.12rem; margin: 9px 0; }
+    .step p { color: var(--muted); font-size: .75rem; line-height: 1.65; margin: 0; }
+
+    .contact { padding: 66px 0; }
+    .contact-box { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding: 36px; background: var(--burgundy); color: #fffaf3; position: relative; overflow: hidden; }
+    .contact-box::after { content: ""; position: absolute; width: 190px; height: 190px; right: 16%; top: -110px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; box-shadow: 0 0 0 20px rgba(255,255,255,.04),0 0 0 40px rgba(255,255,255,.04); }
+    .contact-box h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); margin: 7px 0 8px; }
+    .contact-box p { max-width: 520px; color: rgba(255,250,243,.76); font-size: .8rem; line-height: 1.6; margin: 0; }
+    .contact-box .button { position: relative; z-index: 1; background: var(--paper); color: var(--burgundy); white-space: nowrap; }
+    .contact-box .button:hover { background: var(--pink-soft); }
+    footer { border-top: 1px solid var(--line); padding: 22px 0; color: var(--muted); font-size: .67rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 15px; align-items: center; }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 30px, 560px); }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 16px; background: var(--cream); border-bottom: 1px solid var(--line); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 0; }
+      .nav-cta { margin-top: 7px; }
+      .hero { padding: 45px 0 48px; }
+      .hero-grid, .feature { grid-template-columns: 1fr; gap: 22px; }
+      .hero-art { min-height: 330px; }
+      .section { padding: 62px 0; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 13px; }
+      .categories { gap: 9px; }
+      .category { min-height: 160px; padding: 15px; }
+      .category h3 { font-size: 1rem; }
+      .category p { font-size: .68rem; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+      .product-art { min-height: 185px; }
+      .product-info { padding: 14px; }
+      .product h3 { font-size: 1.08rem; }
+      .product-desc { font-size: .7rem; }
+      .price { font-size: 1.13rem; }
+      .order-link { font-size: .64rem; }
+      .feature { gap: 28px; }
+      .sample-board { min-height: 330px; }
+      .contact-box { padding: 27px 22px; display: block; }
+      .contact-box .button { margin-top: 20px; }
+    }
+    @media (max-width: 440px) {
+      .top-note { font-size: .6rem; }
+      .brand-name { font-size: .96rem; }
+      .hero-stats { gap: 17px; }
+      .hero-stats strong { font-size: 1.15rem; }
+      .categories { grid-template-columns: 1fr; }
+      .category { min-height: 125px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .product-art { min-height: 230px; }
+      .product-info { padding: 18px; }
+      .product-desc { min-height: 0; }
+      .steps { grid-template-columns: 1fr; gap: 12px; }
+      .footer-row { display: block; line-height: 1.8; }
+      .sample-board { min-height: 290px; }
+      .sample-card { width: 49%; left: 9%; }
+      .sample-topper { right: 8%; width: 78px; height: 92px; }
+      .sample-banner { right: 3%; font-size: .75rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
   </style>
 </head>
 <body>
-  <div class="cursor-star" aria-hidden="true"></div>
-
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark">VF</div>
-      <div class="brand-copy">
-        <strong>VITAL FITNESS</strong>
-        <small>PROF. CARINA TISERA</small>
+  <div class="page">
+    <div class="top-note">Diseños personalizados · Hechos con amor en Córdoba</div>
+    <header>
+      <div class="shell nav">
+        <a class="brand" href="#inicio" aria-label="Marti Diseño, inicio">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span><span class="brand-name">Marti Diseño</span><span class="brand-caption">Papelería creativa</span></span>
+        </a>
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a href="#colecciones">Colecciones</a><a href="#catalogo">Catálogo</a><a href="#mockups">Diseños para cumples</a><a class="nav-cta" href="#contacto">Hacer un pedido <span aria-hidden="true">↗</span></a>
+        </nav>
       </div>
-    </div>
-    <button class="header-btn" id="open-admin-login">Admin</button>
-  </header>
+    </header>
 
-  <div class="app-shell">
-    <div class="theme-picker glass">
-      <span class="theme-picker-label">Tema</span>
-      <button class="swatch active" data-theme="sky" style="background:linear-gradient(135deg,#7dd3fc,#a78bfa);" aria-label="Tema azul"></button>
-      <button class="swatch" data-theme="rose" style="background:linear-gradient(135deg,#f9a8d4,#fcb6d9);" aria-label="Tema rosado"></button>
-      <button class="swatch" data-theme="gold" style="background:linear-gradient(135deg,#facc15,#fbbf24);" aria-label="Tema dorado"></button>
-      <button class="swatch" data-theme="violet" style="background:linear-gradient(135deg,#8b5cf6,#d946ef);" aria-label="Tema violeta"></button>
-    </div>
-
-    <section class="card hero">
-      <div class="eyebrow">Desafío activo</div>
-      <h1>GAP<br>HIIT</h1>
-      <p>Entrená con energía, disciplina y una comunidad que te impulsa a seguir. Tu pase se renueva cada 28 días.</p>
-
-      <div class="hero-actions">
-        <button class="btn btn-primary" id="enter-user">Entrar como alumna</button>
-        <button class="btn btn-secondary" id="open-payment">Pagar</button>
-      </div>
-
-      <div class="micro-grid">
-        <div class="mini-stat">
-          <i class="fa-solid fa-fire"></i>
-          <strong>4/4</strong>
-          <span>Meta semanal</span>
-        </div>
-        <div class="mini-stat">
-          <i class="fa-solid fa-location-dot"></i>
-          <strong>Posse</strong>
-          <span>Ubicación</span>
-        </div>
-        <div class="mini-stat">
-          <i class="fa-solid fa-star"></i>
-          <strong>3</strong>
-          <span>Insignias</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="section-head">
-        <h3>Tu semana</h3>
-        <span class="chip success">4 semanas seguidas</span>
-      </div>
-      <div class="week-grid">
-        <div class="day-box active"><strong>Lun</strong><div class="dot"><i class="fa-solid fa-check"></i></div></div>
-        <div class="day-box active"><strong>Mar</strong><div class="dot"><i class="fa-solid fa-check"></i></div></div>
-        <div class="day-box active"><strong>Mié</strong><div class="dot"><i class="fa-solid fa-check"></i></div></div>
-        <div class="day-box"><strong>Jue</strong><div class="dot"><i class="fa-solid fa-minus"></i></div></div>
-        <div class="day-box"><strong>Vie</strong><div class="dot"><i class="fa-solid fa-minus"></i></div></div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="section-head">
-        <h3>Tu membresía</h3>
-        <span class="chip warning">Activo</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-top">
-          <div>
-            <div class="eyebrow">Desafío</div>
-            <div class="plan-title">GAP HIIT</div>
+    <main>
+      <section class="hero" id="inicio">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Papelería que cuenta historias</div>
+            <h1>Pequeños detalles,<br><em>grandes momentos.</em></h1>
+            <p>Diseños personalizados para celebrar, regalar y hacer crecer tu emprendimiento. Papelería, stickers y detalles con una estética retro, delicada y hecha a tu medida.</p>
+            <div class="hero-actions"><a class="button" href="#catalogo">Explorar catálogo <span aria-hidden="true">↓</span></a><a class="text-link" href="#mockups">Ver ideas para cumples</a></div>
+            <div class="hero-stats"><div><strong>100%</strong><span>Personalizable</span></div><div><strong>3 estilos</strong><span>Una idea para cada ocasión</span></div><div><strong>Hecho a mano</strong><span>Con mucho cariño</span></div></div>
           </div>
-          <div class="price-pill">$50.000</div>
-        </div>
-        <div class="plan-meta">Vigencia 28 días • turno de lunes a viernes • cupo máximo 15 alumnas</div>
-        <div class="list-block">
-          <div class="list-item">
-            <i class="fa-solid fa-location-dot"></i>
-            <div>
-              <strong>Francisco Ramírez 24</strong>
-              <span>Justiniano Posse</span>
-            </div>
-          </div>
-          <div class="list-item">
-            <i class="fa-solid fa-calendar-check"></i>
-            <div>
-              <strong>Tu próxima clase</strong>
-              <span>Lunes 18:30 hs • Turno tarde</span>
-            </div>
+          <div class="hero-art" aria-label="Vista ilustrativa de una invitación personalizada de cumpleaños">
+            <div class="art-frame"><span class="confetti one">✦</span><span class="confetti two">✿</span><div class="birthday-card"><small>Te invito a mi cumple</small><span class="birthday-illustration" aria-hidden="true">🎀</span><strong>Tu nombre</strong><span>mis mejores años</span><small style="margin-top:12px">Una celebración especial</small></div><div class="mini-banner">un día para recordar</div><div class="mini-topper">✿</div></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <div class="hero-bottom-stripe stripe" aria-hidden="true"></div>
 
-    <section class="card">
-      <div class="section-head">
-        <h3>Mis insignias</h3>
-        <span class="chip">3 / 6</span>
-      </div>
-      <div class="badge-grid">
-        <div class="badge">
-          <i class="fa-solid fa-seedling"></i>
-          <strong>Primera Chispa</strong>
-          <span>Desbloqueada</span>
+      <section class="section" id="colecciones">
+        <div class="shell">
+          <div class="section-heading"><div><div class="eyebrow">Tres universos, infinitas ideas</div><h2>¿Qué estás preparando?</h2></div><p>Elegí una colección y encontrá el detalle ideal. También hacemos diseños personalizados a partir de tu temática.</p></div>
+          <div class="categories">
+            <article class="category"><span class="category-num">01</span><span class="category-icon" aria-hidden="true">✳</span><h3>Packaging para emprendimientos</h3><p>Stickers y etiquetas para vestir tus productos.</p><a class="category-link" href="#catalogo" data-filter-link="packaging" aria-label="Ver packaging para emprendimientos"></a></article>
+            <article class="category"><span class="category-num">02</span><span class="category-icon" aria-hidden="true">✿</span><h3>Cumples y eventos</h3><p>Toppers, invitaciones, souvenirs y papelería.</p><a class="category-link" href="#catalogo" data-filter-link="eventos" aria-label="Ver productos para cumpleaños y eventos"></a></article>
+            <article class="category"><span class="category-num">03</span><span class="category-icon" aria-hidden="true">♡</span><h3>Fechas especiales</h3><p>Detalles únicos para regalar y compartir.</p><a class="category-link" href="#catalogo" data-filter-link="fechas" aria-label="Ver productos para fechas especiales"></a></article>
+          </div>
         </div>
-        <div class="badge">
-          <i class="fa-solid fa-fire"></i>
-          <strong>Fuego Interior</strong>
-          <span>Desbloqueada</span>
-        </div>
-        <div class="badge locked">
-          <i class="fa-solid fa-crown"></i>
-          <strong>Reina Vital</strong>
-          <span>Falta 15</span>
-        </div>
-        <div class="badge locked">
-          <i class="fa-solid fa-sparkles"></i>
-          <strong>Constelación</strong>
-          <span>Faltan 3</span>
-        </div>
-        <div class="badge locked">
-          <i class="fa-solid fa-rocket"></i>
-          <strong>Impulso</strong>
-          <span>Faltan 5</span>
-        </div>
-        <div class="badge locked">
-          <i class="fa-solid fa-medal"></i>
-          <strong>Elite</strong>
-          <span>Falta 1 paso</span>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="card">
-      <div class="section-head">
-        <h3>Turnos disponibles</h3>
-        <span class="chip">4 horarios</span>
-      </div>
-      <div class="slot-list">
-        <div class="slot">
-          <div class="slot-time">08:00</div>
-          <div class="slot-copy">
-            <strong>Turno mañana</strong>
-            <span>9 / 15 disponibles</span>
+      <section class="section catalog" id="catalogo">
+        <div class="shell">
+          <div class="section-heading"><div><div class="eyebrow">Una primera selección</div><h2>Catálogo de productos</h2></div><p>Precios de referencia para probar el catálogo. Cada pieza se puede adaptar a tu estilo y temática.</p></div>
+          <div class="filter-row" role="group" aria-label="Filtrar productos">
+            <button class="filter active" data-filter="todos" aria-pressed="true">Ver todo</button><button class="filter" data-filter="packaging" aria-pressed="false">Packaging</button><button class="filter" data-filter="eventos" aria-pressed="false">Cumples y eventos</button><button class="filter" data-filter="fechas" aria-pressed="false">Fechas especiales</button>
           </div>
-          <button class="btn btn-small btn-primary">Anotarme</button>
-        </div>
-        <div class="slot">
-          <div class="slot-time">14:00</div>
-          <div class="slot-copy">
-            <strong>Turno siesta</strong>
-            <span>14 / 15 disponibles</span>
+          <div class="product-grid">
+            <article class="product" data-category="eventos fechas">
+              <div class="product-art"><span class="mock-tag">Para celebrar</span><div class="mock-label"><span class="mock-icon" aria-hidden="true">🎂</span><strong>Un día<br>inolvidable</strong><small>toppers personalizados</small></div></div>
+              <div class="product-info"><span class="product-type">Cumples y eventos</span><h3>Tres toppers simples</h3><p class="product-desc">Tres piezas de papel para decorar la torta. Personalizá nombre, edad y temática.</p><div class="product-bottom"><span class="price">$4.500</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
+            </article>
+            <article class="product" data-category="eventos fechas">
+              <div class="product-art burgundy-art"><span class="mock-tag">Recuerdo especial</span><div class="mock-label"><span class="mock-icon" aria-hidden="true">⛪</span><strong>Mi<br>Comunión</strong><small>un día para atesorar</small></div></div>
+              <div class="product-info"><span class="product-type">Eventos</span><h3>Tarjetas de comunión</h3><p class="product-desc">20 unidades · tamaño 10 × 8 cm. Diseño personalizado para compartir ese día especial.</p><div class="product-bottom"><span class="price">$6.500</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
+            </article>
+            <article class="product" data-category="packaging fechas">
+              <div class="product-art beige-art"><span class="mock-tag">Tu marca, en cada detalle</span><div class="mock-label round"><span class="mock-icon" aria-hidden="true">✿</span><strong>Hecho con<br>amor</strong><small>tu marca aquí</small></div></div>
+              <div class="product-info"><span class="product-type">Packaging</span><h3>Stickers redondos</h3><p class="product-desc">100 unidades de 5 × 5 cm. Ideales para cerrar cajas, bolsas y envolver tus productos.</p><div class="product-bottom"><span class="price">$30.000</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
+            </article>
+            <article class="product" data-category="eventos fechas">
+              <div class="product-art burgundy-art"><span class="mock-tag">Un toque divertido</span><div class="mock-label"><span class="mock-icon" aria-hidden="true">♡ ✦ ♡</span><strong>¡A celebrar!</strong><small>tatuajes temporales</small></div></div>
+              <div class="product-info"><span class="product-type">Cumples y eventos</span><h3>Tatuajes temporales</h3><p class="product-desc">40 unidades · diseños de 4,5 cm. Una idea divertida para cumples y despedidas.</p><div class="product-bottom"><span class="price">$18.000</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
+            </article>
+            <article class="product" data-category="packaging">
+              <div class="product-art"><span class="mock-tag">Pequeños detalles</span><div class="mock-label"><span class="mock-icon" aria-hidden="true">♡</span><strong>Hecho para<br>vos</strong><small>sticker vinilo</small></div></div>
+              <div class="product-info"><span class="product-type">Packaging y regalos</span><h3>Stickers de vinilo</h3><p class="product-desc">Pack de 5 unidades. Elegí el diseño, la forma y los colores para personalizarlos.</p><div class="product-bottom"><span class="price">$1.500</span><a class="order-link" href="#contacto">Consultar ↗</a></div></div>
+            </article>
           </div>
-          <button class="btn btn-small btn-primary">Anotarme</button>
+          <p class="disclaimer">Precios de referencia para esta primera versión; pueden actualizarse al confirmar materiales, cantidades y personalización. Imágenes ilustrativas de diseño, no fotografías finales del producto.</p>
         </div>
-        <div class="slot">
-          <div class="slot-time">18:30</div>
-          <div class="slot-copy">
-            <strong>Turno tarde</strong>
-            <span>2 / 15 disponibles</span>
-          </div>
-          <button class="btn btn-small btn-primary">Anotarme</button>
-        </div>
-        <div class="slot">
-          <div class="slot-time">20:00</div>
-          <div class="slot-copy">
-            <strong>Turno noche</strong>
-            <span>6 / 15 disponibles</span>
-          </div>
-          <button class="btn btn-small btn-primary">Anotarme</button>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <div class="floating-card">
-      <strong>Modo real</strong>
-      <p>Con esta estructura se puede separar admin y alumnas, y dejar la app funcionando con roles y pagos aprobados por Carina.</p>
-    </div>
+      <section class="section" id="mockups">
+        <div class="shell feature">
+          <div class="feature-copy"><div class="eyebrow">Una temática, todo coordinado</div><h2>Tu cumple, de la invitación a la torta.</h2><p>También podemos mostrar cada temática como un conjunto: banderines, topper y tarjeta coordinados para que imagines cómo quedaría la celebración completa.</p><ul class="feature-list"><li>Banderín con nombre o frase</li><li>Topper principal y detalles decorativos</li><li>Tarjeta o invitación a juego</li><li>Colores y personajes adaptados a tu idea</li></ul><a class="button" href="#contacto">Quiero armar una temática <span aria-hidden="true">↗</span></a></div>
+          <div class="sample-board" aria-label="Mockup ilustrativo de tarjeta, topper y banderín para cumpleaños"><div class="sample-card"><span class="sample-small">Te invito a mi cumple</span><strong>Tu<br>nombre</strong><span>una aventura especial</span><span style="font-size:1.6rem;margin-top:8px" aria-hidden="true">✿</span></div><div class="sample-topper" aria-hidden="true">♡</div><div class="sample-banner">Feliz cumple</div><span class="sample-note">Tarjeta + topper + banderín</span></div>
+        </div>
+      </section>
+
+      <section class="section how" id="como-pedir">
+        <div class="shell">
+          <div class="section-heading"><div><div class="eyebrow">Simple y personalizado</div><h2>Así nace tu pedido</h2></div><p>Contanos qué estás imaginando y lo convertimos en una propuesta visual a tu medida.</p></div>
+          <div class="steps"><article class="step"><span class="step-number">01</span><h3>Elegí tu producto</h3><p>Tomá una idea del catálogo o contanos si buscás algo diferente.</p></article><article class="step"><span class="step-number">02</span><h3>Definimos el diseño</h3><p>Combinamos temática, colores, texto y cantidad antes de preparar el pedido.</p></article><article class="step"><span class="step-number">03</span><h3>Lo hacemos realidad</h3><p>Preparamos tus piezas personalizadas y coordinamos los detalles de entrega.</p></article></div>
+        </div>
+      </section>
+
+      <section class="contact" id="contacto"><div class="shell"><div class="contact-box"><div><div class="eyebrow" style="color:#f3cbd3">¿Tenés una idea?</div><h2>La hacemos juntas.</h2><p>Escribime para consultar disponibilidad, personalizar un diseño o pedir una temática completa. Próximamente agregamos aquí el acceso directo a WhatsApp y redes.</p></div><a class="button" href="mailto:?subject=Consulta%20por%20papeler%C3%ADa%20personalizada">Enviar consulta <span aria-hidden="true">↗</span></a></div></div></section>
+    </main>
+    <footer><div class="shell footer-row"><span>© <span id="year"></span> Marti Diseño · Papelería creativa</span><span>Diseñado con cariño · Córdoba, Argentina</span></div></footer>
   </div>
-
-  <nav class="bottom-nav" aria-label="Navigation">
-    <div class="nav-inner">
-      <button class="nav-tab active"><i class="fa-solid fa-house"></i> Inicio</button>
-      <button class="nav-tab"><i class="fa-solid fa-medal"></i> Desafíos</button>
-      <button class="nav-tab"><i class="fa-regular fa-calendar-check"></i> Turnos</button>
-      <button class="nav-tab"><i class="fa-regular fa-user"></i> Perfil</button>
-    </div>
-  </nav>
-
-  <div class="modal" id="admin-modal">
-    <div class="modal-card">
-      <div class="modal-head">
-        <h3>Acceso admin</h3>
-        <button class="close-btn" data-close="admin-modal"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="info-box">Esto es una demo front-end. La seguridad real requiere autenticación y base de datos. El objetivo aquí es dejar la estructura de roles clara y lista para ampliarse.</div>
-      <div class="field">
-        <label for="admin-email">Email</label>
-        <input id="admin-email" type="email" value="carina@vitalfitness.com" />
-      </div>
-      <div class="field">
-        <label for="admin-pass">Contraseña</label>
-        <input id="admin-pass" type="password" value="admin123" />
-      </div>
-      <button class="btn btn-primary" id="login-admin" style="width:100%; margin-top:10px;">Entrar como admin</button>
-    </div>
-  </div>
-
-  <div class="modal" id="user-modal">
-    <div class="modal-card">
-      <div class="modal-head">
-        <h3>Crear cuenta</h3>
-        <button class="close-btn" data-close="user-modal"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="field">
-        <label for="user-name">Nombre</label>
-        <input id="user-name" type="text" placeholder="Tu nombre" />
-      </div>
-      <div class="field">
-        <label for="user-email">Email</label>
-        <input id="user-email" type="email" placeholder="tuemail@email.com" />
-      </div>
-      <div class="field">
-        <label for="user-pass">Contraseña</label>
-        <input id="user-pass" type="password" placeholder="••••••••" />
-      </div>
-      <button class="btn btn-primary" id="register-user" style="width:100%; margin-top:10px;">Crear cuenta</button>
-    </div>
-  </div>
-
   <script>
-    const state = JSON.parse(localStorage.getItem('vitalfitness-demo') || '{}');
-    const root = document.documentElement;
-
-    function setTheme(name) {
-      const themes = {
-        sky: { accent: '#7dd3fc', accent2: '#a78bfa', bg1: '#060b17', bg2: '#10172d', bg3: '#0b1220', glow: 'rgba(125,211,252,0.35)' },
-        rose: { accent: '#f9a8d4', accent2: '#f472b6', bg1: '#170912', bg2: '#2b1230', bg3: '#160d1d', glow: 'rgba(244,114,182,0.25)' },
-        gold: { accent: '#facc15', accent2: '#f59e0b', bg1: '#17120b', bg2: '#201d15', bg3: '#100d09', glow: 'rgba(250,204,21,0.3)' },
-        violet: { accent: '#8b5cf6', accent2: '#d946ef', bg1: '#0d0917', bg2: '#1a1230', bg3: '#100b1c', glow: 'rgba(168,85,247,0.32)' }
-      };
-
-      const t = themes[name] || themes.sky;
-      root.style.setProperty('--accent', t.accent);
-      root.style.setProperty('--accent-2', t.accent2);
-      root.style.setProperty('--bg-1', t.bg1);
-      root.style.setProperty('--bg-2', t.bg2);
-      root.style.setProperty('--bg-3', t.bg3);
-      root.style.setProperty('--glow', t.glow);
-      document.querySelectorAll('.swatch').forEach(el => el.classList.toggle('active', el.dataset.theme === name));
-      localStorage.setItem('vitalfitness-theme', name);
+    const filters = document.querySelectorAll('.filter');
+    const products = document.querySelectorAll('.product');
+    function applyFilter(category) {
+      filters.forEach((button) => {
+        const active = button.dataset.filter === category;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      products.forEach((product) => {
+        product.hidden = category !== 'todos' && !product.dataset.category.split(' ').includes(category);
+      });
     }
-
-    document.querySelectorAll('.swatch').forEach(btn => {
-      btn.addEventListener('click', () => setTheme(btn.dataset.theme));
+    filters.forEach((button) => button.addEventListener('click', () => applyFilter(button.dataset.filter)));
+    document.querySelectorAll('[data-filter-link]').forEach((link) => link.addEventListener('click', () => applyFilter(link.dataset.filterLink)));
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      menuToggle.textContent = open ? '×' : '☰';
     });
-
-    const savedTheme = localStorage.getItem('vitalfitness-theme') || 'sky';
-    setTheme(savedTheme);
-
-    document.addEventListener('pointermove', (e) => {
-      root.style.setProperty('--cursor-x', `${e.clientX}px`);
-      root.style.setProperty('--cursor-y', `${e.clientY}px`);
-    });
-
-    function showModal(id) {
-      document.getElementById(id).classList.add('show');
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('show');
-    }
-
-    document.getElementById('open-admin-login').addEventListener('click', () => showModal('admin-modal'));
-    document.getElementById('enter-user').addEventListener('click', () => showModal('user-modal'));
-    document.getElementById('open-payment').addEventListener('click', () => {
-      alert('Flujo real: la alumna paga por transferencia y Carina aprueba el comprobante desde el panel admin. Esta demo solo muestra el diseño.');
-    });
-
-    document.querySelectorAll('[data-close]').forEach(button => {
-      button.addEventListener('click', () => closeModal(button.dataset.close));
-    });
-
-    document.getElementById('login-admin').addEventListener('click', () => {
-      const email = document.getElementById('admin-email').value.trim();
-      const pass = document.getElementById('admin-pass').value.trim();
-      if (email === 'carina@vitalfitness.com' && pass === 'admin123') {
-        localStorage.setItem('vitalfitness-role', 'admin');
-        closeModal('admin-modal');
-        alert('Acceso de administración activado. En una versión real, este paso valida sesión y permisos desde un backend seguro.');
-      } else {
-        alert('Credenciales de admin incorrectas. Demo: usar carina@vitalfitness.com / admin123');
-      }
-    });
-
-    document.getElementById('register-user').addEventListener('click', () => {
-      const name = document.getElementById('user-name').value.trim();
-      const email = document.getElementById('user-email').value.trim();
-      const pass = document.getElementById('user-pass').value.trim();
-      if (!name || !email || !pass) {
-        alert('Completá los campos para crear la cuenta de alumna.');
-        return;
-      }
-      localStorage.setItem('vitalfitness-role', 'user');
-      localStorage.setItem('vitalfitness-user', JSON.stringify({ name, email }));
-      closeModal('user-modal');
-      alert('Cuenta de alumna creada en esta demo. En una versión real, las claves y los datos se guardan en un backend con encriptación.');
-    });
-
-    // Demo role indicator for clarity
-    const role = localStorage.getItem('vitalfitness-role');
-    if (role === 'admin') {
-      document.getElementById('open-admin-login').textContent = 'Admin ON';
-    }
+    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Abrir menú');
+      menuToggle.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
