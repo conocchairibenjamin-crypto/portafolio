@@ -2,316 +2,208 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vital Fitness - App Oficial</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101510">
+  <meta name="description" content="Entrená GAP HIIT con la profe Carina Tisera en Vital Fitness, Justiniano Posse. Consultá horarios y reservá tu lugar por WhatsApp.">
+  <title>Vital Fitness | Entrená a tu manera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    :root {
-      --accent: #10b981;
-      --accent-glow: rgba(16, 185, 129, 0.4);
-    }
-    body {
-      background-color: #050505;
-      color: #f4f4f5;
-      font-family: system-ui, -apple-system, sans-serif;
-      user-select: none;
-    }
-    .neon-glow {
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-    .glass-box {
-      background: rgba(18, 18, 22, 0.85);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
+    :root{--bg:#101510;--panel:#171d18;--panel-2:#1d251f;--text:#f5f7f3;--muted:#a3afa3;--green:#b8f36b;--green-dark:#8acb3f;--line:rgba(255,255,255,.1);--radius:24px;--max:1160px;--shadow:0 24px 80px rgba(0,0,0,.32)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.55}body.modal-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{color:inherit}img{max-width:100%;display:block}.wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--green);font-size:.76rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}.eyebrow:before{content:"";width:22px;height:2px;background:var(--green)}.section{padding:94px 0}.section-head{max-width:650px;margin-bottom:36px}.section-head h2{font:800 clamp(2rem,4vw,3.4rem)/1.08 Manrope,sans-serif;letter-spacing:-.055em;margin:12px 0}.section-head p{color:var(--muted);margin:0}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border:1px solid transparent;border-radius:999px;font-weight:700;cursor:pointer;transition:transform .2s,background .2s,border .2s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--green);color:#15200f}.btn-primary:hover{background:#c9ff80}.btn-ghost{border-color:var(--line);background:rgba(255,255,255,.035);color:var(--text)}.btn-ghost:hover{border-color:rgba(184,243,107,.55);background:rgba(184,243,107,.08)}
+    /* Navegación */
+    .header{position:sticky;top:0;z-index:20;background:rgba(16,21,16,.86);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font:800 .95rem Manrope,sans-serif;letter-spacing:.045em}.brand-mark{width:42px;height:42px;border-radius:14px;background:var(--green);color:#15200f;display:grid;place-items:center;font-size:.95rem;transform:rotate(-5deg)}.brand-mark i{transform:rotate(5deg)}.brand small{display:block;color:var(--muted);font:500 .68rem 'DM Sans',sans-serif;letter-spacing:0;margin-top:1px}.nav-links{display:flex;align-items:center;gap:28px;color:#c5cec4;font-size:.9rem}.nav-links a:hover{color:var(--green)}.nav-actions{display:flex;align-items:center;gap:12px}.menu-toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer}
+    /* Hero */
+    .hero{position:relative;overflow:hidden;padding:74px 0 80px;min-height:610px;display:grid;align-items:center;background:radial-gradient(ellipse at 75% 40%,rgba(115,166,73,.16),transparent 38%),linear-gradient(110deg,#101510 8%,rgba(16,21,16,.94) 49%,rgba(16,21,16,.6))}.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:50px 50px;mask-image:linear-gradient(90deg,#000,transparent 80%)}.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:44px}.hero-copy{max-width:650px}.hero h1{font:800 clamp(3.1rem,7vw,6.35rem)/.98 Manrope,sans-serif;letter-spacing:-.075em;margin:20px 0 24px}.hero h1 em{font-style:normal;color:var(--green)}.hero-copy>p{max-width:510px;color:#c1cbc0;font-size:1.08rem;margin:0 0 30px}.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}.hero-note{display:flex;align-items:center;gap:11px;margin-top:34px;color:var(--muted);font-size:.86rem}.avatars{display:flex}.avatars span{width:31px;height:31px;display:grid;place-items:center;background:#28352b;border:2px solid var(--bg);border-radius:50%;margin-left:-7px;color:var(--green);font-size:.7rem}.avatars span:first-child{margin-left:0}.hero-visual{min-height:430px;position:relative;display:grid;place-items:center}.hero-orbit{position:absolute;width:min(35vw,410px);aspect-ratio:1;border:1px solid rgba(184,243,107,.18);border-radius:50%;box-shadow:0 0 0 38px rgba(184,243,107,.025),0 0 0 76px rgba(184,243,107,.018)}.hero-card{position:relative;width:min(100%,390px);min-height:410px;border-radius:34px;overflow:hidden;padding:28px;background:linear-gradient(155deg,#374735,#182119 61%,#141914);border:1px solid rgba(255,255,255,.15);box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between}.hero-card:before{content:"VF";position:absolute;right:-20px;top:16px;font:800 12rem/.9 Manrope,sans-serif;color:rgba(255,255,255,.045);letter-spacing:-.1em}.card-top,.card-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center}.live-pill{border-radius:99px;background:rgba(184,243,107,.14);color:var(--green);font-size:.72rem;font-weight:700;padding:8px 11px}.hero-icon{width:58px;height:58px;border:1px solid rgba(255,255,255,.22);border-radius:18px;display:grid;place-items:center;font-size:1.45rem;color:var(--green)}.card-title{position:relative;z-index:1}.card-title span{color:var(--green);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}.card-title h2{font:800 2.75rem/.98 Manrope,sans-serif;letter-spacing:-.06em;margin:8px 0}.card-title p{color:#c3cdc2;margin:0}.card-bottom{padding-top:17px;border-top:1px solid rgba(255,255,255,.16);font-size:.78rem;color:#d0d8cf}.card-bottom i{color:var(--green);margin-right:6px}
+    /* Banda informativa */
+    .info-strip{border-block:1px solid var(--line);background:#131914}.info-grid{display:grid;grid-template-columns:repeat(3,1fr)}.info-item{display:flex;align-items:center;gap:15px;padding:22px 24px;border-right:1px solid var(--line)}.info-item:first-child{padding-left:0}.info-item:last-child{border:0}.info-item>i{color:var(--green);font-size:1.15rem}.info-item strong{display:block;font-size:.91rem}.info-item span{display:block;color:var(--muted);font-size:.78rem}
+    /* Beneficios */
+    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.benefit{padding:25px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.015));transition:transform .2s,border .2s}.benefit:hover{transform:translateY(-5px);border-color:rgba(184,243,107,.35)}.benefit-icon{width:48px;height:48px;border-radius:15px;background:rgba(184,243,107,.1);color:var(--green);display:grid;place-items:center;font-size:1.15rem}.benefit h3{font:700 1.08rem Manrope,sans-serif;margin:19px 0 7px}.benefit p{margin:0;color:var(--muted);font-size:.9rem}
+    /* Horarios */
+    .schedule-section{background:#141a15}.schedule-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:55px;align-items:start}.schedule-layout .section-head{margin:0}.schedule-tip{padding:18px;border:1px solid rgba(184,243,107,.2);background:rgba(184,243,107,.06);border-radius:18px;color:#c8d3c4;font-size:.87rem;margin-top:25px}.schedule-tip i{color:var(--green);margin-right:8px}.schedule-list{display:grid;gap:12px}.schedule-row{display:grid;grid-template-columns:84px 1fr auto;align-items:center;gap:17px;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:19px}.schedule-time{font:800 1rem Manrope,sans-serif;color:var(--green)}.schedule-row h3{font-size:.94rem;margin:0}.schedule-row p{font-size:.8rem;color:var(--muted);margin:3px 0 0}.schedule-row .btn{font-size:.82rem;padding:10px 15px}
+    /* Plan */
+    .plan-wrap{display:grid;grid-template-columns:1fr .8fr;gap:28px;align-items:center}.plan-copy h2{font:800 clamp(2.1rem,4vw,3.3rem)/1.1 Manrope,sans-serif;letter-spacing:-.06em;margin:13px 0}.plan-copy>p{color:var(--muted);max-width:500px}.plan-points{display:grid;gap:12px;margin:26px 0 30px;padding:0;list-style:none}.plan-points li{display:flex;gap:11px;color:#d9e0d7;font-size:.92rem}.plan-points i{color:var(--green);margin-top:4px}.price-card{position:relative;overflow:hidden;border:1px solid rgba(184,243,107,.3);border-radius:30px;padding:30px;background:radial-gradient(circle at 100% 0,rgba(184,243,107,.12),transparent 38%),var(--panel);box-shadow:var(--shadow)}.price-card:after{content:"";position:absolute;width:170px;height:170px;right:-90px;bottom:-90px;background:rgba(184,243,107,.12);filter:blur(40px);border-radius:50%}.price-label{color:var(--green);font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.price{font:800 3.2rem/1.1 Manrope,sans-serif;letter-spacing:-.07em;margin:14px 0 2px}.price-note{font-size:.82rem;color:var(--muted)}.price-card hr{border:0;border-top:1px solid var(--line);margin:23px 0}.price-card .btn{width:100%;position:relative;z-index:1}.price-disclaimer{color:var(--muted);font-size:.72rem;text-align:center;margin:13px 0 0}
+    /* Profe/contacto */
+    .coach{display:grid;grid-template-columns:.78fr 1.22fr;gap:46px;align-items:center;padding:35px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(120deg,#1d281d,#171d18)}.coach-art{min-height:280px;border-radius:23px;background:radial-gradient(circle at 50% 30%,rgba(184,243,107,.3),transparent 33%),linear-gradient(145deg,#394a35,#1b251c);display:grid;place-items:center;position:relative;overflow:hidden}.coach-art:before{content:"VITAL";position:absolute;font:800 5rem Manrope,sans-serif;color:rgba(255,255,255,.055);transform:rotate(-90deg);left:-10px}.coach-monogram{width:145px;height:145px;border-radius:50%;display:grid;place-items:center;background:rgba(184,243,107,.13);border:1px solid rgba(184,243,107,.4);color:var(--green);font:800 3rem Manrope,sans-serif;box-shadow:0 0 70px rgba(184,243,107,.15)}.coach-copy h2{font:800 2rem Manrope,sans-serif;letter-spacing:-.05em;margin:12px 0 5px}.coach-copy .role{color:var(--green);font-size:.87rem;font-weight:600}.coach-copy p{color:var(--muted);margin:18px 0 23px}.coach-location{display:flex;align-items:center;gap:9px;color:#d8e0d6;font-size:.88rem}.coach-location i{color:var(--green)}
+    /* FAQ y footer */
+    .faq-list{max-width:800px;display:grid;gap:10px}.faq-item{border:1px solid var(--line);border-radius:17px;background:var(--panel);overflow:hidden}.faq-question{width:100%;border:0;background:transparent;text-align:left;padding:19px 21px;display:flex;justify-content:space-between;align-items:center;gap:15px;font-weight:700;cursor:pointer}.faq-question i{color:var(--green);transition:transform .2s}.faq-question[aria-expanded="true"] i{transform:rotate(45deg)}.faq-answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s}.faq-answer>div{overflow:hidden}.faq-answer p{margin:0;padding:0 21px 19px;color:var(--muted);font-size:.9rem}.faq-item.open .faq-answer{grid-template-rows:1fr}.footer{border-top:1px solid var(--line);padding:36px 0 100px;background:#0c100d}.footer-inner{display:flex;justify-content:space-between;gap:25px;align-items:center}.footer p{font-size:.8rem;color:var(--muted);margin:8px 0 0}.footer-links{display:flex;gap:17px;color:var(--muted)}.footer-links a:hover{color:var(--green)}.mobile-cta{display:none}
+    /* Modales y avisos */
+    .modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.72);backdrop-filter:blur(9px)}.modal.open{display:flex}.modal-card{width:min(100%,490px);max-height:min(90vh,780px);overflow:auto;border:1px solid var(--line);border-radius:26px;padding:26px;background:#171d18;box-shadow:var(--shadow);animation:pop .18s ease-out}@keyframes pop{from{transform:translateY(10px);opacity:.5}to{transform:translateY(0);opacity:1}}.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:20px}.modal-head h2{font:800 1.45rem Manrope,sans-serif;margin:0}.modal-head p{font-size:.86rem;color:var(--muted);margin:5px 0 0}.icon-btn{width:40px;height:40px;flex:none;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer}.form-grid{display:grid;gap:15px}.field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:7px}.field input,.field select{width:100%;height:48px;border:1px solid var(--line);border-radius:13px;background:#101510;color:var(--text);padding:0 13px;outline:none}.field input:focus,.field select:focus{border-color:var(--green)}.form-hint{font-size:.76rem;color:var(--muted);margin:0}.form-grid .btn{width:100%;margin-top:4px}.payment-box{border:1px solid var(--line);border-radius:17px;padding:17px;background:#101510;margin:18px 0}.payment-box small{color:var(--muted);display:block;font-size:.73rem;margin-bottom:3px}.payment-box strong{color:var(--green);font:700 1rem monospace}.payment-box .titular{color:var(--text);font-family:'DM Sans',sans-serif}.payment-actions{display:grid;gap:10px}.toast{position:fixed;z-index:80;left:50%;bottom:26px;transform:translate(-50%,20px);padding:12px 18px;border-radius:99px;background:var(--green);color:#15200f;font-weight:700;font-size:.85rem;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+    @media(max-width:850px){.hero-inner{grid-template-columns:1fr  .8fr;gap:15px}.hero-card{min-height:365px}.hero-visual{min-height:390px}.hero h1{font-size:clamp(3.2rem,8vw,5rem)}.schedule-layout{grid-template-columns:1fr;gap:28px}.schedule-layout .section-head{max-width:650px}.plan-wrap{gap:20px}.coach{gap:28px}}
+    @media(max-width:650px){.wrap{width:min(calc(100% - 30px),var(--max))}.section{padding:70px 0}.nav{height:68px}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;padding:15px 20px 22px;background:#101510;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{padding:12px 3px}.nav-actions>.btn{display:none}.menu-toggle{display:grid;place-items:center}.hero{padding:52px 0 55px;min-height:0}.hero-inner{grid-template-columns:1fr;gap:30px}.hero h1{font-size:clamp(3.1rem,14vw,5rem);max-width:540px}.hero-copy>p{font-size:1rem}.hero-visual{min-height:350px}.hero-card{width:min(90%,380px);min-height:340px;padding:23px}.hero-orbit{width:280px}.card-title h2{font-size:2.4rem}.info-grid{grid-template-columns:1fr}.info-item,.info-item:first-child{padding:15px 4px;border-right:0;border-bottom:1px solid var(--line)}.info-item:last-child{border-bottom:0}.benefits{grid-template-columns:1fr}.benefit{padding:21px}.schedule-row{grid-template-columns:70px 1fr;gap:10px 13px;padding:16px}.schedule-row .btn{grid-column:2;justify-self:start;padding:9px 13px}.plan-wrap{grid-template-columns:1fr}.price-card{padding:25px}.coach{grid-template-columns:1fr;padding:20px;gap:22px}.coach-art{min-height:220px}.coach-art:before{font-size:4rem}.coach-copy h2{font-size:1.7rem}.footer-inner{align-items:flex-start;flex-direction:column}.footer{padding-bottom:100px}.mobile-cta{position:fixed;display:block;z-index:18;bottom:0;left:0;right:0;padding:10px 15px calc(10px + env(safe-area-inset-bottom));background:rgba(16,21,16,.93);backdrop-filter:blur(14px);border-top:1px solid var(--line)}.mobile-cta .btn{width:100%;padding:12px}.modal-card{padding:21px}.toast{bottom:82px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
 </head>
-<body class="pb-32">
-
-  <!-- ENCABEZADO SUPERIOR -->
-  <header class="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-zinc-900 px-4 py-3 max-w-md mx-auto flex justify-between items-center">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-emerald-500 text-black font-black flex items-center justify-center text-sm shadow-lg shadow-emerald-500/30">VF</div>
-      <div>
-        <h1 class="text-sm font-extrabold tracking-wide text-white">VITAL FITNESS</h1>
-        <p class="text-[10px] text-zinc-400">Prof. Carina Tisera • Justiniano Posse</p>
-      </div>
+<body>
+  <header class="header">
+    <div class="wrap nav">
+      <a class="brand" href="#inicio" aria-label="Vital Fitness, inicio">
+        <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
+        <span>VITAL FITNESS<small>Entrenamiento con energía</small></span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Navegación principal">
+        <a href="#beneficios">La experiencia</a><a href="#horarios">Horarios</a><a href="#plan">Plan</a><a href="#contacto">Contacto</a>
+      </nav>
+      <div class="nav-actions"><a class="btn btn-primary" href="#horarios">Quiero entrenar <i class="fa-solid fa-arrow-right"></i></a><button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><i class="fa-solid fa-bars"></i></button></div>
     </div>
-    <button onclick="cambiarVista('admin')" class="px-3 py-1 text-xs bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-xl font-medium hover:bg-zinc-800">
-      <i class="fa-solid fa-user-shield mr-1"></i> Admin
-    </button>
   </header>
 
-  <!-- CONTENEDOR DE PANTALLAS -->
-  <main class="max-w-md mx-auto px-4 pt-4">
-
-    <!-- 1. VISTA INICIO -->
-    <div id="vista-inicio" class="tab-content active space-y-4">
-      
-      <!-- SALUDO Y ESTADO -->
-      <div class="flex justify-between items-center">
-        <div>
-          <span class="text-xs text-zinc-400">Buenas tardes,</span>
-          <h2 class="text-lg font-black text-white">Alumna Vital</h2>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Justiniano Posse · Córdoba</span>
+          <h1>Más fuerza.<br>Más <em>vos.</em></h1>
+          <p>Un espacio para moverte, desafiarte y construir hábitos a tu ritmo. Sumate a las clases de GAP HIIT con la profe Carina.</p>
+          <div class="hero-buttons"><a class="btn btn-primary" href="#horarios">Ver horarios <i class="fa-solid fa-arrow-right"></i></a><button class="btn btn-ghost" type="button" data-open="booking"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</button></div>
+          <div class="hero-note"><div class="avatars" aria-hidden="true"><span>VF</span><span>HI</span><span>+</span></div><span>Tu próximo entrenamiento empieza con un paso.</span></div>
         </div>
-        <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xs font-bold">
-          AV
-        </div>
-      </div>
-
-      <!-- TARJETA DE MEMBRESÍA -->
-      <div class="glass-box rounded-3xl p-5 border-emerald-500/30 relative overflow-hidden shadow-xl">
-        <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
-        <div class="flex justify-between items-start mb-3">
-          <div>
-            <span class="text-[10px] font-bold tracking-wider text-emerald-400 uppercase">Tu Membresía</span>
-            <h3 class="text-xl font-black text-white mt-0.5">Desafío GAP HIIT</h3>
-          </div>
-          <span class="px-2.5 py-1 text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full">Activo</span>
-        </div>
-        <p class="text-xs text-zinc-400 mb-4"><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> Francisco Ramírez 24, Justiniano Posse</p>
-        
-        <div class="grid grid-cols-2 gap-2 text-xs bg-zinc-950/60 p-3 rounded-2xl border border-zinc-900 mb-4">
-          <div>
-            <span class="text-zinc-500 text-[10px] block">Vencimiento</span>
-            <strong class="text-zinc-200">30 Días</strong>
-          </div>
-          <div>
-            <span class="text-zinc-500 text-[10px] block">Meta semanal</span>
-            <strong class="text-emerald-400">4 / 4 Clases</strong>
-          </div>
-        </div>
-
-        <button onclick="abrirPago()" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs rounded-2xl shadow-lg shadow-emerald-500/30 transition-all">
-          Renovar Plan ($50.000)
-        </button>
-      </div>
-
-      <!-- CONSTANCIA SEMANAL -->
-      <div class="glass-box rounded-3xl p-4 space-y-3">
-        <div class="flex justify-between items-center">
-          <span class="text-xs font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-fire text-orange-500"></i> Tu semana
-          </span>
-          <span class="text-[10px] text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded-full border border-zinc-800">4 semanas seguidas</span>
-        </div>
-        <div class="flex justify-between text-center gap-1.5">
-          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2.5 rounded-2xl">
-            <span class="text-[9px] text-emerald-400 block font-bold">LUN</span>
-            <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
-          </div>
-          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2.5 rounded-2xl">
-            <span class="text-[9px] text-emerald-400 block font-bold">MAR</span>
-            <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
-          </div>
-          <div class="flex-1 bg-emerald-500/10 border border-emerald-500/30 py-2.5 rounded-2xl">
-            <span class="text-[9px] text-emerald-400 block font-bold">MIÉ</span>
-            <i class="fa-solid fa-check text-xs text-emerald-400 mt-1"></i>
-          </div>
-          <div class="flex-1 bg-zinc-900/60 border border-zinc-800/80 py-2.5 rounded-2xl">
-            <span class="text-[9px] text-zinc-500 block font-bold">VIE</span>
-            <i class="fa-solid fa-minus text-xs text-zinc-600 mt-1"></i>
-          </div>
+        <div class="hero-visual" aria-label="Entrenamiento Vital Fitness">
+          <div class="hero-orbit"></div>
+          <article class="hero-card"><div class="card-top"><span class="live-pill"><i class="fa-solid fa-circle" style="font-size:.48rem;margin-right:5px"></i> TU NUEVO DESAFÍO</span><span class="hero-icon"><i class="fa-solid fa-dumbbell"></i></span></div><div class="card-title"><span>Entrenamiento funcional</span><h2>GAP<br>HIIT</h2><p>Movimiento, energía y constancia.</p></div><div class="card-bottom"><span><i class="fa-solid fa-location-dot"></i>Justiniano Posse</span><span><i class="fa-regular fa-clock"></i>Clases grupales</span></div></article>
         </div>
       </div>
+    </section>
 
-      <!-- LOGROS E INSIGNIAS -->
-      <div class="glass-box rounded-3xl p-4 space-y-3">
-        <div class="flex justify-between items-center">
-          <span class="text-xs font-bold text-white"><i class="fa-solid fa-award text-amber-400 mr-2"></i>Mis Logros</span>
-          <span class="text-[10px] text-zinc-400">3 de 6</span>
-        </div>
-        <div class="grid grid-cols-3 gap-2">
-          <div class="bg-zinc-900/80 p-3 rounded-2xl border border-amber-500/30 text-center">
-            <i class="fa-solid fa-seedling text-xl text-amber-400 mb-1"></i>
-            <span class="text-[10px] font-bold block text-white">Primera Clase</span>
-            <span class="text-[9px] text-emerald-400">Conseguido</span>
-          </div>
-          <div class="bg-zinc-900/80 p-3 rounded-2xl border border-amber-500/30 text-center">
-            <i class="fa-solid fa-fire text-xl text-amber-400 mb-1"></i>
-            <span class="text-[10px] font-bold block text-white">10 Visitas</span>
-            <span class="text-[9px] text-emerald-400">Conseguido</span>
-          </div>
-          <div class="bg-zinc-900/40 p-3 rounded-2xl border border-zinc-800 text-center opacity-50">
-            <i class="fa-solid fa-crown text-xl text-zinc-600 mb-1"></i>
-            <span class="text-[10px] font-bold block text-zinc-400">Leyenda</span>
-            <span class="text-[9px] text-zinc-500">Faltan 15</span>
-          </div>
-        </div>
+    <section class="info-strip" aria-label="Información del gimnasio"><div class="wrap info-grid">
+      <div class="info-item"><i class="fa-solid fa-calendar-days"></i><div><strong>4 días de actividad</strong><span>Lunes, martes, miércoles y viernes</span></div></div>
+      <div class="info-item"><i class="fa-solid fa-clock"></i><div><strong>Distintos horarios</strong><span>Elegí el turno que mejor te quede</span></div></div>
+      <div class="info-item"><i class="fa-solid fa-location-dot"></i><div><strong>Estamos cerca</strong><span>Francisco Ramírez 24, Justiniano Posse</span></div></div>
+    </div></section>
+
+    <section class="section" id="beneficios"><div class="wrap">
+      <div class="section-head"><span class="eyebrow">La experiencia Vital</span><h2>Entrená para sentirte bien.</h2><p>Empezá desde donde estás. La constancia se construye clase a clase, con acompañamiento y objetivos posibles.</p></div>
+      <div class="benefits">
+        <article class="benefit"><span class="benefit-icon"><i class="fa-solid fa-person-running"></i></span><h3>Entrenamiento GAP HIIT</h3><p>Una propuesta dinámica que combina ejercicios para glúteos, abdomen y piernas con intervalos de intensidad.</p></article>
+        <article class="benefit"><span class="benefit-icon"><i class="fa-solid fa-people-group"></i></span><h3>En grupo, a tu ritmo</h3><p>Compartí la energía de la clase y adaptá cada ejercicio a tu experiencia y posibilidades.</p></article>
+        <article class="benefit"><span class="benefit-icon"><i class="fa-solid fa-seedling"></i></span><h3>Un hábito que crece</h3><p>Elegí tus días, organizá tu semana y celebrá cada pequeño avance en el camino.</p></article>
       </div>
+    </div></section>
 
-    </div>
-
-    <!-- 2. VISTA TURNOS / CLASES -->
-    <div id="vista-clases" class="tab-content space-y-4">
-      <div class="glass-box rounded-3xl p-5 space-y-4">
-        <div>
-          <h2 class="text-base font-black text-white">Reserva tu Turno</h2>
-          <p class="text-xs text-zinc-400">Lunes, Martes, Miércoles y Viernes • Máximo 15 alumnas</p>
-        </div>
-
-        <div class="space-y-3">
-          <div class="bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
-            <div>
-              <span class="text-sm font-bold text-white block">08:00 hs — Turno Mañana</span>
-              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users mr-1"></i> 9 / 15 Disponibles</span>
-            </div>
-            <button onclick="marcarReserva(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl shadow-md">Anotarme</button>
-          </div>
-
-          <div class="bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
-            <div>
-              <span class="text-sm font-bold text-white block">14:00 hs — Turno Siesta</span>
-              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users mr-1"></i> 14 / 15 Disponibles</span>
-            </div>
-            <button onclick="marcarReserva(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl shadow-md">Anotarme</button>
-          </div>
-
-          <div class="bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
-            <div>
-              <span class="text-sm font-bold text-white block">18:30 hs — Turno Tarde</span>
-              <span class="text-[11px] text-amber-400 font-medium"><i class="fa-solid fa-users mr-1"></i> 2 / 15 Disponibles</span>
-            </div>
-            <button onclick="marcarReserva(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl shadow-md">Anotarme</button>
-          </div>
-
-          <div class="bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
-            <div>
-              <span class="text-sm font-bold text-white block">20:00 hs — Turno Noche</span>
-              <span class="text-[11px] text-emerald-400 font-medium"><i class="fa-solid fa-users mr-1"></i> 6 / 15 Disponibles</span>
-            </div>
-            <button onclick="marcarReserva(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl shadow-md">Anotarme</button>
-          </div>
-        </div>
+    <section class="section schedule-section" id="horarios"><div class="wrap schedule-layout">
+      <div class="section-head"><span class="eyebrow">Encontrá tu momento</span><h2>Tu horario.<br>Tu energía.</h2><p>Consultá por el turno que te quede cómodo. Los días de actividad son lunes, martes, miércoles y viernes.</p><div class="schedule-tip"><i class="fa-solid fa-circle-info"></i>La disponibilidad puede cambiar. Escribinos para confirmar tu lugar antes de venir.</div></div>
+      <div class="schedule-list">
+        <article class="schedule-row"><span class="schedule-time">08:00</span><div><h3>Turno mañana</h3><p>Lunes · Martes · Miércoles · Viernes</p></div><button class="btn btn-ghost" type="button" data-open="booking" data-time="08:00 hs — Turno Mañana">Consultar</button></article>
+        <article class="schedule-row"><span class="schedule-time">14:00</span><div><h3>Turno siesta</h3><p>Lunes · Martes · Miércoles · Viernes</p></div><button class="btn btn-ghost" type="button" data-open="booking" data-time="14:00 hs — Turno Siesta">Consultar</button></article>
+        <article class="schedule-row"><span class="schedule-time">18:30</span><div><h3>Turno tarde</h3><p>Lunes · Martes · Miércoles · Viernes</p></div><button class="btn btn-ghost" type="button" data-open="booking" data-time="18:30 hs — Turno Tarde">Consultar</button></article>
+        <article class="schedule-row"><span class="schedule-time">20:00</span><div><h3>Turno noche</h3><p>Lunes · Martes · Miércoles · Viernes</p></div><button class="btn btn-ghost" type="button" data-open="booking" data-time="20:00 hs — Turno Noche">Consultar</button></article>
       </div>
-    </div>
+    </div></section>
 
-    <!-- 3. VISTA ADMIN (CARINA / VOS) -->
-    <div id="vista-admin" class="tab-content space-y-4">
-      <div class="glass-box rounded-3xl p-5 border-violet-500/30 space-y-4">
-        <div>
-          <h2 class="text-base font-black text-white flex items-center gap-2">
-            <i class="fa-solid fa-user-gear text-violet-400"></i> Panel de Control
-          </h2>
-          <p class="text-xs text-zinc-400">Aprobación de pases por 30 días</p>
-        </div>
+    <section class="section" id="plan"><div class="wrap plan-wrap">
+      <div class="plan-copy"><span class="eyebrow">Empezá hoy</span><h2>Un plan simple para volver a elegirte.</h2><p>Consultá por el pase mensual de GAP HIIT y encontrá el ritmo que funciona para vos.</p><ul class="plan-points"><li><i class="fa-solid fa-circle-check"></i> Pase de 30 días</li><li><i class="fa-solid fa-circle-check"></i> Clases grupales en los horarios disponibles</li><li><i class="fa-solid fa-circle-check"></i> Consultas y coordinación por WhatsApp</li></ul><button class="btn btn-ghost" type="button" data-open="payment">Ver formas de pago <i class="fa-solid fa-arrow-right"></i></button></div>
+      <article class="price-card"><span class="price-label">Pase mensual · 30 días</span><div class="price">$50.000</div><span class="price-note">Precio informado en la página · confirmá vigencia por WhatsApp</span><hr><p style="color:#c8d1c7;font-size:.88rem;margin:0 0 20px">¿Tenés dudas antes de sumarte? Escribinos y te contamos.</p><button class="btn btn-primary" type="button" data-open="payment">Consultar y renovar <i class="fa-solid fa-arrow-right"></i></button><p class="price-disclaimer">El pago no se procesa en este sitio.</p></article>
+    </div></section>
 
-        <div class="space-y-3">
-          <div class="bg-zinc-950/80 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
-            <div>
-              <strong class="text-sm text-white block">Florencia Gómez</strong>
-              <span class="text-[10px] text-zinc-500 block">DNI: 41234567 • GAP HIIT</span>
-              <span class="text-[10px] text-amber-400 font-semibold">Comprobante enviado</span>
-            </div>
-            <button onclick="aprobarAlumna(this)" class="px-3 py-1.5 bg-emerald-500 text-black text-xs font-bold rounded-xl hover:bg-emerald-400">
-              Aprobar (30d)
-            </button>
-          </div>
+    <section class="section" id="contacto"><div class="wrap"><div class="coach">
+      <div class="coach-art" aria-hidden="true"><span class="coach-monogram">CT</span></div>
+      <div class="coach-copy"><span class="eyebrow">Te acompaña</span><h2>Carina Tisera</h2><span class="role">Profe · Vital Fitness</span><p>¿Querés empezar, consultar por los horarios o saber qué llevar a tu primera clase? Mandanos un mensaje y te ayudamos.</p><p class="coach-location"><i class="fa-solid fa-location-dot"></i> Francisco Ramírez 24, Justiniano Posse</p><a class="btn btn-primary" href="https://wa.me/5493537338765?text=Hola%20Carina%2C%20quiero%20consultar%20por%20Vital%20Fitness" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp</a></div>
+    </div></div></section>
 
-          <div class="bg-zinc-950/80 p-3.5 rounded-2xl border border-zinc-900 flex justify-between items-center">
-            <div>
-              <strong class="text-sm text-white block">Mariana Rossi</strong>
-              <span class="text-[10px] text-zinc-500 block">DNI: 39876543 • GAP HIIT</span>
-              <span class="text-[10px] text-emerald-400 font-semibold">Activo (Vence en 22d)</span>
-            </div>
-            <button class="px-3 py-1.5 bg-zinc-900 text-zinc-500 text-xs font-bold rounded-xl cursor-not-allowed">
-              Al día
-            </button>
-          </div>
-        </div>
+    <section class="section" style="padding-top:10px"><div class="wrap"><div class="section-head"><span class="eyebrow">Preguntas frecuentes</span><h2>Antes de tu primera clase.</h2><p>¿No encontraste lo que buscabas? Escribinos y te damos una mano.</p></div>
+      <div class="faq-list">
+        <article class="faq-item"><button class="faq-question" aria-expanded="false"><span>¿Qué días hay clases?</span><i class="fa-solid fa-plus"></i></button><div class="faq-answer"><div><p>Las clases se ofrecen los lunes, martes, miércoles y viernes. Consultá por WhatsApp para confirmar disponibilidad y elegir horario.</p></div></div></article>
+        <article class="faq-item"><button class="faq-question" aria-expanded="false"><span>¿Cómo reservo mi lugar?</span><i class="fa-solid fa-plus"></i></button><div class="faq-answer"><div><p>Elegí un turno y completá el formulario de consulta. Se abrirá WhatsApp con un mensaje listo para enviar. Tu lugar queda sujeto a confirmación del equipo.</p></div></div></article>
+        <article class="faq-item"><button class="faq-question" aria-expanded="false"><span>¿Cómo pago el pase mensual?</span><i class="fa-solid fa-plus"></i></button><div class="faq-answer"><div><p>Podés consultar los datos de pago desde el botón “Formas de pago”. Después de transferir, escribinos por WhatsApp para coordinar la confirmación. Este sitio no procesa pagos.</p></div></div></article>
+        <article class="faq-item"><button class="faq-question" aria-expanded="false"><span>¿Dónde queda Vital Fitness?</span><i class="fa-solid fa-plus"></i></button><div class="faq-answer"><div><p>Estamos en Francisco Ramírez 24, Justiniano Posse, Córdoba. Escribinos si necesitás ayuda para encontrarnos.</p></div></div></article>
       </div>
-    </div>
-
+    </div></section>
   </main>
 
-  <!-- NAVEGACIÓN FLOTANTE INFERIOR ESTILO REY FIT -->
-  <nav class="fixed bottom-0 left-0 right-0 z-50 max-w-md mx-auto px-4 pb-4">
-    <div class="glass-box rounded-3xl p-2 flex justify-around items-center border border-zinc-800 bg-black/95 shadow-2xl">
-      
-      <button onclick="cambiarVista('inicio')" id="btn-inicio" class="flex flex-col items-center gap-1 text-emerald-400 py-1 px-3">
-        <i class="fa-solid fa-house text-lg"></i>
-        <span class="text-[10px] font-bold">Inicio</span>
-      </button>
+  <footer class="footer"><div class="wrap footer-inner"><div><a class="brand" href="#inicio"><span class="brand-mark"><i class="fa-solid fa-bolt"></i></span><span>VITAL FITNESS<small>Entrenamiento con energía</small></span></a><p>Francisco Ramírez 24 · Justiniano Posse</p></div><div class="footer-links"><a href="#horarios">Horarios</a><a href="#plan">Plan</a><a href="https://wa.me/5493537338765" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></div></div></footer>
+  <div class="mobile-cta"><button class="btn btn-primary" type="button" data-open="booking"><i class="fa-brands fa-whatsapp"></i> Consultar un turno</button></div>
 
-      <button onclick="cambiarVista('clases')" id="btn-clases" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white py-1 px-3">
-        <i class="fa-solid fa-calendar-check text-lg"></i>
-        <span class="text-[10px] font-bold">Turnos</span>
-      </button>
-
-      <!-- BOTÓN CIRCULAR CENTRAL (CANDADO / QR) -->
-      <button onclick="cambiarVista('clases')" class="w-13 h-13 w-12 h-12 rounded-full bg-emerald-500 text-black flex items-center justify-center text-xl font-black -mt-7 border-4 border-black shadow-xl shadow-emerald-500/40">
-        <i class="fa-solid fa-qrcode"></i>
-      </button>
-
-      <button onclick="abrirPago()" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white py-1 px-3">
-        <i class="fa-solid fa-wallet text-lg"></i>
-        <span class="text-[10px] font-bold">Pagar</span>
-      </button>
-
-      <button onclick="cambiarVista('admin')" id="btn-admin" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white py-1 px-3">
-        <i class="fa-solid fa-user-gear text-lg"></i>
-        <span class="text-[10px] font-bold">Admin</span>
-      </button>
-
-    </div>
-  </nav>
-
-  <!-- MODAL DE PAGO / ALIAS -->
-  <div id="modal-pago" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="glass-box rounded-3xl p-5 max-w-sm w-full border-zinc-800 space-y-4">
-      <div class="flex justify-between items-center">
-        <h3 class="text-base font-bold text-white">Datos de Pago</h3>
-        <button onclick="cerrarPago()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-
-      <p class="text-xs text-zinc-300">Para renovar tu pase de 30 días del **Desafío GAP HIIT** ($50.000):</p>
-
-      <div class="bg-zinc-950 p-3.5 rounded-2xl border border-zinc-900 space-y-2 text-xs">
-        <div>
-          <span class="text-zinc-500 text-[10px] block">Alias Mercado Pago</span>
-          <strong class="text-emerald-400 font-mono text-sm">valentin.122.sopa.mp</strong>
-        </div>
-        <div>
-          <span class="text-zinc-500 text-[10px] block">Titular</span>
-          <strong class="text-white">Prof. Carina Tisera</strong>
-        </div>
-      </div>
-
-      <a href="https://wa.me/5493537338765?text=Hola%20Carina!%20Te%20envío%20el%20comprobante%20de%20mi%20desafío%20de%20Vital%20Fitness" target="_blank" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
-        <i class="fa-brands fa-whatsapp text-sm"></i> Enviar Comprobante por WhatsApp
-      </a>
+  <div class="modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+    <div class="modal-card"><div class="modal-head"><div><h2 id="booking-title">Consultá tu turno</h2><p>Completá tus datos y seguimos por WhatsApp.</p></div><button class="icon-btn" type="button" data-close aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button></div>
+      <form class="form-grid" id="booking-form"><div class="field"><label for="name">¿Cómo te llamás?</label><input id="name" name="name" autocomplete="name" required maxlength="60" placeholder="Tu nombre"></div><div class="field"><label for="day">Día que preferís</label><select id="day" name="day" required><option value="">Elegí un día</option><option>Lunes</option><option>Martes</option><option>Miércoles</option><option>Viernes</option></select></div><div class="field"><label for="time">Turno</label><select id="time" name="time" required><option value="">Elegí un horario</option><option value="08:00 hs — Turno Mañana">08:00 hs — Turno Mañana</option><option value="14:00 hs — Turno Siesta">14:00 hs — Turno Siesta</option><option value="18:30 hs — Turno Tarde">18:30 hs — Turno Tarde</option><option value="20:00 hs — Turno Noche">20:00 hs — Turno Noche</option></select></div><p class="form-hint">La consulta se envía por WhatsApp. La reserva se confirma cuando el equipo te responda.</p><button class="btn btn-primary" type="submit"><i class="fa-brands fa-whatsapp"></i> Continuar por WhatsApp</button></form>
     </div>
   </div>
 
+  <div class="modal" id="payment-modal" role="dialog" aria-modal="true" aria-labelledby="payment-title">
+    <div class="modal-card"><div class="modal-head"><div><h2 id="payment-title">Datos para consultar el pago</h2><p>Pase de 30 días · $50.000 (confirmá el precio vigente).</p></div><button class="icon-btn" type="button" data-close aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="payment-box"><small>Alias Mercado Pago</small><strong id="alias-text">valentin.122.sopa.mp</strong><div style="height:15px"></div><small>Titular informado</small><strong class="titular">Prof. Carina Tisera</strong></div><div class="payment-actions"><button class="btn btn-ghost" id="copy-alias" type="button"><i class="fa-regular fa-copy"></i> Copiar alias</button><a class="btn btn-primary" href="https://wa.me/5493537338765?text=Hola%20Carina%2C%20quiero%20consultar%20por%20el%20pase%20de%20Vital%20Fitness" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</a></div><p class="form-hint" style="margin-top:14px">Verificá el alias y el importe con el gimnasio antes de transferir. Esta página no valida pagos ni comprobantes.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
   <script>
-    function cambiarVista(vista) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.getElementById('vista-' + vista).classList.add('active');
+    const whatsappNumber = '5493537338765';
+    const bookingModal = document.getElementById('booking-modal');
+    const paymentModal = document.getElementById('payment-modal');
+    let lastFocusedElement = null;
 
-      // Actualizar colores de iconos abajo
-      document.querySelectorAll('nav button span').forEach(el => el.classList.remove('text-emerald-400'));
+    function openModal(modal) {
+      lastFocusedElement = document.activeElement;
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+      const firstField = modal.querySelector('input, select, button');
+      if (firstField) firstField.focus();
     }
+    function closeModal(modal) {
+      modal.classList.remove('open');
+      if (!document.querySelector('.modal.open')) document.body.classList.remove('modal-open');
+      if (lastFocusedElement) lastFocusedElement.focus();
+    }
+    document.querySelectorAll('[data-open="booking"]').forEach(button => button.addEventListener('click', () => {
+      const preferredTime = button.dataset.time;
+      if (preferredTime) document.getElementById('time').value = preferredTime;
+      openModal(bookingModal);
+    }));
+    document.querySelectorAll('[data-open="payment"]').forEach(button => button.addEventListener('click', () => openModal(paymentModal)));
+    document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => closeModal(button.closest('.modal'))));
+    document.querySelectorAll('.modal').forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) closeModal(modal); }));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') document.querySelectorAll('.modal.open').forEach(closeModal); });
 
-    function marcarReserva(btn) {
-      btn.innerText = 'Reservado ✔';
-      btn.className = 'px-3 py-1.5 bg-zinc-900 text-emerald-400 border border-emerald-500/30 text-xs font-bold rounded-xl';
-    }
+    document.getElementById('booking-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const name = String(form.get('name')).trim();
+      const day = String(form.get('day'));
+      const time = String(form.get('time'));
+      const message = `Hola Carina, soy ${name}. Quiero consultar disponibilidad para GAP HIIT el día ${day} en el turno ${time}. ¿Me confirmás si hay lugar?`;
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+      closeModal(bookingModal);
+    });
 
-    function aprobarAlumna(btn) {
-      btn.innerText = 'Aprobado (30d)';
-      btn.className = 'px-3 py-1.5 bg-zinc-900 text-zinc-500 text-xs font-bold rounded-xl cursor-default';
+    let toastTimer;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
     }
+    document.getElementById('copy-alias').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(document.getElementById('alias-text').textContent.trim());
+        showToast('Alias copiado');
+      } catch {
+        showToast('No se pudo copiar. Seleccioná el alias para copiarlo.');
+      }
+    });
 
-    function abrirPago() {
-      document.getElementById('modal-pago').classList.remove('hidden');
-    }
+    document.querySelectorAll('.faq-question').forEach(question => question.addEventListener('click', () => {
+      const item = question.closest('.faq-item');
+      const isOpen = item.classList.toggle('open');
+      question.setAttribute('aria-expanded', String(isOpen));
+    }));
 
-    function cerrarPago() {
-      document.getElementById('modal-pago').classList.add('hidden');
-    }
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+      menuToggle.innerHTML = `<i class="fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}"></i>`;
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Abrir menú');
+      menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }));
   </script>
 </body>
 </html>
